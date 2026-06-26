@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>T. Ramakrishnan & Dr. Pradeetha P — Wedding Celebrations</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ivory: #F8F5FF;
+    --gold: #7C3AED;
+    --gold-light: #A78BFA;
+    --gold-pale: #EDE9FE;
+    --green: #5B21B6;
+    --green-light: #6D28D9;
+    --copper: #8B5CF6;
+    --parchment: #DDD6FE;
+    --charcoal: #1E1B2E;
+    --charcoal-soft: #3D3860;
+    --text-muted: #6B5FA6;
+    --white: #FFFFFF;
+    --red-kumkum: #4C1D95;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ivory);
+    color: var(--charcoal);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── FLOATING NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(248, 245, 255, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(124,58,237,0.2);
+    padding: 14px 40px;
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+  }
+  nav a {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--charcoal-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #0D0720 0%, #1E0A45 40%, #2D1B69 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 100px 20px 60px;
+  }
+
+  /* Decorative corner motifs */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(124,58,237,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(167,139,250,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-border {
+    position: absolute;
+    inset: 20px;
+    border: 1px solid rgba(167,139,250,0.3);
+    pointer-events: none;
+  }
+  .hero-border::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px solid rgba(167,139,250,0.15);
+    pointer-events: none;
+  }
+
+  /* Corner ornaments */
+  .corner { position: absolute; width: 60px; height: 60px; }
+  .corner svg { width: 100%; height: 100%; }
+  .c-tl { top: 28px; left: 28px; }
+  .c-tr { top: 28px; right: 28px; transform: scaleX(-1); }
+  .c-bl { bottom: 28px; left: 28px; transform: scaleY(-1); }
+  .c-br { bottom: 28px; right: 28px; transform: scale(-1,-1); }
+
+  .hero-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 24px;
+  }
+
+  .hero-names {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 400;
+    color: var(--white);
+    text-align: center;
+    line-height: 1.1;
+    position: relative;
+  }
+  .hero-names em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero-amp {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.6em;
+    font-style: italic;
+    color: rgba(255,255,255,0.4);
+    display: block;
+    margin: 8px 0;
+  }
+
+  .hero-divider {
+    margin: 36px auto;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .hero-divider::before, .hero-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .hero-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: float 2.5s ease-in-out infinite;
+  }
+  .hero-scroll span {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .hero-scroll svg { color: rgba(167,139,250,0.6); }
+  @keyframes float {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── KOLAM DIVIDER ── */
+  .kolam-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 0 0;
+    gap: 20px;
+  }
+  .kolam-divider .line {
+    flex: 1;
+    max-width: 200px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold));
+  }
+  .kolam-divider .line.rev {
+    background: linear-gradient(to left, transparent, var(--gold));
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 80px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 40px;
+    line-height: 1.25;
+  }
+  .section-title em { font-style: italic; color: var(--green); }
+
+  /* ── BRIDE & GROOM ── */
+  .couple-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .person-card {
+    background: var(--white);
+    border: 1px solid var(--parchment);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .person-card::before {
+    content: '';
+    display: block;
+    height: 6px;
+    background: linear-gradient(to right, var(--gold), var(--copper));
+  }
+
+  .person-card-inner { padding: 32px; }
+
+  .person-role {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 10px;
+  }
+  .person-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+  .person-parents {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .person-title-badge {
+    display: inline-block;
+    background: var(--gold-pale);
+    border: 1px solid rgba(201,150,58,0.4);
+    color: var(--charcoal-soft);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .person-desc {
+    font-size: 14px;
+    color: var(--charcoal-soft);
+    line-height: 1.75;
+  }
+  .person-desc strong {
+    color: var(--charcoal);
+    font-weight: 500;
+  }
+
+  /* ── EVENTS ── */
+  .events-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .event-card {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 0;
+    border: 1px solid var(--parchment);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--white);
+    transition: box-shadow 0.2s;
+  }
+  .event-card:hover {
+    box-shadow: 0 8px 32px rgba(124,58,237,0.12);
+  }
+
+  .event-date-block {
+    background: var(--green);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 16px;
+    text-align: center;
+  }
+  .event-day {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--gold-light);
+  }
+  .event-month {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    margin-top: 4px;
+  }
+  .event-weekday {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+  }
+
+  .event-details { padding: 28px 32px; }
+  .event-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+  .event-time {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .event-venue {
+    font-size: 14px;
+    color: var(--charcoal-soft);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .event-venue-name {
+    font-weight: 500;
+    color: var(--charcoal);
+  }
+
+  /* ── MAP BUTTON ── */
+  .map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--charcoal);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    padding: 10px 20px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+  .map-btn:hover {
+    background: var(--green);
+    transform: translateY(-1px);
+  }
+  .map-btn svg { flex-shrink: 0; }
+
+  .map-btn.gold {
+    background: var(--gold);
+    color: var(--charcoal);
+  }
+  .map-btn.gold:hover { background: var(--gold-light); }
+
+  /* ── EMBEDDED MAP ── */
+  .map-container {
+    margin-top: 16px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--parchment);
+    height: 300px;
+    display: none;
+  }
+  .map-container.visible { display: block; }
+  .map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* ── FAMILY SECTION ── */
+  .family-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .family-card {
+    background: var(--white);
+    border: 1px solid var(--parchment);
+    border-radius: 4px;
+    padding: 32px;
+  }
+  .family-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--parchment);
+  }
+  .family-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gold-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .family-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--copper);
+    font-weight: 500;
+  }
+  .family-side-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-top: 2px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(221,214,254,0.5);
+  }
+  .contact-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .contact-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--ivory);
+    border: 1px solid var(--parchment);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .contact-info { flex: 1; }
+  .contact-name { font-size: 14px; font-weight: 500; color: var(--charcoal); }
+  .contact-relation {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 2px;
+  }
+  .contact-number {
+    font-size: 13px;
+    color: var(--green);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .contact-number:hover { text-decoration: underline; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: linear-gradient(160deg, #0D0720, #1E0A45);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 60px 40px;
+  }
+  .footer-names {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+  }
+  .footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.05em;
+  }
+  .footer-note {
+    margin-top: 32px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── BACKGROUND SECTION BANDS ── */
+  .band-parchment { background: var(--parchment); }
+  .band-parchment section { max-width: 900px; margin: 0 auto; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    nav { gap: 20px; padding: 12px 16px; flex-wrap: wrap; justify-content: center; }
+    nav a { font-size: 11px; }
+    section { padding: 60px 20px; }
+    .couple-grid { grid-template-columns: 1fr; }
+    .family-grid { grid-template-columns: 1fr; }
+    .event-card { grid-template-columns: 100px 1fr; }
+    .event-details { padding: 20px 16px; }
+    .event-day { font-size: 32px; }
+  }
+
+  /* ── ORNAMENT SVG ── */
+  .lotus-ornament {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0;
+  }
+
+  /* Animated entrance */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero > * { animation: fadeUp 0.9s ease both; }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero-names { animation-delay: 0.3s; }
+  .hero-divider { animation-delay: 0.5s; }
+  .hero-date { animation-delay: 0.7s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#events">Celebrations</a>
+  <a href="#couple">Bride & Groom</a>
+  <a href="#venues">Venues</a>
+  <a href="#contact">Contact</a>
+  <a href="#wishes">Wishes</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-border"></div>
+  <!-- Corner ornaments -->
+  <div class="corner c-tl">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2 L30 2 Q2 2 2 30" stroke="#A78BFA" stroke-width="1" fill="none"/>
+      <path d="M8 2 L8 20" stroke="#A78BFA" stroke-width="0.5" opacity="0.5"/>
+      <path d="M2 8 L20 8" stroke="#A78BFA" stroke-width="0.5" opacity="0.5"/>
+      <circle cx="8" cy="8" r="2.5" fill="#A78BFA" opacity="0.7"/>
+      <path d="M14 2 Q8 8 2 14" stroke="#A78BFA" stroke-width="0.5" opacity="0.4"/>
+    </svg>
+  </div>
+  <div class="corner c-tr">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2 L30 2 Q2 2 2 30" stroke="#A78BFA" stroke-width="1" fill="none"/>
+      <path d="M8 2 L8 20" stroke="#A78BFA" stroke-width="0.5" opacity="0.5"/>
+      <path d="M2 8 L20 8" stroke="#A78BFA" stroke-width="0.5" opacity="0.5"/>
+      <circle cx="8" cy="8" r="2.5" fill="#A78BFA" opacity="0.7"/>
+    </svg>
+  </div>
+  <div class="corner c-bl">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2 L30 2 Q2 2 2 30" stroke="#A78BFA" stroke-width="1" fill="none"/>
+      <path d="M8 2 L8 20" stroke="#A78BFA" stroke-width="0.5" opacity="0.5"/>
+      <path d="M2 8 L20 8" stroke="#A78BFA" stroke-width="0.5" opacity="0.5"/>
+      <circle cx="8" cy="8" r="2.5" fill="#A78BFA" opacity="0.7"/>
+    </svg>
+  </div>
+  <div class="corner c-br">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2 L30 2 Q2 2 2 30" stroke="#A78BFA" stroke-width="1" fill="none"/>
+      <path d="M8 2 L8 20" stroke="#A78BFA" stroke-width="0.5" opacity="0.5"/>
+      <path d="M2 8 L20 8" stroke="#A78BFA" stroke-width="0.5" opacity="0.5"/>
+      <circle cx="8" cy="8" r="2.5" fill="#A78BFA" opacity="0.7"/>
+    </svg>
+  </div>
+
+  <p class="hero-eyebrow">🪔 &nbsp; With the blessings of the Almighty &nbsp; 🪔</p>
+
+  <h1 class="hero-names">
+    Ramakrishnan
+    <span class="hero-amp">&amp;</span>
+    <em>Pradeetha</em>
+  </h1>
+
+  <div class="hero-divider">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Lotus icon -->
+      <path d="M12 20c0 0-8-5-8-11a8 8 0 0116 0c0 6-8 11-8 11z" stroke="#A78BFA" stroke-width="1" fill="none"/>
+      <path d="M12 20V10" stroke="#A78BFA" stroke-width="1"/>
+      <path d="M8 14c1-2 2-3 4-4M16 14c-1-2-2-3-4-4" stroke="#A78BFA" stroke-width="0.8" opacity="0.7"/>
+    </svg>
+  </div>
+
+  <p class="hero-date">September 2026 &nbsp;·&nbsp; Kerala &amp; Tamil Nadu</p>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <svg width="16" height="20" viewBox="0 0 16 20" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M8 2v16M2 14l6 6 6-6"/>
+    </svg>
+  </div>
+</div>
+
+<!-- COUNTDOWN TIMER -->
+<div style="background: linear-gradient(135deg, #1E0A45 0%, #2D1B69 50%, #1E0A45 100%); padding: 48px 20px;">
+  <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+    <p style="font-family:'Inter',sans-serif; font-size:10px; font-weight:500; letter-spacing:0.3em; text-transform:uppercase; color:#A78BFA; margin-bottom:10px;">Counting down to the moment</p>
+    <p style="font-family:'Playfair Display',serif; font-size:22px; font-style:italic; color:rgba(255,255,255,0.85); margin-bottom:32px;">🌸 Thirumanam · 13 September 2026 · 7:00 AM</p>
+    <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+      <div class="cd-box">
+        <div class="cd-num" id="cd-days">--</div>
+        <div class="cd-label">Days</div>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-box">
+        <div class="cd-num" id="cd-hours">--</div>
+        <div class="cd-label">Hours</div>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-box">
+        <div class="cd-num" id="cd-minutes">--</div>
+        <div class="cd-label">Minutes</div>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-box">
+        <div class="cd-num" id="cd-seconds">--</div>
+        <div class="cd-label">Seconds</div>
+      </div>
+    </div>
+    <p id="cd-done" style="display:none; font-family:'Playfair Display',serif; font-size:26px; color:#C4B5FD; margin-top:16px;">🎉 They are married! Congratulations!</p>
+  </div>
+</div>
+
+<style>
+  .cd-box {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(167,139,250,0.3);
+    border-radius: 8px;
+    padding: 18px 22px;
+    min-width: 90px;
+  }
+  .cd-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .cd-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #A78BFA;
+    margin-top: 6px;
+  }
+  .cd-sep {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    color: rgba(167,139,250,0.4);
+    align-self: center;
+    padding-bottom: 20px;
+    line-height: 1;
+  }
+</style>
+
+
+<div id="events">
+  <section>
+    <p class="section-eyebrow">Three Days of Celebration</p>
+    <h2 class="section-title">Our <em>Celebrations</em></h2>
+
+    <div class="events-stack">
+
+      <!-- ENGAGEMENT -->
+      <div class="event-card">
+        <div class="event-date-block">
+          <div class="event-day">12</div>
+          <div class="event-month">September</div>
+          <div class="event-weekday">Saturday · 2026</div>
+        </div>
+        <div class="event-details">
+          <div class="event-name">💍 Nischayathartham</div>
+          <div class="event-time">Evening · 6:30 PM</div>
+          <div class="event-venue">
+            <span class="event-venue-name">Mangalya Auditorium</span><br/>
+            Chottanikara, Ernakulam, Kerala
+          </div>
+          <button class="map-btn" onclick="toggleMap('map-engagement')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+            View on Map
+          </button>
+          <div class="map-container" id="map-engagement">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.4!2d76.3240!3d10.0015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d514abec6b1%3A0xa23bedd634e08b5a!2sChottanikkara%2C%20Ernakulam%2C%20Kerala!5e0!3m2!1sen!2sin!4v1700000000000"
+              allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <div style="margin-top:10px">
+            <a class="map-btn gold" href="https://maps.google.com/?q=Chottanikara+Ernakulam+Kerala" target="_blank">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open in Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEDDING -->
+      <div class="event-card">
+        <div class="event-date-block" style="background: #3B0764;">
+          <div class="event-day">13</div>
+          <div class="event-month">September</div>
+          <div class="event-weekday">Sunday · 2026</div>
+        </div>
+        <div class="event-details">
+          <div class="event-name">🌸 Thirumanam / Kalyanam</div>
+          <div class="event-time">Morning · 7:00 AM</div>
+          <div class="event-venue">
+            <span class="event-venue-name">Mangalya Auditorium</span><br/>
+            Chottanikara, Ernakulam, Kerala
+          </div>
+          <button class="map-btn" onclick="toggleMap('map-wedding')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+            View on Map
+          </button>
+          <div class="map-container" id="map-wedding">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.4!2d76.3240!3d10.0015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d514abec6b1%3A0xa23bedd634e08b5a!2sChottanikkara%2C%20Ernakulam%2C%20Kerala!5e0!3m2!1sen!2sin!4v1700000000000"
+              allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <div style="margin-top:10px">
+            <a class="map-btn gold" href="https://maps.google.com/?q=Chottanikara+Ernakulam+Kerala" target="_blank">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open in Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RECEPTION -->
+      <div class="event-card">
+        <div class="event-date-block" style="background: #312E81;">
+          <div class="event-day">15</div>
+          <div class="event-month">September</div>
+          <div class="event-weekday">Tuesday · 2026</div>
+        </div>
+        <div class="event-details">
+          <div class="event-name">🎊 Grand Reception</div>
+          <div class="event-time">Afternoon · 12:30 PM</div>
+          <div class="event-venue">
+            <span class="event-venue-name">Ramyas Hotel</span><br/>
+            Trichy (Tiruchirappalli), Tamil Nadu
+          </div>
+          <button class="map-btn" onclick="toggleMap('map-reception')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+            View on Map
+          </button>
+          <div class="map-container" id="map-reception">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.8!2d78.6869!3d10.8050!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baaf5f0a6c5a4c5%3A0xb5f5c02d6b1d1234!2sRamyas%20Hotel%2C%20Trichy!5e0!3m2!1sen!2sin!4v1700000000001"
+              allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <div style="margin-top:10px">
+            <a class="map-btn gold" href="https://maps.google.com/?q=Ramyas+Hotel+Trichy+Tamil+Nadu" target="_blank">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open in Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- KOLAM DIVIDER -->
+<div class="kolam-divider">
+  <div class="line rev"></div>
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Kolam-style 8-petal flower -->
+    <circle cx="24" cy="24" r="3" fill="#A78BFA"/>
+    <g stroke="#A78BFA" stroke-width="1" fill="none">
+      <ellipse cx="24" cy="14" rx="3" ry="7" opacity="0.9"/>
+      <ellipse cx="24" cy="34" rx="3" ry="7" opacity="0.9"/>
+      <ellipse cx="14" cy="24" rx="7" ry="3" opacity="0.9"/>
+      <ellipse cx="34" cy="24" rx="7" ry="3" opacity="0.9"/>
+      <ellipse cx="17" cy="17" rx="3" ry="7" transform="rotate(45 17 17)" opacity="0.5"/>
+      <ellipse cx="31" cy="17" rx="3" ry="7" transform="rotate(-45 31 17)" opacity="0.5"/>
+      <ellipse cx="17" cy="31" rx="3" ry="7" transform="rotate(-45 17 31)" opacity="0.5"/>
+      <ellipse cx="31" cy="31" rx="3" ry="7" transform="rotate(45 31 31)" opacity="0.5"/>
+    </g>
+    <circle cx="24" cy="24" r="6" stroke="#A78BFA" stroke-width="0.5" fill="none" opacity="0.4"/>
+    <circle cx="24" cy="24" r="12" stroke="#A78BFA" stroke-width="0.3" fill="none" opacity="0.2"/>
+  </svg>
+  <div class="line"></div>
+</div>
+
+<!-- BRIDE & GROOM -->
+<div id="couple">
+  <section>
+    <p class="section-eyebrow">The Couple</p>
+    <h2 class="section-title">Bride &amp; <em>Groom</em></h2>
+
+    <div class="couple-grid">
+
+      <!-- GROOM -->
+      <div class="person-card">
+        <div class="person-card-inner">
+          <div class="person-role">🤵 The Groom</div>
+          <div class="person-name">T. Ramakrishnan</div>
+          <div class="person-parents">
+            Son of <strong>Er. N. Thiagu</strong> &amp; <strong>T. Maheshwari</strong>
+          </div>
+          <div class="person-title-badge">⚡ Senior Gen AI Engineer</div>
+          <div class="person-desc">
+            Ramakrishnan is a trailblazer in the frontier of Artificial Intelligence — a <strong>Senior Generative AI Engineer</strong> who architects intelligent systems that think, reason, and create. With deep expertise spanning <strong>large language models, agentic workflows, and AI-powered applications</strong>, he stands at the cutting edge of one of the most transformative technologies of our era.
+            <br/><br/>
+            His work spans the full spectrum of modern AI engineering — from designing production-grade <strong>NLP-to-database pipelines</strong> and <strong>LLM tool-calling agents</strong> to building sophisticated semantic retrieval systems using FAISS and RAG architectures. He is equally at home with Python, LangChain, FastAPI, and React — a full-stack AI builder who bridges the gap between research and real-world impact.
+            <br/><br/>
+            Grounded in strong Tamil roots and raised with values of perseverance and integrity, Ramakrishnan brings that same meticulous precision to every line of code — and every chapter of life.
+          </div>
+        </div>
+      </div>
+
+      <!-- BRIDE -->
+      <div class="person-card">
+        <div class="person-card-inner">
+          <div class="person-role">👩‍⚕️ The Bride</div>
+          <div class="person-name">Dr. Pradeetha P</div>
+          <div class="person-parents">
+            Daughter of <strong>Pradeepkumar</strong> &amp; <strong>Selvi</strong>
+          </div>
+          <div class="person-title-badge">🩺 Pulmonologist</div>
+          <div class="person-desc">
+            Dr. Pradeetha is a dedicated <strong>Pulmonologist</strong> — a specialist in the intricate science of breath, life, and healing. As a physician of the lungs and respiratory system, she navigates the complex terrain of <strong>pulmonary medicine</strong>, treating conditions that range from asthma and COPD to critical respiratory illnesses, with skill and compassion that define the finest tradition of medicine.
+            <br/><br/>
+            Her journey through medicine — from rigorous medical training to mastering the nuances of <strong>chest radiology, pulmonary immunology, and critical care</strong> — reflects an intellect sharpened by science and a heart devoted to her patients. She is as much an educator as a healer, bringing clarity to complex medical conditions through meticulous teaching and scholarship.
+            <br/><br/>
+            Born into a Kerala family of warmth and culture, Dr. Pradeetha carries the grace of her heritage alongside the authority of a physician who has truly earned her white coat. Her union with Ramakrishnan is a meeting of two brilliant minds and two generous hearts.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- VENUES SECTION (visual summary) -->
+<div id="venues" style="background: #F0EBFF;">
+  <section>
+    <p class="section-eyebrow">Getting There</p>
+    <h2 class="section-title"><em>Venues</em> at a Glance</h2>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+
+      <div style="background:white; border:1px solid var(--parchment); border-radius:4px; padding:28px; position:relative;">
+        <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(to right, var(--green), #6D28D9);"></div>
+        <p style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--green); font-weight:500; margin-bottom:10px;">ENGAGEMENT & WEDDING</p>
+        <p style="font-family:'Playfair Display',serif; font-size:20px; color:var(--charcoal); margin-bottom:6px;">Mangalya Auditorium</p>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Chottanikara, Ernakulam, Kerala</p>
+        <p style="font-size:13px; color:var(--charcoal-soft); line-height:1.7; margin-bottom:20px;">
+          Nestled near the sacred Chottanikkara Bhagavathy Temple in Ernakulam district, Mangalya Auditorium offers a serene and auspicious setting for the engagement and wedding ceremonies. Located just 18 km from Cochin International Airport and well-connected via NH-544.
+        </p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="map-btn" onclick="toggleMap('map-venue-eng')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Preview Map
+          </button>
+          <a class="map-btn gold" href="https://maps.google.com/?q=Chottanikara+Ernakulam+Kerala" target="_blank">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Google Maps
+          </a>
+        </div>
+        <div class="map-container" id="map-venue-eng">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.4!2d76.3240!3d10.0015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d514abec6b1%3A0xa23bedd634e08b5a!2sChottanikkara%2C%20Ernakulam%2C%20Kerala!5e0!3m2!1sen!2sin!4v1700000000000" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div style="background:white; border:1px solid var(--parchment); border-radius:4px; padding:28px; position:relative;">
+        <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(to right, #312E81, var(--copper));"></div>
+        <p style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--copper); font-weight:500; margin-bottom:10px;">RECEPTION</p>
+        <p style="font-family:'Playfair Display',serif; font-size:20px; color:var(--charcoal); margin-bottom:6px;">Ramyas Hotel</p>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Trichy (Tiruchirappalli), Tamil Nadu</p>
+        <p style="font-size:13px; color:var(--charcoal-soft); line-height:1.7; margin-bottom:20px;">
+          Ramyas Hotel is one of Trichy's most celebrated hospitality landmarks, centrally located in the heart of the city. Renowned for its warm service and elegant banquet facilities, it makes for a perfect venue to celebrate and welcome the newlyweds into their new chapter.
+        </p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="map-btn" onclick="toggleMap('map-venue-rec')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Preview Map
+          </button>
+          <a class="map-btn gold" href="https://maps.google.com/?q=Ramyas+Hotel+Trichy+Tamil+Nadu" target="_blank">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Google Maps
+          </a>
+        </div>
+        <div class="map-container" id="map-venue-rec">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.8!2d78.6869!3d10.8050!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baaf5f0a6c5a4c5%3A0xb5f5c02d6b1d1234!2sRamyas%20Hotel%2C%20Trichy!5e0!3m2!1sen!2sin!4v1700000000001" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT -->
+<div id="contact">
+  <section>
+    <p class="section-eyebrow">Reach Out</p>
+    <h2 class="section-title">Family <em>Contacts</em></h2>
+
+    <div class="family-grid">
+
+      <!-- GROOM'S SIDE -->
+      <div class="family-card">
+        <div class="family-card-header">
+          <div class="family-icon">🤵</div>
+          <div>
+            <div class="family-label">Groom's Family</div>
+            <div class="family-side-name">Thiagu Family — Trichy</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="contact-info">
+            <div class="contact-relation">Father of the Groom</div>
+            <div class="contact-name">Er. N. Thiagu</div>
+            <a class="contact-number" href="tel:+919999999901">+91 99999 99901</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="contact-info">
+            <div class="contact-relation">Mother of the Groom</div>
+            <div class="contact-name">T. Maheshwari</div>
+            <a class="contact-number" href="tel:+919999999902">+91 99999 99902</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B21B6" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="contact-info">
+            <div class="contact-relation">The Groom</div>
+            <div class="contact-name">T. Ramakrishnan</div>
+            <a class="contact-number" href="tel:+919999999903">+91 99999 99903</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BRIDE'S SIDE -->
+      <div class="family-card">
+        <div class="family-card-header">
+          <div class="family-icon">👰</div>
+          <div>
+            <div class="family-label">Bride's Family</div>
+            <div class="family-side-name">Pradeepkumar Family — Kerala</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="contact-info">
+            <div class="contact-relation">Father of the Bride</div>
+            <div class="contact-name">Pradeepkumar</div>
+            <a class="contact-number" href="tel:+919999999904">+91 99999 99904</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="contact-info">
+            <div class="contact-relation">Mother of the Bride</div>
+            <div class="contact-name">Selvi</div>
+            <a class="contact-number" href="tel:+919999999905">+91 99999 99905</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B21B6" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="contact-info">
+            <div class="contact-relation">The Bride</div>
+            <div class="contact-name">Dr. Pradeetha P</div>
+            <a class="contact-number" href="tel:+919999999906">+91 99999 99906</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <p style="text-align:center; margin-top:32px; font-size:13px; color:var(--text-muted); font-style:italic;">
+      Please update the contact numbers above with the actual family phone numbers.
+    </p>
+  </section>
+</div>
+
+<!-- WISHES SECTION -->
+<div id="wishes" style="background: var(--ivory);">
+  <section>
+    <p class="section-eyebrow">From the Heart</p>
+    <h2 class="section-title">Send Your <em>Wishes</em></h2>
+
+    <!-- SUBMIT FORM -->
+    <div style="background:var(--white); border:1px solid var(--parchment); border-radius:6px; padding:36px; margin-bottom:40px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+        <div>
+          <label style="display:block; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px;">Your Name *</label>
+          <input id="wish-name" type="text" placeholder="e.g. Suresh Kumar" style="width:100%; padding:12px 14px; border:1px solid var(--parchment); border-radius:4px; font-size:14px; font-family:'Inter',sans-serif; color:var(--charcoal); background:var(--ivory); outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--parchment)'" />
+        </div>
+        <div>
+          <label style="display:block; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px;">Relation to Couple</label>
+          <input id="wish-relation" type="text" placeholder="e.g. College friend of Groom" style="width:100%; padding:12px 14px; border:1px solid var(--parchment); border-radius:4px; font-size:14px; font-family:'Inter',sans-serif; color:var(--charcoal); background:var(--ivory); outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--parchment)'" />
+        </div>
+      </div>
+      <div style="margin-bottom:20px;">
+        <label style="display:block; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px;">Your Wish *</label>
+        <textarea id="wish-message" rows="4" placeholder="Write your heartfelt wishes for Ramakrishnan &amp; Pradeetha…" style="width:100%; padding:12px 14px; border:1px solid var(--parchment); border-radius:4px; font-size:14px; font-family:'Inter',sans-serif; color:var(--charcoal); background:var(--ivory); outline:none; resize:vertical; transition:border 0.2s; line-height:1.6;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--parchment)'"></textarea>
+      </div>
+      <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+        <button id="wish-submit" onclick="submitWish()" style="display:inline-flex; align-items:center; gap:8px; background:var(--gold); color:var(--white); font-size:13px; font-weight:500; letter-spacing:0.08em; padding:13px 28px; border-radius:4px; border:none; cursor:pointer; transition:background 0.2s, transform 0.15s; font-family:'Inter',sans-serif;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          Send Wishes
+        </button>
+        <span id="wish-status" style="font-size:13px; color:var(--text-muted); font-style:italic;"></span>
+      </div>
+    </div>
+
+    <!-- WISHES WALL -->
+    <div id="wishes-wall" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:20px;">
+      <div style="text-align:center; padding:40px 20px; color:var(--text-muted); font-style:italic; font-size:14px; grid-column:1/-1;">
+        💜 Wishes from loved ones will appear here…
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .wish-card {
+    background: var(--white);
+    border: 1px solid var(--parchment);
+    border-radius: 6px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .wish-card::before {
+    content: '\201C';
+    position: absolute;
+    top: -4px;
+    left: 14px;
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: var(--parchment);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .wish-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 2px;
+  }
+  .wish-card-relation {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .wish-card-message {
+    font-size: 14px;
+    color: var(--charcoal-soft);
+    line-height: 1.7;
+  }
+  .wish-card-time {
+    font-size: 11px;
+    color: var(--parchment);
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--parchment);
+    color: var(--text-muted);
+  }
+</style>
+
+<!-- FOOTER -->
+<footer>
+  <div style="margin-bottom:20px;">
+    <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="3" fill="#C4B5FD"/>
+      <g stroke="#C4B5FD" stroke-width="1" fill="none" opacity="0.7">
+        <ellipse cx="24" cy="14" rx="3" ry="7"/>
+        <ellipse cx="24" cy="34" rx="3" ry="7"/>
+        <ellipse cx="14" cy="24" rx="7" ry="3"/>
+        <ellipse cx="34" cy="24" rx="7" ry="3"/>
+      </g>
+    </svg>
+  </div>
+  <div class="footer-names">Ramakrishnan &amp; Pradeetha</div>
+  <div class="footer-tagline">September 2026 · Chottanikara, Kerala &amp; Trichy, Tamil Nadu</div>
+  <div class="footer-note">Made with love · Two families, one beautiful beginning</div>
+</footer>
+
+<script>
+  function toggleMap(id) {
+    const el = document.getElementById(id);
+    if (el.classList.contains('visible')) {
+      el.classList.remove('visible');
+    } else {
+      el.classList.add('visible');
+    }
+  }
+
+  // Countdown to Wedding: 13 Sep 2026, 7:00 AM IST (UTC+5:30)
+  const weddingDate = new Date('2026-09-13T07:00:00+05:30');
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = weddingDate - now;
+
+    if (diff <= 0) {
+      document.getElementById('cd-days').closest('div[style]').style.display = 'none';
+      document.getElementById('cd-done').style.display = 'block';
+      return;
+    }
+
+    const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('cd-days').textContent    = String(days).padStart(2, '0');
+    document.getElementById('cd-hours').textContent   = String(hours).padStart(2, '0');
+    document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
+  }
+
+  // ── GOOGLE SHEETS WISHES ──
+  // Paste your Google Apps Script Web App URL below after deploying
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzoo2_KLeDevK54-qVhzj8iDgxyyYSQ7HjJqeipqjmncxCk44SS9Np3I6_3X416sux7tg/exec';
+
+  async function submitWish() {
+    const name    = document.getElementById('wish-name').value.trim();
+    const relation= document.getElementById('wish-relation').value.trim();
+    const message = document.getElementById('wish-message').value.trim();
+    const status  = document.getElementById('wish-status');
+    const btn     = document.getElementById('wish-submit');
+
+    if (!name) { status.textContent = '⚠️ Please enter your name.'; return; }
+    if (!message) { status.textContent = '⚠️ Please write a wish.'; return; }
+
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
+    status.textContent = 'Sending…';
+
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, relation, message, timestamp: new Date().toLocaleString('en-IN') })
+      });
+
+      // Optimistically add the card immediately
+      addWishCard({ name, relation, message, timestamp: new Date().toLocaleString('en-IN') }, true);
+
+      document.getElementById('wish-name').value = '';
+      document.getElementById('wish-relation').value = '';
+      document.getElementById('wish-message').value = '';
+      status.textContent = '💜 Your wish was sent! Thank you.';
+      status.style.color = 'var(--gold)';
+    } catch (e) {
+      status.textContent = '❌ Something went wrong. Please try again.';
+    } finally {
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      setTimeout(() => { status.textContent = ''; status.style.color = 'var(--text-muted)'; }, 5000);
+    }
+  }
+
+  function addWishCard(wish, prepend = false) {
+    const wall = document.getElementById('wishes-wall');
+    // Remove placeholder if present
+    const placeholder = wall.querySelector('div[style*="grid-column"]');
+    if (placeholder) placeholder.remove();
+
+    const card = document.createElement('div');
+    card.className = 'wish-card';
+    card.innerHTML = `
+      <div class="wish-card-name">${escapeHtml(wish.name)}</div>
+      <div class="wish-card-relation">${wish.relation ? escapeHtml(wish.relation) : 'Guest'}</div>
+      <div class="wish-card-message">${escapeHtml(wish.message)}</div>
+      <div class="wish-card-time">${wish.timestamp || ''}</div>
+    `;
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(10px)';
+    card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+
+    if (prepend) wall.prepend(card);
+    else wall.appendChild(card);
+
+    requestAnimationFrame(() => {
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    });
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  async function loadWishes() {
+    if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes('YOUR_APPS')) return;
+    try {
+      const res = await fetch(APPS_SCRIPT_URL + '?action=get');
+      const data = await res.json();
+      if (data && data.wishes && data.wishes.length > 0) {
+        data.wishes.reverse().forEach(w => addWishCard(w));
+      }
+    } catch(e) {
+      // Silently fail — wishes wall stays with placeholder
+    }
+  }
+
+  loadWishes();
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
