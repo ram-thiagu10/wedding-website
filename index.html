@@ -7,19 +7,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --ivory: #F8F5FF;
-    --gold: #7C3AED;
-    --gold-light: #A78BFA;
-    --gold-pale: #EDE9FE;
-    --green: #5B21B6;
-    --green-light: #6D28D9;
-    --copper: #8B5CF6;
-    --parchment: #DDD6FE;
-    --charcoal: #1E1B2E;
-    --charcoal-soft: #3D3860;
-    --text-muted: #6B5FA6;
+    --ivory: #FAF8F5;
+    --gold: #D4AF37;       
+    --gold-light: #E6CA65;
+    --gold-pale: #FDF9EC;
+    --green: #4A154B;
+    --green-light: #611f69;
+    --copper: #B38F4D;
+    --parchment: #E8DFD0;
+    --charcoal: #231F20;
+    --charcoal-soft: #4A4644;
+    --text-muted: #8C827A;
     --white: #FFFFFF;
-    --red-kumkum: #4C1D95;
+    --plum-dark: #1E0B29;
+    --plum-deep: #2D103D;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,7 +34,7 @@
     font-size: 16px;
     line-height: 1.7;
     overflow-x: hidden;
-    padding-top: 64px; /* reserve space for fixed nav on small screens */
+    padding-top: 54px;
   }
 
   /* ── FLOATING NAV ── */
@@ -41,9 +42,9 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    background: rgba(248, 245, 255, 0.92);
+    background: rgba(250, 248, 245, 0.94);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(124,58,237,0.2);
+    border-bottom: 1px solid rgba(212,175,55,0.2);
     padding: 14px 40px;
     display: flex;
     justify-content: center;
@@ -51,78 +52,80 @@
   }
   nav a {
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--charcoal-soft);
     text-decoration: none;
     transition: color 0.2s;
   }
-  nav a:hover { color: var(--gold); }
+  nav a:hover { color: var(--copper); }
 
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
-    background: linear-gradient(160deg, #0D0720 0%, #1E0A45 40%, #2D1B69 100%);
+    background: linear-gradient(160deg, var(--plum-dark) 0%, var(--plum-deep) 50%, #421659 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
-    padding: 100px 20px 60px;
+    padding: 120px 24px 80px;
   }
 
-  /* Decorative corner motifs */
   .hero::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background:
-      radial-gradient(ellipse at 20% 50%, rgba(124,58,237,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 50%, rgba(167,139,250,0.08) 0%, transparent 60%);
+      radial-gradient(ellipse at 20% 50%, rgba(212,175,55,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(230,202,101,0.06) 0%, transparent 60%);
     pointer-events: none;
   }
 
   .hero-border {
     position: absolute;
-    inset: 20px;
-    border: 1px solid rgba(167,139,250,0.3);
+    inset: 24px;
+    border: 1px solid rgba(212,175,55,0.25);
     pointer-events: none;
   }
   .hero-border::before {
     content: '';
     position: absolute;
-    inset: 8px;
-    border: 1px solid rgba(167,139,250,0.15);
+    inset: 6px;
+    border: 1px solid rgba(212,175,55,0.1);
     pointer-events: none;
   }
 
   /* Corner ornaments */
   .corner { position: absolute; width: 60px; height: 60px; }
   .corner svg { width: 100%; height: 100%; }
-  .c-tl { top: 28px; left: 28px; }
-  .c-tr { top: 28px; right: 28px; transform: scaleX(-1); }
-  .c-bl { bottom: 28px; left: 28px; transform: scaleY(-1); }
-  .c-br { bottom: 28px; right: 28px; transform: scale(-1,-1); }
+  .c-tl { top: 32px; left: 32px; }
+  .c-tr { top: 32px; right: 32px; transform: scaleX(-1); }
+  .c-bl { bottom: 32px; left: 32px; transform: scaleY(-1); }
+  .c-br { bottom: 32px; right: 32px; transform: scale(-1,-1); }
 
   .hero-eyebrow {
     font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.25em;
+    font-size: 12px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--gold-light);
     margin-bottom: 24px;
+    text-align: center;
+    max-width: 90%;
+    line-height: 1.6;
   }
 
   .hero-names {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(48px, 8vw, 96px);
+    font-size: clamp(40px, 7vw, 84px);
     font-weight: 400;
     color: var(--white);
     text-align: center;
-    line-height: 1.1;
+    line-height: 1.15;
     position: relative;
   }
   .hero-names em {
@@ -131,16 +134,16 @@
   }
   .hero-amp {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 0.6em;
+    font-size: 0.65em;
     font-style: italic;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.35);
     display: block;
-    margin: 8px 0;
+    margin: 4px 0;
   }
 
   .hero-divider {
-    margin: 36px auto;
-    width: 280px;
+    margin: 32px auto;
+    width: 240px;
     display: flex;
     align-items: center;
     gap: 16px;
@@ -154,16 +157,16 @@
 
   .hero-date {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 300;
-    color: rgba(255,255,255,0.7);
-    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.1em;
     text-align: center;
   }
 
   .hero-scroll {
     position: absolute;
-    bottom: 36px;
+    bottom: 32px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -178,7 +181,7 @@
     text-transform: uppercase;
     color: rgba(255,255,255,0.4);
   }
-  .hero-scroll svg { color: rgba(167,139,250,0.6); }
+  .hero-scroll svg { color: rgba(212,175,55,0.5); }
   @keyframes float {
     0%,100% { transform: translateX(-50%) translateY(0); }
     50% { transform: translateX(-50%) translateY(6px); }
@@ -189,43 +192,45 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 48px 0 0;
+    padding: 54px 0 14px;
     gap: 20px;
   }
   .kolam-divider .line {
     flex: 1;
     max-width: 200px;
     height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold));
+    background: linear-gradient(to right, transparent, var(--copper));
   }
   .kolam-divider .line.rev {
-    background: linear-gradient(to left, transparent, var(--gold));
+    background: linear-gradient(to left, transparent, var(--copper));
   }
 
   /* ── SECTIONS ── */
   section {
-    padding: 80px 40px;
-    max-width: 900px;
+    padding: 80px 24px;
+    max-width: 960px;
     margin: 0 auto;
   }
 
   .section-eyebrow {
     font-family: 'Inter', sans-serif;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--copper);
     margin-bottom: 12px;
+    text-align: center;
   }
 
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 4vw, 42px);
+    font-size: clamp(28px, 4vw, 40px);
     font-weight: 400;
     color: var(--charcoal);
-    margin-bottom: 40px;
-    line-height: 1.25;
+    margin-bottom: 48px;
+    line-height: 1.3;
+    text-align: center;
   }
   .section-title em { font-style: italic; color: var(--green); }
 
@@ -239,18 +244,19 @@
   .person-card {
     background: var(--white);
     border: 1px solid var(--parchment);
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
     position: relative;
+    box-shadow: 0 4px 20px rgba(74,21,75,0.02);
   }
   .person-card::before {
     content: '';
     display: block;
-    height: 6px;
-    background: linear-gradient(to right, var(--gold), var(--copper));
+    height: 5px;
+    background: linear-gradient(to right, var(--copper), var(--gold));
   }
 
-  .person-card-inner { padding: 32px; }
+  .person-card-inner { padding: 36px 32px; }
 
   .person-role {
     font-family: 'Inter', sans-serif;
@@ -259,43 +265,43 @@
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--copper);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
   .person-name {
     font-family: 'Playfair Display', serif;
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 600;
     color: var(--charcoal);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     line-height: 1.2;
   }
   .person-parents {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 15px;
+    font-size: 16px;
     font-style: italic;
     color: var(--text-muted);
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     line-height: 1.5;
   }
   .person-title-badge {
     display: inline-block;
     background: var(--gold-pale);
-    border: 1px solid rgba(201,150,58,0.4);
+    border: 1px solid rgba(212,175,55,0.3);
     color: var(--charcoal-soft);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
-    letter-spacing: 0.06em;
-    padding: 4px 12px;
+    letter-spacing: 0.04em;
+    padding: 4px 14px;
     border-radius: 20px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
   .person-desc {
     font-size: 14px;
     color: var(--charcoal-soft);
-    line-height: 1.75;
+    line-height: 1.8;
   }
   .person-desc strong {
-    color: var(--charcoal);
+    color: var(--green);
     font-weight: 500;
   }
 
@@ -303,21 +309,21 @@
   .events-stack {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 28px;
   }
 
   .event-card {
     display: grid;
     grid-template-columns: 140px 1fr;
-    gap: 0;
     border: 1px solid var(--parchment);
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
     background: var(--white);
-    transition: box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
   .event-card:hover {
-    box-shadow: 0 8px 32px rgba(124,58,237,0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(74,21,75,0.06);
   }
 
   .event-date-block {
@@ -342,39 +348,39 @@
     font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.8);
-    margin-top: 4px;
+    color: rgba(255,255,255,0.85);
+    margin-top: 6px;
   }
   .event-weekday {
     font-size: 10px;
     letter-spacing: 0.1em;
     color: rgba(255,255,255,0.5);
-    margin-top: 2px;
+    margin-top: 4px;
   }
 
-  .event-details { padding: 28px 32px; }
+  .event-details { padding: 32px; }
   .event-name {
     font-family: 'Playfair Display', serif;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 600;
     color: var(--charcoal);
     margin-bottom: 6px;
   }
   .event-time {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
+    font-size: 17px;
     font-style: italic;
-    color: var(--gold);
-    margin-bottom: 10px;
+    color: var(--copper);
+    margin-bottom: 12px;
   }
   .event-venue {
     font-size: 14px;
     color: var(--charcoal-soft);
-    margin-bottom: 16px;
+    margin-bottom: 18px;
     line-height: 1.6;
   }
   .event-venue-name {
-    font-weight: 500;
+    font-weight: 600;
     color: var(--charcoal);
   }
 
@@ -389,38 +395,77 @@
     font-weight: 500;
     letter-spacing: 0.08em;
     padding: 10px 20px;
-    border-radius: 3px;
+    border-radius: 4px;
     text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
+    transition: background 0.2s;
     cursor: pointer;
     border: none;
   }
-  .map-btn:hover {
-    background: var(--green);
-    transform: translateY(-1px);
-  }
-  .map-btn svg { flex-shrink: 0; }
+  .map-btn:hover { background: var(--green); }
 
   .map-btn.gold {
-    background: var(--gold);
+    background: var(--gold-pale);
     color: var(--charcoal);
+    border: 1px solid var(--gold);
   }
-  .map-btn.gold:hover { background: var(--gold-light); }
+  .map-btn.gold:hover { background: var(--gold); color: var(--white); }
 
-  /* ── EMBEDDED MAP ── */
-  .map-container {
-    margin-top: 16px;
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid var(--parchment);
-    height: 300px;
-    display: none;
+  /* ── COUNTDOWN TIMER STYLES ── */
+  .countdown-container {
+    background: linear-gradient(135deg, var(--plum-dark) 0%, var(--plum-deep) 100%);
+    padding: 60px 24px;
   }
-  .map-container.visible { display: block; }
-  .map-container iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
+  .countdown-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .countdown-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .cd-box {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 6px;
+    padding: 16px;
+    flex: 1;
+    min-width: 75px;
+    text-align: center;
+  }
+  .cd-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 44px);
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1;
+  }
+  .cd-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-top: 8px;
+  }
+  .cd-sep {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: rgba(212,175,55,0.4);
+    line-height: 1;
+    margin-top: -20px;
+  }
+
+  /* ── VENUES RESPONSIVE GRID ── */
+  .venues-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
   }
 
   /* ── FAMILY SECTION ── */
@@ -432,27 +477,29 @@
   .family-card {
     background: var(--white);
     border: 1px solid var(--parchment);
-    border-radius: 4px;
-    padding: 32px;
+    border-radius: 6px;
+    padding: 36px 32px;
+    box-shadow: 0 4px 20px rgba(74,21,75,0.02);
   }
   .family-card-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
     border-bottom: 1px solid var(--parchment);
   }
   .family-icon {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background: var(--gold-pale);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 20px;
     flex-shrink: 0;
+    border: 1px solid rgba(212,175,55,0.2);
   }
   .family-label {
     font-size: 10px;
@@ -463,7 +510,7 @@
   }
   .family-side-name {
     font-family: 'Playfair Display', serif;
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 600;
     color: var(--charcoal);
     margin-top: 2px;
@@ -472,9 +519,9 @@
   .contact-item {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(221,214,254,0.5);
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(232,223,208,0.5);
   }
   .contact-item:last-child { border-bottom: none; padding-bottom: 0; }
   .contact-icon {
@@ -507,87 +554,67 @@
 
   /* ── FOOTER ── */
   footer {
-    background: linear-gradient(160deg, #0D0720, #1E0A45);
+    background: linear-gradient(160deg, var(--plum-dark), #170721);
     color: rgba(255,255,255,0.7);
     text-align: center;
-    padding: 60px 40px;
+    padding: 64px 24px;
   }
   .footer-names {
     font-family: 'Playfair Display', serif;
-    font-size: 32px;
+    font-size: 34px;
     color: var(--gold-light);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
   .footer-tagline {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
+    font-size: 17px;
     font-style: italic;
     color: rgba(255,255,255,0.45);
     letter-spacing: 0.05em;
   }
   .footer-note {
-    margin-top: 32px;
+    margin-top: 36px;
     font-size: 12px;
     color: rgba(255,255,255,0.3);
     letter-spacing: 0.05em;
   }
 
-  /* ── BACKGROUND SECTION BANDS ── */
-  .band-parchment { background: var(--parchment); }
-  .band-parchment section { max-width: 900px; margin: 0 auto; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 680px) {
-    nav { gap: 20px; padding: 12px 16px; flex-wrap: wrap; justify-content: center; }
-    nav a { font-size: 11px; }
-    section { padding: 60px 20px; }
-    .couple-grid { grid-template-columns: 1fr; }
-    .family-grid { grid-template-columns: 1fr; }
-    .event-card { grid-template-columns: 100px 1fr; }
-    .event-details { padding: 20px 16px; }
-    .event-day { font-size: 32px; }
-  }
-
-  /* Extra small phones - tighten spacing and scale down large hero elements */
-  @media (max-width: 480px) {
-    nav { gap: 12px; padding: 10px 12px; }
-    .hero { padding: 72px 12px 36px; min-height: 70vh; }
-    .corner { width: 44px; height: 44px; }
-    .hero-border { inset: 12px; }
-    .hero-eyebrow { font-size: 10px; margin-bottom: 14px; }
-    .hero-names { font-size: clamp(34px, 10vw, 56px); }
-    .hero-divider { width: 200px; margin: 18px auto; }
-    .hero-date { font-size: 15px; }
-
-    /* Countdown compact */
-    .cd-box { min-width: 64px; padding: 10px 12px; }
-    .cd-num { font-size: 36px; }
-    .cd-sep { font-size: 28px; padding-bottom: 12px; }
-
-    /* Events and map */
-    .event-card { grid-template-columns: 90px 1fr; }
-    .map-container { height: 200px; }
-
-    /* Ensure cards stack cleanly */
-    section { padding: 36px 14px; }
-  }
-
-  /* Make the wishes form grid stack on narrower screens */
   .wish-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-  @media (max-width: 600px) {
-    .wish-form-grid { grid-template-columns: 1fr !important; }
+
+  /* ── RESPONSIVE MEDIA QUERIES ── */
+  @media (max-width: 768px) {
+    nav { gap: 16px; padding: 12px 16px; }
+    nav a { font-size: 10px; letter-spacing: 0.1em; }
+    section { padding: 50px 20px; }
+    .couple-grid, .venues-grid, .family-grid { grid-template-columns: 1fr; gap: 24px; }
+    .event-card { grid-template-columns: 110px 1fr; }
+    .event-details { padding: 24px; }
+    .event-day { font-size: 36px; }
   }
 
-  /* ── ORNAMENT SVG ── */
-  .lotus-ornament {
-    display: flex;
-    justify-content: center;
-    margin: 8px 0;
+  @media (max-width: 480px) {
+    nav { gap: 12px; display: none; } /* Hide floating bar on ultra-small mobile if needed, or keep compact */
+    body { padding-top: 0; }
+    .hero { padding: 90px 16px 50px; min-height: 85vh; }
+    .corner { width: 40px; height: 40px; }
+    .hero-border { inset: 12px; }
+    .hero-eyebrow { font-size: 11px; margin-bottom: 16px; }
+    .hero-divider { width: 160px; margin: 20px auto; }
+    .hero-date { font-size: 16px; }
+    
+    /* Responsive structural cleanup for countdown */
+    .cd-sep { display: none; }
+    .countdown-grid { gap: 8px; }
+    .cd-box { padding: 12px 6px; min-width: 65px; }
+
+    .event-card { grid-template-columns: 1fr; }
+    .event-date-block { padding: 20px 16px; }
+    .wish-form-grid { grid-template-columns: 1fr; }
   }
 
   /* Animated entrance */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
   }
   .hero > * { animation: fadeUp 0.9s ease both; }
@@ -599,7 +626,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#events">Celebrations</a>
   <a href="#couple">Bride & Groom</a>
@@ -608,41 +634,39 @@
   <a href="#wishes">Wishes</a>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-border"></div>
-  <!-- Corner ornaments -->
   <div class="corner c-tl">
     <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 2 L30 2 Q2 2 2 30" stroke="#A78BFA" stroke-width="1" fill="none"/>
-      <path d="M8 2 L8 20" stroke="#A78BFA" stroke-width="0.5" opacity="0.5"/>
-      <path d="M2 8 L20 8" stroke="#A78BFA" stroke-width="0.5" opacity="0.5"/>
-      <circle cx="8" cy="8" r="2.5" fill="#A78BFA" opacity="0.7"/>
-      <path d="M14 2 Q8 8 2 14" stroke="#A78BFA" stroke-width="0.5" opacity="0.4"/>
+      <path d="M2 2 L30 2 Q2 2 2 30" stroke="#D4AF37" stroke-width="1" fill="none"/>
+      <path d="M8 2 L8 20" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+      <path d="M2 8 L20 8" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+      <circle cx="8" cy="8" r="2.5" fill="#D4AF37" opacity="0.7"/>
+      <path d="M14 2 Q8 8 2 14" stroke="#D4AF37" stroke-width="0.5" opacity="0.4"/>
     </svg>
   </div>
   <div class="corner c-tr">
     <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 2 L30 2 Q2 2 2 30" stroke="#A78BFA" stroke-width="1" fill="none"/>
-      <path d="M8 2 L8 20" stroke="#A78BFA" stroke-width="0.5" opacity="0.5"/>
-      <path d="M2 8 L20 8" stroke="#A78BFA" stroke-width="0.5" opacity="0.5"/>
-      <circle cx="8" cy="8" r="2.5" fill="#A78BFA" opacity="0.7"/>
+      <path d="M2 2 L30 2 Q2 2 2 30" stroke="#D4AF37" stroke-width="1" fill="none"/>
+      <path d="M8 2 L8 20" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+      <path d="M2 8 L20 8" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+      <circle cx="8" cy="8" r="2.5" fill="#D4AF37" opacity="0.7"/>
     </svg>
   </div>
   <div class="corner c-bl">
     <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 2 L30 2 Q2 2 2 30" stroke="#A78BFA" stroke-width="1" fill="none"/>
-      <path d="M8 2 L8 20" stroke="#A78BFA" stroke-width="0.5" opacity="0.5"/>
-      <path d="M2 8 L20 8" stroke="#A78BFA" stroke-width="0.5" opacity="0.5"/>
-      <circle cx="8" cy="8" r="2.5" fill="#A78BFA" opacity="0.7"/>
+      <path d="M2 2 L30 2 Q2 2 2 30" stroke="#D4AF37" stroke-width="1" fill="none"/>
+      <path d="M8 2 L8 20" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+      <path d="M2 8 L20 8" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+      <circle cx="8" cy="8" r="2.5" fill="#D4AF37" opacity="0.7"/>
     </svg>
   </div>
   <div class="corner c-br">
     <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 2 L30 2 Q2 2 2 30" stroke="#A78BFA" stroke-width="1" fill="none"/>
-      <path d="M8 2 L8 20" stroke="#A78BFA" stroke-width="0.5" opacity="0.5"/>
-      <path d="M2 8 L20 8" stroke="#A78BFA" stroke-width="0.5" opacity="0.5"/>
-      <circle cx="8" cy="8" r="2.5" fill="#A78BFA" opacity="0.7"/>
+      <path d="M2 2 L30 2 Q2 2 2 30" stroke="#D4AF37" stroke-width="1" fill="none"/>
+      <path d="M8 2 L8 20" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+      <path d="M2 8 L20 8" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+      <circle cx="8" cy="8" r="2.5" fill="#D4AF37" opacity="0.7"/>
     </svg>
   </div>
 
@@ -650,20 +674,19 @@
 
   <h1 class="hero-names">
     Ramakrishnan
-    <span class="hero-amp">&amp;</span>
+    <span class="hero-amp">&</span>
     <em>Pradeetha</em>
   </h1>
 
   <div class="hero-divider">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Lotus icon -->
-      <path d="M12 20c0 0-8-5-8-11a8 8 0 0116 0c0 6-8 11-8 11z" stroke="#A78BFA" stroke-width="1" fill="none"/>
-      <path d="M12 20V10" stroke="#A78BFA" stroke-width="1"/>
-      <path d="M8 14c1-2 2-3 4-4M16 14c-1-2-2-3-4-4" stroke="#A78BFA" stroke-width="0.8" opacity="0.7"/>
+      <path d="M12 20c0 0-8-5-8-11a8 8 0 0116 0c0 6-8 11-8 11z" stroke="#D4AF37" stroke-width="1" fill="none"/>
+      <path d="M12 20V10" stroke="#D4AF37" stroke-width="1"/>
+      <path d="M8 14c1-2 2-3 4-4M16 14c-1-2-2-3-4-4" stroke="#D4AF37" stroke-width="0.8" opacity="0.7"/>
     </svg>
   </div>
 
-  <p class="hero-date">September 2026 &nbsp;·&nbsp; Kerala &amp; Tamil Nadu</p>
+  <p class="hero-date">September 2026 &nbsp;·&nbsp; Kerala & Tamil Nadu</p>
 
   <div class="hero-scroll">
     <span>Scroll</span>
@@ -673,12 +696,12 @@
   </div>
 </div>
 
-<!-- COUNTDOWN TIMER -->
-<div style="background: linear-gradient(135deg, #1E0A45 0%, #2D1B69 50%, #1E0A45 100%); padding: 48px 20px;">
-  <div style="max-width: 700px; margin: 0 auto; text-align: center;">
-    <p style="font-family:'Inter',sans-serif; font-size:10px; font-weight:500; letter-spacing:0.3em; text-transform:uppercase; color:#A78BFA; margin-bottom:10px;">Counting down to the moment</p>
-    <p style="font-family:'Playfair Display',serif; font-size:22px; font-style:italic; color:rgba(255,255,255,0.85); margin-bottom:32px;">🌸 Thirumanam · 13 September 2026 · 7:00 AM</p>
-    <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+<div class="countdown-container">
+  <div class="countdown-inner">
+    <p style="font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold-light); margin-bottom:12px;">Counting down to the moment</p>
+    <p style="font-family:'Playfair Display',serif; font-size:22px; font-style:italic; color:rgba(255,255,255,0.9); margin-bottom:32px;">🌸 Thirumanam · 13 September 2026 · 7:00 AM</p>
+    
+    <div class="countdown-grid">
       <div class="cd-box">
         <div class="cd-num" id="cd-days">--</div>
         <div class="cd-label">Days</div>
@@ -691,53 +714,17 @@
       <div class="cd-sep">:</div>
       <div class="cd-box">
         <div class="cd-num" id="cd-minutes">--</div>
-        <div class="cd-label">Minutes</div>
+        <div class="cd-label">Min</div>
       </div>
       <div class="cd-sep">:</div>
       <div class="cd-box">
         <div class="cd-num" id="cd-seconds">--</div>
-        <div class="cd-label">Seconds</div>
+        <div class="cd-label">Sec</div>
       </div>
     </div>
-    <p id="cd-done" style="display:none; font-family:'Playfair Display',serif; font-size:26px; color:#C4B5FD; margin-top:16px;">🎉 They are married! Congratulations!</p>
+    <p id="cd-done" style="display:none; font-family:'Playfair Display',serif; font-size:26px; color:var(--gold-light); margin-top:16px;">🎉 They are married! Congratulations!</p>
   </div>
 </div>
-
-<style>
-  .cd-box {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(167,139,250,0.3);
-    border-radius: 8px;
-    padding: 18px 22px;
-    min-width: 90px;
-  }
-  .cd-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px;
-    font-weight: 700;
-    color: #FFFFFF;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-  .cd-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #A78BFA;
-    margin-top: 6px;
-  }
-  .cd-sep {
-    font-family: 'Playfair Display', serif;
-    font-size: 40px;
-    color: rgba(167,139,250,0.4);
-    align-self: center;
-    padding-bottom: 20px;
-    line-height: 1;
-  }
-</style>
-
 
 <div id="events">
   <section>
@@ -746,7 +733,6 @@
 
     <div class="events-stack">
 
-      <!-- ENGAGEMENT -->
       <div class="event-card">
         <div class="event-date-block">
           <div class="event-day">12</div>
@@ -769,9 +755,8 @@
         </div>
       </div>
 
-      <!-- WEDDING -->
       <div class="event-card">
-        <div class="event-date-block" style="background: #3B0764;">
+        <div class="event-date-block" style="background: var(--plum-deep);">
           <div class="event-day">13</div>
           <div class="event-month">September</div>
           <div class="event-weekday">Sunday · 2026</div>
@@ -792,9 +777,8 @@
         </div>
       </div>
 
-      <!-- RECEPTION -->
       <div class="event-card">
-        <div class="event-date-block" style="background: #312E81;">
+        <div class="event-date-block" style="background: #1A2E40;">
           <div class="event-day">15</div>
           <div class="event-month">September</div>
           <div class="event-weekday">Tuesday · 2026</div>
@@ -819,13 +803,11 @@
   </section>
 </div>
 
-<!-- KOLAM DIVIDER -->
 <div class="kolam-divider">
   <div class="line rev"></div>
   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- Kolam-style 8-petal flower -->
-    <circle cx="24" cy="24" r="3" fill="#A78BFA"/>
-    <g stroke="#A78BFA" stroke-width="1" fill="none">
+    <circle cx="24" cy="24" r="3" fill="#B38F4D"/>
+    <g stroke="#B38F4D" stroke-width="1" fill="none">
       <ellipse cx="24" cy="14" rx="3" ry="7" opacity="0.9"/>
       <ellipse cx="24" cy="34" rx="3" ry="7" opacity="0.9"/>
       <ellipse cx="14" cy="24" rx="7" ry="3" opacity="0.9"/>
@@ -835,27 +817,25 @@
       <ellipse cx="17" cy="31" rx="3" ry="7" transform="rotate(-45 17 31)" opacity="0.5"/>
       <ellipse cx="31" cy="31" rx="3" ry="7" transform="rotate(45 31 31)" opacity="0.5"/>
     </g>
-    <circle cx="24" cy="24" r="6" stroke="#A78BFA" stroke-width="0.5" fill="none" opacity="0.4"/>
-    <circle cx="24" cy="24" r="12" stroke="#A78BFA" stroke-width="0.3" fill="none" opacity="0.2"/>
+    <circle cx="24" cy="24" r="6" stroke="#B38F4D" stroke-width="0.5" fill="none" opacity="0.4"/>
+    <circle cx="24" cy="24" r="12" stroke="#B38F4D" stroke-width="0.3" fill="none" opacity="0.2"/>
   </svg>
   <div class="line"></div>
 </div>
 
-<!-- BRIDE & GROOM -->
 <div id="couple">
   <section>
     <p class="section-eyebrow">The Couple</p>
-    <h2 class="section-title">Bride &amp; <em>Groom</em></h2>
+    <h2 class="section-title">Bride & <em>Groom</em></h2>
 
     <div class="couple-grid">
 
-      <!-- GROOM -->
       <div class="person-card">
         <div class="person-card-inner">
           <div class="person-role">🤵 The Groom</div>
           <div class="person-name">T. Ramakrishnan</div>
           <div class="person-parents">
-            Son of <strong>Er. N. Thiagu</strong> &amp; <strong>T. Maheshwari</strong>
+            Son of <strong>Er. N. Thiagu</strong> & <strong>T. Maheshwari</strong>
           </div>
           <div class="person-title-badge">⚡ Senior Gen AI Engineer</div>
           <div class="person-desc">
@@ -868,13 +848,12 @@
         </div>
       </div>
 
-      <!-- BRIDE -->
       <div class="person-card">
         <div class="person-card-inner">
           <div class="person-role">👩‍⚕️ The Bride</div>
           <div class="person-name">Dr. Pradeetha P</div>
           <div class="person-parents">
-            Daughter of <strong>Pradeepkumar</strong> &amp; <strong>Selvi</strong>
+            Daughter of <strong>Pradeepkumar</strong> & <strong>Selvi</strong>
           </div>
           <div class="person-title-badge">🩺 Pulmonologist</div>
           <div class="person-desc">
@@ -891,90 +870,61 @@
   </section>
 </div>
 
-<!-- VENUES SECTION (visual summary) -->
-<div id="venues" style="background: #F0EBFF;">
+<div id="venues" style="background: #F3ECE0;">
   <section>
     <p class="section-eyebrow">Getting There</p>
     <h2 class="section-title"><em>Venues</em> at a Glance</h2>
-    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+    
+    <div class="venues-grid">
 
-      <div style="background:white; border:1px solid var(--parchment); border-radius:4px; padding:28px; position:relative;">
-      <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(to right, var(--green), #6D28D9);"></div>
-      <p style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--green); font-weight:500; margin-bottom:10px;">ENGAGEMENT & WEDDING</p>
-      <p style="font-family:'Playfair Display',serif; font-size:20px; color:var(--charcoal); margin-bottom:6px;">Mangalya Auditorium</p>
-      <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Chottanikara, Ernakulam, Kerala</p>
-      
-      <p style="font-size:13px; color:var(--charcoal-soft); line-height:1.7; margin-bottom:20px;">
-        Nestled right behind the sacred Chottanikkara Bhagavathy Temple in Ernakulam district, Mangalya Auditorium offers a serene and auspicious setting for the ceremonies.
-      </p>
-
-      <!-- Route Guide Section -->
-      <div style="border-top: 1px dashed var(--parchment); padding-top: 16px; margin-bottom: 20px;">
-        <p style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--charcoal); font-weight: 600; margin-bottom: 12px;">HOW TO REACH THE VENUE</p>
+      <div style="background:white; border:1px solid var(--parchment); border-radius:6px; padding:28px; position:relative;">
+        <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(to right, var(--green), var(--copper));"></div>
+        <p style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--green); font-weight:600; margin-bottom:10px;">ENGAGEMENT & WEDDING</p>
+        <p style="font-family:'Playfair Display',serif; font-size:22px; color:var(--charcoal); margin-bottom:6px;">Mangalya Auditorium</p>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Chottanikara, Ernakulam, Kerala</p>
         
-        <div style="display: grid; gap: 12px; font-size: 12px; line-height: 1.5; color: var(--charcoal-soft);">
-          <div>
-            <strong style="color: var(--green);">✈️ From Airport:</strong> 
-            ~38 km away via Seaport-Airport Road (1 hr 15 mins). Alternatively, take a feeder bus to Aluva Metro, ride to Tripunithura Station, then take a 15-minute auto.
-          </div>
-          <div>
-            <strong style="color: var(--green);">🚂 From Ernakulam Junction (South):</strong> 
-            ~18 km away. Take a direct taxi/auto via Vyttila (40 mins), or take the Kochi Metro directly to Tripunithura Station followed by a short auto ride.
-          </div>
-          <div>
-            <strong style="color: var(--green);">🚌 From Bus Stands:</strong> 
-            Direct local and KSRTC buses run frequently to Chottanikkara from Vyttila Mobility Hub and Kaloor Private Bus Stand.
-          </div>
-          <div>
-            <strong style="color: var(--green);">🚗 By Road:</strong> 
-            From North, use Seaport-Airport Road via Thiruvankulam. From South, exit Kochi Bypass at Kundannoor Junction and proceed through Tripunithura.
+        <p style="font-size:13px; color:var(--charcoal-soft); line-height:1.75; margin-bottom:20px;">
+          Nestled right behind the sacred Chottanikkara Bhagavathy Temple in Ernakulam district, Mangalya Auditorium offers a serene and auspicious setting for the ceremonies.
+        </p>
+
+        <div style="border-top: 1px dashed var(--parchment); padding-top: 16px; margin-bottom: 20px;">
+          <p style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--charcoal); font-weight: 600; margin-bottom: 12px;">HOW TO REACH THE VENUE</p>
+          
+          <div style="display: grid; gap: 12px; font-size: 12px; line-height: 1.5; color: var(--charcoal-soft);">
+            <div><strong style="color: var(--green);">✈️ From Airport:</strong> ~38 km away via Seaport-Airport Road (1 hr 15 mins). Alternatively, take a feeder bus to Aluva Metro, ride to Tripunithura Station, then take a 15-minute auto.</div>
+            <div><strong style="color: var(--green);">🚂 From Ernakulam Junction (South):</strong> ~18 km away. Take a direct taxi/auto via Vyttila (40 mins), or take the Kochi Metro directly to Tripunithura Station followed by a short auto ride.</div>
+            <div><strong style="color: var(--green);">🚌 From Bus Stands:</strong> Direct local and KSRTC buses run frequently to Chottanikkara from Vyttila Mobility Hub and Kaloor Private Bus Stand.</div>
+            <div><strong style="color: var(--green);">🚗 By Road:</strong> From North, use Seaport-Airport Road via Thiruvankulam. From South, exit Kochi Bypass at Kundannoor Junction and proceed through Tripunithura.</div>
           </div>
         </div>
       </div>
-    </div>
 
+      <div style="background:white; border:1px solid var(--parchment); border-radius:6px; padding:28px; position:relative;">
+        <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(to right, #1A2E40, var(--copper));"></div>
+        <p style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--copper); font-weight:600; margin-bottom:10px;">RECEPTION</p>
+        <p style="font-family:'Playfair Display',serif; font-size:22px; color:var(--charcoal); margin-bottom:6px;">Ramyas Hotel</p>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Trichy (Tiruchirappalli), Tamil Nadu</p>
+        
+        <p style="font-size:13px; color:var(--charcoal-soft); line-height:1.75; margin-bottom:20px;">
+          Ramyas Hotel is one of Trichy's most celebrated hospitality landmarks, centrally located in the heart of the city. Renowned for its warm service and elegant banquet facilities, it makes for a perfect venue to celebrate and welcome the newlyweds into their new chapter.
+        </p>
 
-      <div style="background:white; border:1px solid var(--parchment); border-radius:4px; padding:28px; position:relative;">
-  <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(to right, #312E81, var(--copper));"></div>
-  <p style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--copper); font-weight:500; margin-bottom:10px;">RECEPTION</p>
-  <p style="font-family:'Playfair Display',serif; font-size:20px; color:var(--charcoal); margin-bottom:6px;">Ramyas Hotel</p>
-  <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Trichy (Tiruchirappalli), Tamil Nadu</p>
-  
-  <p style="font-size:13px; color:var(--charcoal-soft); line-height:1.7; margin-bottom:20px;">
-    Ramyas Hotel is one of Trichy's most celebrated hospitality landmarks, centrally located in the heart of the city. Renowned for its warm service and elegant banquet facilities, it makes for a perfect venue to celebrate and welcome the newlyweds into their new chapter.
-  </p>
-
-  <!-- Route Guide Section -->
-  <div style="border-top: 1px dashed var(--parchment); padding-top: 16px; margin-bottom: 20px;">
-    <p style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--charcoal); font-weight: 600; margin-bottom: 12px;">HOW TO REACH THE VENUE</p>
-    
-    <div style="display: grid; gap: 12px; font-size: 12px; line-height: 1.5; color: var(--charcoal-soft);">
-      <div>
-        <strong style="color: var(--copper);">✈️ From Airport:</strong> 
-        ~5.5 km from Tiruchirappalli International Airport (TRZ). A direct taxi or auto via the Airport Road takes roughly 15 to 20 minutes.
+        <div style="border-top: 1px dashed var(--parchment); padding-top: 16px; margin-bottom: 20px;">
+          <p style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--charcoal); font-weight: 600; margin-bottom: 12px;">HOW TO REACH THE VENUE</p>
+          
+          <div style="display: grid; gap: 12px; font-size: 12px; line-height: 1.5; color: var(--charcoal-soft);">
+            <div><strong style="color: var(--copper);">✈️ From Airport:</strong> ~5.5 km from Tiruchirappalli International Airport (TRZ). A direct taxi or auto via the Airport Road takes roughly 15 to 20 minutes.</div>
+            <div><strong style="color: var(--copper);">🚂 From Trichy Railway Junction:</strong> ~1 km away. Located just a 5-minute drive or walk down Williams Road. Readily accessible by auto-rickshaws stationed outside the terminal.</div>
+            <div><strong style="color: var(--copper);">🚌 From Bus Stands:</strong> Diagonally opposite the Trichy Central Bus Stand (less than a 3-minute walk). Highly convenient for guests arriving via long-distance government or private buses.</div>
+            <div><strong style="color: var(--copper);">🚗 By Road:</strong> Centrally positioned in Cantonment. Easily accessed via the Chennai-Trichy Highway (NH 45). Direct entry via Williams Road with dedicated guest parking spaces on-site.</div>
+          </div>
+        </div>
       </div>
-      <div>
-        <strong style="color: var(--copper);">🚂 From Trichy Railway Junction:</strong> 
-        ~1 km away. Located just a 5-minute drive or walk down Williams Road. Readily accessible by auto-rickshaws stationed outside the terminal.
-      </div>
-      <div>
-        <strong style="color: var(--copper);">🚌 From Bus Stands:</strong> 
-        Diagonally opposite the Trichy Central Bus Stand (less than a 3-minute walk). Highly convenient for guests arriving via long-distance government or private buses.
-      </div>
-      <div>
-        <strong style="color: var(--copper);">🚗 By Road:</strong> 
-        Centrally positioned in Cantonment. Easily accessed via the Chennai-Trichy Highway (NH 45). Direct entry via Williams Road with dedicated guest parking spaces on-site.
-      </div>
-    </div>
-  </div>
-</div>
-
 
     </div>
   </section>
 </div>
 
-<!-- CONTACT -->
 <div id="contact">
   <section>
     <p class="section-eyebrow">Reach Out</p>
@@ -982,52 +932,60 @@
 
     <div class="family-grid">
 
-      <!-- GROOM'S SIDE -->
       <div class="family-card">
         <div class="family-card-header">
           <div class="family-icon">🤵</div>
           <div>
             <div class="family-label">Groom's Family</div>
-            <div class="family-side-name">Thiagu Family — Trichy</div>
+            <div class="family-side-name">Er N. Thiagu Family — Trichy</div>
           </div>
         </div>
 
         <div class="contact-item">
           <div class="contact-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B38F4D" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div class="contact-info">
             <div class="contact-relation">Father of the Groom</div>
             <div class="contact-name">Er. N. Thiagu</div>
-            <a class="contact-number" href="tel:+919999999901">+91 99999 99901</a>
+            <a class="contact-number" href="tel:+919443162324">+91 94431 62324</a>
           </div>
         </div>
 
         <div class="contact-item">
           <div class="contact-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B38F4D" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div class="contact-info">
             <div class="contact-relation">Mother of the Groom</div>
             <div class="contact-name">T. Maheshwari</div>
-            <a class="contact-number" href="tel:+919999999902">+91 99999 99902</a>
+            <a class="contact-number" href="tel:+919843738259">+91 98437 38259</a>
           </div>
         </div>
 
         <div class="contact-item">
           <div class="contact-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B21B6" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4A154B" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div class="contact-info">
             <div class="contact-relation">The Groom</div>
             <div class="contact-name">T. Ramakrishnan</div>
-            <a class="contact-number" href="tel:+919999999903">+91 99999 99903</a>
+            <a class="contact-number" href="tel:+917373219594">+91 73732 19594</a>
           </div>
         </div>
 
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4A154B" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="contact-info">
+            <div class="contact-relation">Brother of the Groom</div>
+            <div class="contact-name">T. Gopikrishna</div>
+            <a class="contact-number" href="tel:+919655598002">+91 96555 98002</a>
+          </div>
+        </div>
       </div>
 
-      <!-- BRIDE'S SIDE -->
       <div class="family-card">
         <div class="family-card-header">
           <div class="family-icon">👰</div>
@@ -1039,7 +997,7 @@
 
         <div class="contact-item">
           <div class="contact-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B38F4D" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div class="contact-info">
             <div class="contact-relation">Father of the Bride</div>
@@ -1050,7 +1008,7 @@
 
         <div class="contact-item">
           <div class="contact-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B38F4D" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div class="contact-info">
             <div class="contact-relation">Mother of the Bride</div>
@@ -1061,7 +1019,7 @@
 
         <div class="contact-item">
           <div class="contact-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B21B6" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4A154B" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div class="contact-info">
             <div class="contact-relation">The Bride</div>
@@ -1069,7 +1027,6 @@
             <a class="contact-number" href="tel:+919999999906">+91 99999 99906</a>
           </div>
         </div>
-
       </div>
 
     </div>
@@ -1080,15 +1037,13 @@
   </section>
 </div>
 
-<!-- WISHES SECTION -->
 <div id="wishes" style="background: var(--ivory);">
   <section>
     <p class="section-eyebrow">From the Heart</p>
     <h2 class="section-title">Send Your <em>Wishes</em></h2>
 
-    <!-- SUBMIT FORM -->
     <div style="background:var(--white); border:1px solid var(--parchment); border-radius:6px; padding:36px; margin-bottom:40px;">
-      <div class="wish-form-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+      <div class="wish-form-grid">
         <div>
           <label style="display:block; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px;">Your Name *</label>
           <input id="wish-name" type="text" placeholder="e.g. Suresh Kumar" style="width:100%; padding:12px 14px; border:1px solid var(--parchment); border-radius:4px; font-size:14px; font-family:'Inter',sans-serif; color:var(--charcoal); background:var(--ivory); outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--parchment)'" />
@@ -1100,10 +1055,10 @@
       </div>
       <div style="margin-bottom:20px;">
         <label style="display:block; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px;">Your Wish *</label>
-        <textarea id="wish-message" rows="4" placeholder="Write your heartfelt wishes for Ramakrishnan &amp; Pradeetha…" style="width:100%; padding:12px 14px; border:1px solid var(--parchment); border-radius:4px; font-size:14px; font-family:'Inter',sans-serif; color:var(--charcoal); background:var(--ivory); outline:none; resize:vertical; transition:border 0.2s; line-height:1.6;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--parchment)'"></textarea>
+        <textarea id="wish-message" rows="4" placeholder="Write your heartfelt wishes for Ramakrishnan & Pradeetha…" style="width:100%; padding:12px 14px; border:1px solid var(--parchment); border-radius:4px; font-size:14px; font-family:'Inter',sans-serif; color:var(--charcoal); background:var(--ivory); outline:none; resize:vertical; transition:border 0.2s; line-height:1.6;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--parchment)'"></textarea>
       </div>
       <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-        <button id="wish-submit" onclick="submitWish()" style="display:inline-flex; align-items:center; gap:8px; background:var(--gold); color:var(--white); font-size:13px; font-weight:500; letter-spacing:0.08em; padding:13px 28px; border-radius:4px; border:none; cursor:pointer; transition:background 0.2s, transform 0.15s; font-family:'Inter',sans-serif;">
+        <button id="wish-submit" onclick="submitWish()" style="display:inline-flex; align-items:center; gap:8px; background:var(--green); color:var(--white); font-size:13px; font-weight:500; letter-spacing:0.08em; padding:13px 28px; border-radius:4px; border:none; cursor:pointer; transition:background 0.2s; font-family:'Inter',sans-serif;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
           Send Wishes
         </button>
@@ -1111,7 +1066,6 @@
       </div>
     </div>
 
-    <!-- WISHES WALL -->
     <div id="wishes-wall" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:20px;">
       <div style="text-align:center; padding:40px 20px; color:var(--text-muted); font-style:italic; font-size:14px; grid-column:1/-1;">
         💜 Wishes from loved ones will appear here…
@@ -1161,7 +1115,6 @@
   }
   .wish-card-time {
     font-size: 11px;
-    color: var(--parchment);
     margin-top: 14px;
     padding-top: 12px;
     border-top: 1px solid var(--parchment);
@@ -1169,12 +1122,11 @@
   }
 </style>
 
-<!-- FOOTER -->
 <footer>
   <div style="margin-bottom:20px;">
     <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="24" cy="24" r="3" fill="#C4B5FD"/>
-      <g stroke="#C4B5FD" stroke-width="1" fill="none" opacity="0.7">
+      <circle cx="24" cy="24" r="3" fill="#E6CA65"/>
+      <g stroke="#E6CA65" stroke-width="1" fill="none" opacity="0.7">
         <ellipse cx="24" cy="14" rx="3" ry="7"/>
         <ellipse cx="24" cy="34" rx="3" ry="7"/>
         <ellipse cx="14" cy="24" rx="7" ry="3"/>
@@ -1182,8 +1134,8 @@
       </g>
     </svg>
   </div>
-  <div class="footer-names">Ramakrishnan &amp; Pradeetha</div>
-  <div class="footer-tagline">September 2026 · Chottanikara, Kerala &amp; Trichy, Tamil Nadu</div>
+  <div class="footer-names">Ramakrishnan & Pradeetha</div>
+  <div class="footer-tagline">September 2026 · Chottanikara, Kerala & Trichy, Tamil Nadu</div>
   <div class="footer-note">Made with love · Two families, one beautiful beginning</div>
 </footer>
 
@@ -1197,7 +1149,6 @@
     }
   }
 
-  // Countdown to Wedding: 13 Sep 2026, 7:00 AM IST (UTC+5:30)
   const weddingDate = new Date('2026-09-13T07:00:00+05:30');
 
   function updateCountdown() {
@@ -1205,7 +1156,8 @@
     const diff = weddingDate - now;
 
     if (diff <= 0) {
-      document.getElementById('cd-days').closest('div[style]').style.display = 'none';
+      const grid = document.querySelector('.countdown-grid');
+      if (grid) grid.style.display = 'none';
       document.getElementById('cd-done').style.display = 'block';
       return;
     }
@@ -1221,8 +1173,6 @@
     document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
   }
 
-  // ── GOOGLE SHEETS WISHES ──
-  // Paste your Google Apps Script Web App URL below after deploying
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzoo2_KLeDevK54-qVhzj8iDgxyyYSQ7HjJqeipqjmncxCk44SS9Np3I6_3X416sux7tg/exec';
 
   async function submitWish() {
@@ -1247,14 +1197,13 @@
         body: JSON.stringify({ name, relation, message, timestamp: new Date().toLocaleString('en-IN') })
       });
 
-      // Optimistically add the card immediately
       addWishCard({ name, relation, message, timestamp: new Date().toLocaleString('en-IN') }, true);
 
       document.getElementById('wish-name').value = '';
       document.getElementById('wish-relation').value = '';
       document.getElementById('wish-message').value = '';
       status.textContent = '💜 Your wish was sent! Thank you.';
-      status.style.color = 'var(--gold)';
+      status.style.color = 'var(--copper)';
     } catch (e) {
       status.textContent = '❌ Something went wrong. Please try again.';
     } finally {
@@ -1266,7 +1215,6 @@
 
   function addWishCard(wish, prepend = false) {
     const wall = document.getElementById('wishes-wall');
-    // Remove placeholder if present
     const placeholder = wall.querySelector('div[style*="grid-column"]');
     if (placeholder) placeholder.remove();
 
@@ -1304,12 +1252,11 @@
         data.wishes.reverse().forEach(w => addWishCard(w));
       }
     } catch(e) {
-      // Silently fail — wishes wall stays with placeholder
+      // Silently fail
     }
   }
 
   loadWishes();
-
   updateCountdown();
   setInterval(updateCountdown, 1000);
 </script>
