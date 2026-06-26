@@ -100,12 +100,40 @@
   }
 
   /* Corner ornaments */
-  .corner { position: absolute; width: 60px; height: 60px; }
-  .corner svg { width: 100%; height: 100%; }
-  .c-tl { top: 32px; left: 32px; }
-  .c-tr { top: 32px; right: 32px; transform: scaleX(-1); }
-  .c-bl { bottom: 32px; left: 32px; transform: scaleY(-1); }
-  .c-br { bottom: 32px; right: 32px; transform: scale(-1,-1); }
+  .corner { 
+    position: absolute; 
+    width: 60px; 
+    height: 60px; 
+  }
+
+  .corner svg { 
+    width: 100%; 
+    height: 100%; 
+    display: block; /* Prevents unwanted inline whitespace alignment issues */
+  }
+
+  .c-tl { 
+    top: 32px; 
+    left: 32px; 
+  }
+
+  .c-tr { 
+    top: 32px; 
+    right: 32px; 
+    scale: -1 1; /* Flips horizontally */
+  }
+
+  .c-bl { 
+    bottom: 32px; 
+    left: 32px; 
+    scale: 1 -1; /* Flips vertically */
+  }
+
+  .c-br { 
+    bottom: 32px; 
+    right: 32px; 
+    scale: -1 -1; /* Flips both ways */
+  }
 
   .hero-eyebrow {
     font-family: 'Inter', sans-serif;
