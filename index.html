@@ -755,7 +755,7 @@
 
 <!-- Background music -->
 <audio id="bg-music" loop preload="auto">
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+  <source src="./Between_Two_Ragas.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Floating music toggle -->
@@ -780,7 +780,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: opacity 1s ease, visibility 1s ease;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 #envelope-overlay.hidden {
   opacity: 0;
@@ -921,7 +921,7 @@
   height: 54.2%;   /* 130/240 = 54.2% to match SVG viewBox */
   transform-origin: top center;
   transform: rotateX(0deg);
-  transition: transform 0.8s cubic-bezier(0.42, 0, 0.3, 1.1);
+  transition: transform 0.5s cubic-bezier(0.42, 0, 0.3, 1.1);
   z-index: 10;
   transform-style: preserve-3d;
 }
@@ -1035,7 +1035,7 @@ function onSealClick(e) {
     const audio = document.getElementById('bg-music');
     audio.volume = 0.22;
     audio.play().catch(()=>{});
-  }, 1800); // 0.8s flap + 0.6s card + 0.4s buffer
+  }, 1000); // reduced to 0.9s for faster reveal
 }
 
 document.getElementById('env-seal').addEventListener('click', onSealClick);
