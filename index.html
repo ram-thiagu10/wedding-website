@@ -654,6 +654,410 @@
 </head>
 <body>
 
+<!-- ═══════════════════════════════════════════════════════════
+     ROYAL ENVELOPE INTRO OVERLAY
+════════════════════════════════════════════════════════════ -->
+<div id="envelope-overlay">
+  <div class="env-stars" id="env-stars"></div>
+
+  <div class="env-scene">
+
+    <!-- Title above envelope -->
+    <div class="env-title">
+      <p class="env-title-top">✨ &nbsp; A Wedding Invitation &nbsp; ✨</p>
+      <p class="env-title-names">T. Ramakrishnan &amp; Dr. Pradeetha P</p>
+    </div>
+
+    <!-- The full envelope is one SVG — solid, no transparency -->
+    <div class="env-wrap" id="env-wrap">
+
+      <!-- SVG envelope body (back + side flaps + bottom flap) — always visible -->
+      <svg class="env-svg-body" viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg">
+        <!-- Envelope base rectangle -->
+        <rect x="0" y="0" width="360" height="240" rx="6" fill="#EDD9A3"/>
+        <!-- Left triangle fold -->
+        <polygon points="0,0 0,240 180,120" fill="#D4B870"/>
+        <!-- Right triangle fold -->
+        <polygon points="360,0 360,240 180,120" fill="#C9A94A"/>
+        <!-- Bottom triangle fold -->
+        <polygon points="0,240 360,240 180,120" fill="#E0C87A"/>
+        <!-- Gold seam lines -->
+        <line x1="0" y1="0" x2="180" y2="120" stroke="#B8962A" stroke-width="0.6" opacity="0.5"/>
+        <line x1="360" y1="0" x2="180" y2="120" stroke="#B8962A" stroke-width="0.6" opacity="0.5"/>
+        <line x1="0" y1="240" x2="180" y2="120" stroke="#B8962A" stroke-width="0.6" opacity="0.5"/>
+        <line x1="360" y1="240" x2="180" y2="120" stroke="#B8962A" stroke-width="0.6" opacity="0.5"/>
+        <!-- Outer border -->
+        <rect x="1" y="1" width="358" height="238" rx="5" fill="none" stroke="#C9A94A" stroke-width="1.5"/>
+        <!-- Inner border -->
+        <rect x="8" y="8" width="344" height="224" rx="4" fill="none" stroke="rgba(212,175,55,0.3)" stroke-width="0.8"/>
+      </svg>
+
+      <!-- The invitation card nestled inside (sits behind the top flap) -->
+      <div class="env-inner-card" id="env-inner-card">
+        <p class="env-card-eyebrow">🪔 &nbsp; With our families' blessings &nbsp; 🪔</p>
+        <p class="env-card-names">Ramakrishnan<br/><em class="env-amp">weds</em><br/><em>Dr. Pradeetha P</em></p>
+        <p class="env-card-date">September 2026 · Kerala &amp; Tamil Nadu</p>
+      </div>
+
+      <!-- Top flap — rotates open on click, contains the seal -->
+      <div class="env-top-flap" id="env-top-flap">
+        <svg class="env-top-svg" viewBox="0 0 360 130" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <!-- Solid filled top flap triangle -->
+          <polygon points="0,0 360,0 180,130" fill="#C4933A"/>
+          <!-- Lighter inner triangle -->
+          <polygon points="10,0 350,0 180,120" fill="#D4A94A" opacity="0.6"/>
+          <!-- Gold edge -->
+          <line x1="0" y1="0" x2="180" y2="130" stroke="#B8852A" stroke-width="0.8" opacity="0.7"/>
+          <line x1="360" y1="0" x2="180" y2="130" stroke="#B8852A" stroke-width="0.8" opacity="0.7"/>
+        </svg>
+
+        <!-- Wax seal — centred on the flap fold line -->
+        <div class="env-seal" id="env-seal">
+          <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer glow ring -->
+            <circle cx="45" cy="45" r="43" fill="none" stroke="#D4AF37" stroke-width="0.8" opacity="0.4"/>
+            <!-- Main seal disc -->
+            <circle cx="45" cy="45" r="38" fill="#6B0F50"/>
+            <circle cx="45" cy="45" r="36" fill="#7D1260"/>
+            <!-- Decorative ring -->
+            <circle cx="45" cy="45" r="32" fill="none" stroke="#D4AF37" stroke-width="1" opacity="0.7"/>
+            <circle cx="45" cy="45" r="27" fill="none" stroke="#D4AF37" stroke-width="0.4" opacity="0.4"/>
+            <!-- Lotus petals N/S/E/W -->
+            <ellipse cx="45" cy="26" rx="4.5" ry="11" fill="#D4AF37" opacity="0.95"/>
+            <ellipse cx="45" cy="64" rx="4.5" ry="11" fill="#D4AF37" opacity="0.95"/>
+            <ellipse cx="26" cy="45" rx="11" ry="4.5" fill="#D4AF37" opacity="0.95"/>
+            <ellipse cx="64" cy="45" rx="11" ry="4.5" fill="#D4AF37" opacity="0.95"/>
+            <!-- Diagonal petals -->
+            <ellipse cx="32" cy="32" rx="4" ry="9" fill="#D4AF37" opacity="0.55" transform="rotate(45 32 32)"/>
+            <ellipse cx="58" cy="32" rx="4" ry="9" fill="#D4AF37" opacity="0.55" transform="rotate(-45 58 32)"/>
+            <ellipse cx="32" cy="58" rx="4" ry="9" fill="#D4AF37" opacity="0.55" transform="rotate(-45 32 58)"/>
+            <ellipse cx="58" cy="58" rx="4" ry="9" fill="#D4AF37" opacity="0.55" transform="rotate(45 58 58)"/>
+            <!-- Centre -->
+            <circle cx="45" cy="45" r="10" fill="#D4AF37"/>
+            <circle cx="45" cy="45" r="7"  fill="#6B0F50"/>
+            <text x="45" y="49" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#D4AF37" font-style="italic" font-weight="bold">R&amp;P</text>
+          </svg>
+        </div>
+      </div>
+
+    </div><!-- /env-wrap -->
+
+    <!-- Prompt -->
+    <div class="env-prompt" id="env-prompt">
+      <p>Tap the seal to open your invitation</p>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(212,175,55,0.7)" stroke-width="1.5" style="animation:floatArrow 1.8s ease-in-out infinite; margin-top:4px;">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </div>
+
+  </div><!-- /env-scene -->
+</div><!-- /envelope-overlay -->
+
+<!-- Background music -->
+<audio id="bg-music" loop preload="auto">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Floating music toggle -->
+<button id="music-toggle" onclick="toggleMusic()" title="Toggle music">
+  <svg id="music-icon-on" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+  </svg>
+  <svg id="music-icon-off" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+    <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+    <line x1="1" y1="1" x2="23" y2="23"/>
+  </svg>
+</button>
+
+<style>
+/* ── OVERLAY ── */
+#envelope-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: radial-gradient(ellipse at 50% 45%, #2D0845 0%, #160228 55%, #0A0110 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+#envelope-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ── STARS ── */
+.env-stars { position: absolute; inset: 0; pointer-events: none; }
+.env-star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  animation: twinkle var(--d, 2s) ease-in-out infinite var(--delay, 0s);
+}
+@keyframes twinkle {
+  0%,100% { opacity: 0.08; }
+  50%      { opacity: 0.85; }
+}
+@keyframes floatArrow {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(5px); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SCENE ── */
+.env-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  width: 100%;
+  padding: 20px;
+}
+
+/* ── TITLE ── */
+.env-title { text-align: center; animation: fadeUp 0.8s ease both; }
+.env-title-top {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(212,175,55,0.7);
+  margin-bottom: 8px;
+}
+.env-title-names {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(18px, 4vw, 26px);
+  color: rgba(255,255,255,0.9);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+/* ── ENVELOPE WRAPPER ── */
+.env-wrap {
+  position: relative;
+  width: min(360px, 90vw);
+  /* height driven by SVG aspect ratio 360:240 = 3:2 */
+  cursor: pointer;
+  animation: fadeUp 0.9s ease 0.2s both;
+  /* perspective for 3D flap */
+  perspective: 900px;
+  filter: drop-shadow(0 16px 48px rgba(0,0,0,0.6));
+}
+
+/* SVG body fills the wrapper */
+.env-svg-body {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* Inner card — sits inside envelope, revealed when flap lifts */
+.env-inner-card {
+  position: absolute;
+  /* positioned so it looks tucked inside */
+  top: 6%;
+  left: 5%;
+  right: 5%;
+  bottom: 8%;
+  background: linear-gradient(150deg, #FAF6EE, #F0E8D0);
+  border-radius: 4px;
+  border: 1px solid rgba(212,175,55,0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px 12px;
+  /* Start hidden behind the flap — revealed after flap rotates */
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.5s ease 0.6s, transform 0.5s ease 0.6s;
+  z-index: 1;
+}
+.env-wrap.opened .env-inner-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.env-card-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8B6914;
+  margin-bottom: 10px;
+}
+.env-card-names {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(13px, 3.5vw, 19px);
+  color: #231F20;
+  line-height: 1.4;
+}
+.env-amp {
+  font-style: italic;
+  color: rgba(74,21,75,0.45);
+  font-size: 0.8em;
+}
+.env-card-names em { font-style: italic; color: #4A154B; }
+.env-card-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  color: #8C7A5A;
+  margin-top: 10px;
+  letter-spacing: 0.06em;
+}
+
+/* ── TOP FLAP ── */
+.env-top-flap {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  /* height = half the envelope height (120/240 ratio) */
+  height: 54.2%;   /* 130/240 = 54.2% to match SVG viewBox */
+  transform-origin: top center;
+  transform: rotateX(0deg);
+  transition: transform 0.8s cubic-bezier(0.42, 0, 0.3, 1.1);
+  z-index: 10;
+  transform-style: preserve-3d;
+}
+.env-top-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* Opened state — flap rotates backward */
+.env-wrap.opened .env-top-flap {
+  transform: rotateX(-185deg);
+}
+
+/* ── SEAL ── */
+.env-seal {
+  position: absolute;
+  /* Seal sits right at the tip of the top flap (bottom point of triangle) */
+  bottom: -22%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(56px, 16vw, 72px);
+  height: clamp(56px, 16vw, 72px);
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.2s;
+  filter: drop-shadow(0 4px 14px rgba(212,175,55,0.55));
+  z-index: 20;
+}
+.env-seal:hover {
+  filter: drop-shadow(0 6px 22px rgba(212,175,55,0.9));
+  transform: translateX(-50%) scale(1.1);
+}
+.env-seal svg { width: 100%; height: 100%; display: block; }
+
+/* ── PROMPT ── */
+.env-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  animation: fadeUp 1s ease 0.5s both;
+  transition: opacity 0.4s;
+}
+.env-prompt.hidden { opacity: 0; pointer-events: none; }
+.env-prompt p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(14px, 3.5vw, 17px);
+  font-style: italic;
+  color: rgba(212,175,55,0.8);
+  letter-spacing: 0.04em;
+}
+
+/* ── MUSIC TOGGLE ── */
+#music-toggle {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  z-index: 500;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #F5E6C8;
+  border: 1px solid rgba(212,175,55,0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(74,21,75,0.45);
+  transition: transform 0.2s, background 0.2s;
+}
+#music-toggle:hover  { transform: scale(1.1); background: var(--green-light); }
+#music-toggle.visible { display: flex; }
+</style>
+
+<script>
+/* ── STARS ── */
+(function(){
+  const c = document.getElementById('env-stars');
+  for(let i=0;i<90;i++){
+    const s = document.createElement('div');
+    s.className = 'env-star';
+    const sz = Math.random()*2+0.5;
+    s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${(Math.random()*3+1.5).toFixed(1)}s;--delay:-${(Math.random()*4).toFixed(1)}s;`;
+    c.appendChild(s);
+  }
+})();
+
+/* ── SEAL CLICK → open flap → auto-reveal website ── */
+let sealClicked = false;
+
+function onSealClick(e) {
+  e.stopPropagation();
+  if (sealClicked) return;
+  sealClicked = true;
+
+  // Hide prompt
+  document.getElementById('env-prompt').classList.add('hidden');
+
+  // Open the envelope flap
+  document.getElementById('env-wrap').classList.add('opened');
+
+  // After flap animation + card reveal, fade out overlay and start music
+  setTimeout(() => {
+    const overlay = document.getElementById('envelope-overlay');
+    overlay.classList.add('hidden');
+
+    // Show music toggle button
+    document.getElementById('music-toggle').classList.add('visible');
+
+    // Start music
+    const audio = document.getElementById('bg-music');
+    audio.volume = 0.22;
+    audio.play().catch(()=>{});
+  }, 1800); // 0.8s flap + 0.6s card + 0.4s buffer
+}
+
+document.getElementById('env-seal').addEventListener('click', onSealClick);
+// Also allow tapping anywhere on envelope as fallback
+document.getElementById('env-wrap').addEventListener('click', onSealClick);
+
+/* ── MUSIC TOGGLE ── */
+let musicPlaying = true;
+function toggleMusic(){
+  const audio = document.getElementById('bg-music');
+  const on  = document.getElementById('music-icon-on');
+  const off = document.getElementById('music-icon-off');
+  if(musicPlaying){ audio.pause(); on.style.display='none'; off.style.display='block'; }
+  else { audio.play().catch(()=>{}); on.style.display='block'; off.style.display='none'; }
+  musicPlaying = !musicPlaying;
+}
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     END OF ENVELOPE INTRO
+════════════════════════════════════════════════════════════ -->
+
 <nav>
   <a href="#events">Celebrations</a>
   <a href="#couple">Bride & Groom</a>
