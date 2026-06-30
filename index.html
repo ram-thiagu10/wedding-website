@@ -4,16 +4,16 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>T. Ramakrishnan & Dr. Pradeetha P — Wedding Celebrations</title>
-<meta name="description" content="Join T. Ramakrishnan & Dr. Pradeetha P for engagement, wedding and reception celebrations in Kerala and Tamil Nadu on 12th, 13th and 15th September 2026."/>
-<meta property="og:title" content="T. Ramakrishnan weds Dr. Pradeetha P"/>
-<meta property="og:description" content="Join our engagement, wedding and reception celebrations in Kerala and Tamil Nadu on 12th, 13th and 15th September 2026."/>
+<meta name="description" content="Join T. Ramakrishnan & Dr. Pradeetha P for wedding celebrations in Kerala and Tamil Nadu on 13 September 2026."/>
+<meta property="og:title" content="T. Ramakrishnan & Dr. Pradeetha P — Wedding Celebrations"/>
+<meta property="og:description" content="Join our wedding celebrations in Kerala and Tamil Nadu on 13 September 2026."/>
 <meta property="og:type" content="website"/>
 <meta property="og:image" content="https://ram-weds-pradee.vercel.app/invite_img.png"/>
 <meta property="og:image:type" content="image/png"/>
 <meta property="og:image:alt" content="Wedding invitation for Ramakrishnan & Pradeetha"/>
 
 <meta property="og:url" content="https://ram-weds-pradee.vercel.app/">
-<meta property="og:site_name" content="Ramakrishnan weds Pradeetha">
+<meta property="og:site_name" content="Ramakrishnan & Pradeetha Wedding">
 
 <meta property="og:image" content="https://ram-weds-pradee.vercel.app/invite_img.png">
 <meta property="og:image:secure_url" content="https://ram-weds-pradee.vercel.app/invite_img.png">
@@ -22,8 +22,8 @@
 <meta property="og:image:type" content="image/png">
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="T. Ramakrishnan weds Dr. Pradeetha P"/>
-<meta name="twitter:description" content="Join our engagement, wedding and reception celebrations in Kerala and Tamil Nadu on 12th, 13th and 15th September 2026."/>
+<meta name="twitter:title" content="T. Ramakrishnan & Dr. Pradeetha P — Wedding Celebrations"/>
+<meta name="twitter:description" content="Join our wedding celebrations in Kerala and Tamil Nadu on 13 September 2026."/>
 <meta name="twitter:image" content="https://ram-weds-pradee.vercel.app/invite_img.png"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
@@ -1832,7 +1832,64 @@ function toggleMusic(){
     color: var(--text-on-dark-muted);
   }
 </style>
+<section id="gallery" class="gallery-section">
+  <div class="section-eyebrow">Shared Memories</div>
+  <h2 class="section-title">Event <em>Gallery</em></h2>
+  
+  <div class="family-card" style="max-width: 600px; margin: 0 auto 48px auto;">
+    <div class="family-card-header">
+      <div class="family-icon">📸</div>
+      <div>
+        <div class="family-label">Capture the Moments</div>
+        <div class="family-side-name">Click & Upload</div>
+      </div>
+    </div>
 
+    <div id="upload-interface">
+      <p style="font-size: 14px; color: var(--text-on-dark-soft); margin-bottom: 16px;">
+        Help us save our memories! You can capture and upload up to <strong style="color:var(--gold-light)">3 photos</strong> directly from your camera during the event days (Sept 12, 13, & 15).
+      </p>
+      
+      <div id="upload-status-badge" class="person-title-badge" style="margin-bottom: 16px;">
+        Photos Uploaded: <span id="photo-count-tracker">0</span> / 3
+      </div>
+
+      <form id="event-capture-form" onsubmit="handlePhotoUpload(event)">
+        <input type="file" id="camera-file-input" accept="image/*" capture="environment" style="display: none;" onchange="previewCapturedImage(this)" required />
+        
+        <div style="text-align: center; margin-bottom: 20px;">
+          <button type="button" class="map-btn gold" onclick="document.getElementById('camera-file-input').click()">
+            ✨ Launch Camera
+          </button>
+        </div>
+
+        <div id="camera-preview-container" style="display: none; text-align: center; margin-bottom: 16px;">
+          <img id="image-preview" src="" alt="Captured preview" style="max-width: 100%; max-height: 250px; border-radius: 6px; border: 1px solid var(--gold);" />
+        </div>
+
+        <div class="wish-form-grid" style="grid-template-columns: 1fr;">
+          <textarea id="photo-message" class="map-btn" style="width:100%; height:80px; background: rgba(0,0,0,0.2); text-align: left; padding: 10px; color: white;" placeholder="Write a brief message with this photo... (Optional)"></textarea>
+        </div>
+
+        <button type="submit" id="submit-photo-btn" class="map-btn" style="width: 100%; justify-content: center; background: var(--gold); color: var(--royal-bg-deep); font-weight: 600;" disabled>
+          Upload Photo to Gallery
+        </button>
+      </form>
+    </div>
+
+    <div id="upload-lock-interface" style="display: none; text-align: center; padding: 20px 0;">
+      <div style="font-size: 40px; margin-bottom: 10px;">🔒</div>
+      <p style="color: var(--gold-light); font-weight: 500;">Camera Uploads Open Only on Event Days</p>
+      <p style="font-size: 13px; color: var(--text-on-dark-soft); margin-top: 4px;"> Join us on September 12th, 13th, and 15th, 2026 to upload your photos! </p>
+    </div>
+  </div>
+
+  <div class="venues-grid" id="live-gallery-grid">
+    <div class="person-card" style="text-align: center; padding: 40px 20px; grid-column: 1 / -1;">
+      <p style="color: var(--text-on-dark-muted); font-style: italic;">No photos uploaded yet. Be the first to share a moment!</p>
+    </div>
+  </div>
+</section>
 <footer>
   <div style="margin-bottom:20px;">
     <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2258,6 +2315,138 @@ function toggleMusic(){
     try { saved = sessionStorage.getItem('weddingLang') || 'en'; } catch(e) {}
     if (saved !== 'en') setLanguage(saved);
   })();
+
+  // --- PHOTO CAPTURE & EVENT RESTRICTION CONFIGURATION ---
+const APP_SCRIPT_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzzuaoDJHALFAfWCGFJ8XFZE8nsmnvyJ4bk5aWDjuzsgEVDzeK3mhdCtGUT4BDAMNkW/exec";
+const EVENT_DAYS = ["2026-09-12", "2026-09-13", "2026-09-15"]; // Target Event Dates
+const MAX_PHOTOS_ALLOWED = 3;
+
+// Initialize counts and restrictions on page load
+document.addEventListener("DOMContentLoaded", () => {
+  // checkEventDayRestriction();
+  updateUploadCounterDisplay();
+});
+
+function checkEventDayRestriction() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  const formattedToday = `${year}-${month}-${day}`;
+
+  const isEventDay = EVENT_DAYS.includes(formattedToday);
+  
+  // Toggle UI visibility based on the exact date matches
+  if (!isEventDay) {
+    document.getElementById("upload-interface").style.display = "none";
+    document.getElementById("upload-lock-interface").style.display = "block";
+  }
+}
+
+function updateUploadCounterDisplay() {
+  const currentUploads = parseInt(localStorage.getItem("user_upload_count") || "0", 10);
+  document.getElementById("photo-count-tracker").innerText = currentUploads;
+  
+  if (currentUploads >= MAX_PHOTOS_ALLOWED) {
+    document.getElementById("upload-interface").innerHTML = `
+      <div style="text-align:center; padding:10px; color:var(--gold-light);">
+        ✨ Thank you! You have successfully reached your limit of 3 photo uploads.
+      </div>`;
+  }
+}
+
+function previewCapturedImage(input) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById("image-preview").src = e.target.result;
+      document.getElementById("camera-preview-container").style.display = "block";
+      document.getElementById("submit-photo-btn").removeAttribute("disabled");
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+async function handlePhotoUpload(event) {
+  event.preventDefault();
+  
+  const currentUploads = parseInt(localStorage.getItem("user_upload_count") || "0", 10);
+  if (currentUploads >= MAX_PHOTOS_ALLOWED) {
+    alert("You have reached the limit of 5 uploads.");
+    return;
+  }
+
+  const fileInput = document.getElementById("camera-file-input");
+  const messageInput = document.getElementById("photo-message");
+  const submitBtn = document.getElementById("submit-photo-btn");
+
+  if (!fileInput.files.length) return;
+
+  submitBtn.innerText = "Uploading... Please Wait";
+  submitBtn.setAttribute("disabled", "true");
+
+  const file = fileInput.files[0];
+  const reader = new FileReader();
+
+  reader.onload = async function(e) {
+    const base64Data = e.target.result.split(",")[1];
+    
+    const payload = {
+      filename: file.name,
+      mimeType: file.type,
+      data: base64Data,
+      message: messageInput.value
+    };
+
+    try {
+      const response = await fetch(APP_SCRIPT_WEBHOOK_URL, {
+        method: "POST",
+        body: JSON.stringify(payload)
+      });
+      
+      if (response.ok) {
+        // Success tracking updates
+        localStorage.setItem("user_upload_count", currentUploads + 1);
+        alert("Photo uploaded successfully to the wedding album!");
+        
+        // Clear Form & Update View
+        document.getElementById("event-capture-form").reset();
+        document.getElementById("camera-preview-container").style.display = "none";
+        updateUploadCounterDisplay();
+        
+        // Append dynamically to front-end session gallery grid
+        appendPhotoToSessionGallery(e.target.result, messageInput.value);
+      } else {
+        throw new Error("Upload failed");
+      }
+    } catch (err) {
+      alert("Error uploading image. Please check your connection and try again.");
+      submitBtn.innerText = "Upload Photo to Gallery";
+      submitBtn.removeAttribute("disabled");
+    }
+  };
+  
+  reader.readAsDataURL(file);
+}
+
+function appendPhotoToSessionGallery(imageSrc, userMsg) {
+  const grid = document.getElementById("live-gallery-grid");
+  // Clear the placeholder notice on the very first upload
+  if (grid.innerHTML.includes("No photos uploaded yet")) {
+    grid.innerHTML = "";
+  }
+
+  const photoHtml = `
+    <div class="person-card">
+      <div style="position:relative; width:100%; padding-top:75%; overflow:hidden;">
+         <img src="${imageSrc}" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;" />
+      </div>
+      <div class="person-card-inner" style="padding: 16px;">
+        <p class="person-desc" style="font-style: italic;">"${userMsg || 'Best Wishes!'}"</p>
+      </div>
+    </div>`;
+  grid.insertAdjacentHTML("afterbegin", photoHtml);
+}
 </script>
 
 </body>
