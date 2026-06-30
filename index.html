@@ -664,7 +664,7 @@
 
     <!-- Title above envelope -->
     <div class="env-title">
-      <p class="env-title-top">✨ &nbsp; A Wedding Invitation &nbsp; ✨</p>
+      <p class="env-title-top" data-i18n="envTitleTop">✨ &nbsp; A Wedding Invitation &nbsp; ✨</p>
       <p class="env-title-names">T. Ramakrishnan &amp; Dr. Pradeetha P</p>
     </div>
 
@@ -694,9 +694,9 @@
 
       <!-- The invitation card nestled inside (sits behind the top flap) -->
       <div class="env-inner-card" id="env-inner-card">
-        <p class="env-card-eyebrow">🪔 &nbsp; With our families' blessings &nbsp; 🪔</p>
-        <p class="env-card-names">Ramakrishnan<br/><em class="env-amp">weds</em><br/><em>Dr. Pradeetha P</em></p>
-        <p class="env-card-date">September 2026 · Kerala &amp; Tamil Nadu</p>
+        <p class="env-card-eyebrow" data-i18n="envBlessings">🪔 &nbsp; With our families' blessings &nbsp; 🪔</p>
+        <p class="env-card-names">Ramakrishnan<br/><em class="env-amp" data-i18n="heroWeds">weds</em><br/><em>Dr. Pradeetha P</em></p>
+        <p class="env-card-date" data-i18n="heroDate">September 2026 · Kerala &amp; Tamil Nadu</p>
       </div>
 
       <!-- Top flap — rotates open on click, contains the seal -->
@@ -744,7 +744,7 @@
 
     <!-- Prompt -->
     <div class="env-prompt" id="env-prompt">
-      <p>Tap the seal to open your invitation</p>
+      <p data-i18n="envTapPrompt">Tap the seal to open your invitation</p>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(212,175,55,0.7)" stroke-width="1.5" style="animation:floatArrow 1.8s ease-in-out infinite; margin-top:4px;">
         <path d="M12 5v14M5 12l7 7 7-7"/>
       </svg>
@@ -1059,12 +1059,104 @@ function toggleMusic(){
 ════════════════════════════════════════════════════════════ -->
 
 <nav>
-  <a href="#events">Celebrations</a>
-  <!-- <a href="#couple">Bride & Groom</a> -->
-  <a href="#venues">Venues</a>
-  <a href="#contact">Contact</a>
-  <a href="#wishes">Wishes</a>
+  <a href="#events" data-i18n="navCelebrations">Celebrations</a>
+  <a href="#venues" data-i18n="navVenues">Venues</a>
+  <a href="#contact" data-i18n="navContact">Contact</a>
+  <a href="#wishes" data-i18n="navWishes">Wishes</a>
 </nav>
+
+<!-- Floating translate toggle (bottom-left, mirrors music button) -->
+<div id="translate-wrap">
+  <button id="translate-toggle" onclick="toggleTranslateMenu()" title="Translate">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="10"/>
+      <line x1="2" y1="12" x2="22" y2="12"/>
+      <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+    </svg>
+  </button>
+  <div id="translate-menu">
+    <button type="button" class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+    <button type="button" class="lang-btn" data-lang="ta" onclick="setLanguage('ta')">தமிழ்</button>
+    <button type="button" class="lang-btn" data-lang="ml" onclick="setLanguage('ml')">മലയാളം</button>
+  </div>
+</div>
+
+<style>
+  #translate-wrap {
+    position: fixed;
+    bottom: 22px;
+    left: 22px;
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  #translate-toggle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #F5E6C8;
+    border: 1px solid rgba(212,175,55,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(74,21,75,0.45);
+    transition: transform 0.2s, background 0.2s;
+  }
+  #translate-toggle:hover { transform: scale(1.1); background: var(--green-light); }
+
+  #translate-menu {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(255,255,255,0.97);
+    border: 1px solid rgba(74,21,75,0.12);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 8px 28px rgba(74,21,75,0.18);
+    backdrop-filter: blur(8px);
+    animation: fadeUp 0.25s ease both;
+  }
+  #translate-menu.open { display: flex; }
+
+  .lang-btn {
+    border: 1px solid rgba(74,21,75,0.12);
+    background: rgba(255,255,255,0.8);
+    color: var(--charcoal);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .lang-btn:hover,
+  .lang-btn.active {
+    background: var(--green-light);
+    border-color: var(--green);
+    color: var(--plum-dark);
+  }
+</style>
+
+<script>
+  function toggleTranslateMenu() {
+    document.getElementById('translate-menu').classList.toggle('open');
+  }
+  // Close the menu after a language is chosen
+  document.addEventListener('click', function(e) {
+    const wrap = document.getElementById('translate-wrap');
+    const menu = document.getElementById('translate-menu');
+    if (e.target.closest('.lang-btn')) {
+      menu.classList.remove('open');
+    } else if (!wrap.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+</script>
 
 <div class="hero">
   <div class="hero-border"></div>
@@ -1102,11 +1194,11 @@ function toggleMusic(){
     </svg>
   </div>
 
-  <p class="hero-eyebrow">✨ &nbsp; Together with our families, we warmly invite you to celebrate the beginning of our journey together &nbsp; ✨</p>
+  <p id="hero-eyebrow" class="hero-eyebrow" data-i18n="heroEyebrow">✨ &nbsp; Together with our families, we warmly invite you to celebrate the beginning of our journey together &nbsp; ✨</p>
 
   <h1 class="hero-names">
     T. Ramakrishnan
-    <span class="hero-amp">weds</span>
+    <span class="hero-amp" data-i18n="heroWeds">weds</span>
     <em>Dr. Pradeetha P</em>
   </h1>
 
@@ -1118,7 +1210,7 @@ function toggleMusic(){
     </svg>
   </div>
 
-  <p class="hero-date">September 2026 &nbsp;·&nbsp; Kerala & Tamil Nadu</p>
+  <p id="hero-date" class="hero-date" data-i18n="heroDate">September 2026 &nbsp;·&nbsp; Kerala & Tamil Nadu</p>
 
   <!-- <div class="hero-scroll">
     <span>Scroll</span>
@@ -1130,59 +1222,59 @@ function toggleMusic(){
 
 <div class="countdown-container">
   <div class="countdown-inner">
-    <p style="font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold-light); margin-bottom:12px;">Counting down to the moment</p>
-    <p style="font-family:'Playfair Display',serif; font-size:22px; font-style:italic; color:rgba(255,255,255,0.9); margin-bottom:32px;">🌸 Thirumanam · 13 September 2026 · 7:00 AM</p>
+    <p data-i18n="countdownLabel" style="font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold-light); margin-bottom:12px;">Counting down to the moment</p>
+    <p id="countdown-subtitle" data-i18n="countdownSubtitle" style="font-family:'Playfair Display',serif; font-size:22px; font-style:italic; color:rgba(255,255,255,0.9); margin-bottom:32px;">🌸 Thirumanam · 13 September 2026 · 7:00 AM</p>
     
     <div class="countdown-grid">
       <div class="cd-box">
         <div class="cd-num" id="cd-days">--</div>
-        <div class="cd-label">Days</div>
+        <div class="cd-label" data-i18n="cdDays">Days</div>
       </div>
       <div class="cd-sep">:</div>
       <div class="cd-box">
         <div class="cd-num" id="cd-hours">--</div>
-        <div class="cd-label">Hours</div>
+        <div class="cd-label" data-i18n="cdHours">Hours</div>
       </div>
       <div class="cd-sep">:</div>
       <div class="cd-box">
         <div class="cd-num" id="cd-minutes">--</div>
-        <div class="cd-label">Min</div>
+        <div class="cd-label" data-i18n="cdMin">Min</div>
       </div>
       <div class="cd-sep">:</div>
       <div class="cd-box">
         <div class="cd-num" id="cd-seconds">--</div>
-        <div class="cd-label">Sec</div>
+        <div class="cd-label" data-i18n="cdSec">Sec</div>
       </div>
     </div>
-    <p id="cd-done" style="display:none; font-family:'Playfair Display',serif; font-size:26px; color:var(--gold-light); margin-top:16px;">🎉 They are married! Congratulations!</p>
+    <p id="cd-done" data-i18n="cdDone" style="display:none; font-family:'Playfair Display',serif; font-size:26px; color:var(--gold-light); margin-top:16px;">🎉 They are married! Congratulations!</p>
   </div>
 </div>
 
 <div id="events">
   <section>
-    <p class="section-eyebrow">Three Days of Celebration</p>
-    <h2 class="section-title">Our <em>Celebrations</em></h2>
+    <p class="section-eyebrow" data-i18n="celebrationsEyebrow">Three Days of Celebration</p>
+    <h2 class="section-title" data-i18n="sectionCelebrations">Our <em>Celebrations</em></h2>
 
     <div class="events-stack">
 
       <div class="event-card">
         <div class="event-date-block">
           <div class="event-day">12</div>
-          <div class="event-month">September</div>
-          <div class="event-weekday">Saturday · 2026</div>
+          <div class="event-month" data-i18n="monthSep">September</div>
+          <div class="event-weekday" data-i18n="dateSat">Saturday · 2026</div>
           
         </div>
         <div class="event-details">
-          <div class="event-name">💍 Nichayathartham - Engagement</div>
-          <div class="event-time">6:30 PM - 9:00 PM</div>
+          <div class="event-name" data-i18n="event1Name">💍 Nichayathartham - Engagement</div>
+          <div class="event-time" data-i18n="event1Time">6:30 PM - 9:00 PM</div>
           <div class="event-venue">
-            <span class="event-venue-name">Mangalya Auditorium</span><br/>
-            Chottanikkara Vandippetta Rd, Chottanikkara, Thrippunithura, Ernakulam, Kerala 682312
+            <span class="event-venue-name" data-i18n="venue1Name">Mangalya Auditorium</span><br/>
+            <span data-i18n="venue1Address">Chottanikkara Vandippetta Rd, Chottanikkara, Thrippunithura, Ernakulam, Kerala 682312</span>
           </div>
           <div style="margin-top:10px">
             <a class="map-btn gold" href="https://maps.app.goo.gl/URDdppBnLdLF7BVt5" target="_blank">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Open in Google Maps
+              <span data-i18n="openMaps">Open in Google Maps</span>
             </a>
           </div>
         </div>
@@ -1191,21 +1283,21 @@ function toggleMusic(){
       <div class="event-card">
         <div class="event-date-block" style="background: var(--plum-deep);">
           <div class="event-day">13</div>
-          <div class="event-month">September</div>
-          <div class="event-weekday">Sunday · 2026</div>
+          <div class="event-month" data-i18n="monthSep">September</div>
+          <div class="event-weekday" data-i18n="dateSun">Sunday · 2026</div>
           
         </div>
         <div class="event-details">
-          <div class="event-name">🌸 Thirumanam - Wedding</div>
-          <div class="event-time">7:00 AM - 10:00 AM</div>
+          <div class="event-name" data-i18n="event2Name">🌸 Thirumanam - Wedding</div>
+          <div class="event-time" data-i18n="event2Time">7:00 AM - 10:00 AM</div>
           <div class="event-venue">
-            <span class="event-venue-name">Mangalya Auditorium</span><br/>
-            Chottanikkara Vandippetta Rd, Chottanikkara, Thrippunithura, Ernakulam, Kerala 682312
+            <span class="event-venue-name" data-i18n="venue1Name">Mangalya Auditorium</span><br/>
+            <span data-i18n="venue1Address">Chottanikkara Vandippetta Rd, Chottanikkara, Thrippunithura, Ernakulam, Kerala 682312</span>
           </div>
           <div style="margin-top:10px">
             <a class="map-btn gold" href="https://maps.app.goo.gl/URDdppBnLdLF7BVt5" target="_blank">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Open in Google Maps
+              <span data-i18n="openMaps">Open in Google Maps</span>
             </a>
           </div>
         </div>
@@ -1214,21 +1306,21 @@ function toggleMusic(){
       <div class="event-card">
         <div class="event-date-block" style="background: #1A2E40;">
           <div class="event-day">15</div>
-          <div class="event-month">September</div>
-          <div class="event-weekday">Tuesday · 2026</div>
+          <div class="event-month" data-i18n="monthSep">September</div>
+          <div class="event-weekday" data-i18n="dateTue">Tuesday · 2026</div>
           
         </div>
         <div class="event-details">
-          <div class="event-name">🎊 Varaverpu - Reception</div>
-          <div class="event-time">12:30 PM - 2:30 PM</div>
+          <div class="event-name" data-i18n="event3Name">🎊 Varaverpu - Reception</div>
+          <div class="event-time" data-i18n="event3Time">12:30 PM - 2:30 PM</div>
           <div class="event-venue">
-            <span class="event-venue-name">Ramyas Hotel</span><br/>
-            13-D/2, Williams Rd, Cantonment, Tiruchirappalli, Tamil Nadu 620001
+            <span class="event-venue-name" data-i18n="venue2Name">Ramyas Hotel</span><br/>
+            <span data-i18n="venue2Address">13-D/2, Williams Rd, Cantonment, Tiruchirappalli, Tamil Nadu 620001</span>
           </div>
           <div style="margin-top:10px">
             <a class="map-btn gold" href="https://maps.app.goo.gl/RDsKGrFqJDD9FHcw7" target="_blank">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Open in Google Maps
+              <span data-i18n="openMaps">Open in Google Maps</span>
             </a>
           </div>
         </div>
@@ -1300,34 +1392,34 @@ function toggleMusic(){
 
 <div id="venues" style="background: #F3ECE0;">
   <section>
-    <p class="section-eyebrow">Getting There</p>
-    <h2 class="section-title"><em>Venues</em> at a Glance</h2>
+    <p class="section-eyebrow" data-i18n="venuesEyebrow">Getting There</p>
+    <h2 class="section-title" data-i18n="venuesTitle"><em>Venues</em> at a Glance</h2>
     
     <div class="venues-grid">
 
       <div style="background:white; border:1px solid var(--parchment); border-radius:6px; padding:28px; position:relative;">
         <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(to right, var(--green), var(--copper));"></div>
-        <p style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--green); font-weight:600; margin-bottom:10px;">ENGAGEMENT & WEDDING</p>
-        <p style="font-family:'Playfair Display',serif; font-size:22px; color:var(--charcoal); margin-bottom:6px;">Mangalya Auditorium</p>
-        <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Chottanikara, Ernakulam, Kerala</p>
+        <p style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--green); font-weight:600; margin-bottom:10px;" data-i18n="venue1Tag">ENGAGEMENT &amp; WEDDING</p>
+        <p style="font-family:'Playfair Display',serif; font-size:22px; color:var(--charcoal); margin-bottom:6px;" data-i18n="venue1Name">Mangalya Auditorium</p>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;" data-i18n="venue1City">Chottanikara, Ernakulam, Kerala</p>
         
         <!-- <p style="font-size:13px; color:var(--charcoal-soft); line-height:1.75; margin-bottom:20px;">
           Nestled right behind the sacred Chottanikkara Bhagavathy Temple in Ernakulam district, Mangalya Auditorium offers a serene and auspicious setting for the ceremonies.
         </p> -->
 
         <div style="border-top: 1px dashed var(--parchment); padding-top: 16px; margin-bottom: 20px;">
-          <p style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--charcoal); font-weight: 600; margin-bottom: 12px;">HOW TO REACH THE VENUE</p>
+          <p style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--charcoal); font-weight: 600; margin-bottom: 12px;" data-i18n="howToReach">HOW TO REACH THE VENUE</p>
           
           <div style="display: grid; gap: 12px; font-size: 12px; line-height: 1.5; color: var(--charcoal-soft);">
-            <div><strong style="color: var(--green);">✈️ From Airport:</strong> ~38 km away via Seaport-Airport Road (1 hr 15 mins). Alternatively, take a feeder bus to Aluva Metro, ride to Tripunithura Station, then take a 15-minute auto.</div>
-            <div><strong style="color: var(--green);">🚂 From Ernakulam Junction (South):</strong> ~18 km away. Take a direct taxi/auto via Vyttila (40 mins), or take the Kochi Metro directly to Tripunithura Station followed by a short auto ride.</div>
-            <div><strong style="color: var(--green);">🚌 From Bus Stands:</strong> Direct local and KSRTC buses run frequently to Chottanikkara from Vyttila Mobility Hub and Kaloor Private Bus Stand.</div>
-            <div><strong style="color: var(--green);">🚗 By Road:</strong> From North, use Seaport-Airport Road via Thiruvankulam. From South, exit Kochi Bypass at Kundannoor Junction and proceed through Tripunithura.</div>
+            <div><strong style="color: var(--green);" data-i18n="fromAirportLabel">✈️ From Airport:</strong> <span data-i18n="venue1Airport">~38 km away via Seaport-Airport Road (1 hr 15 mins). Alternatively, take a feeder bus to Aluva Metro, ride to Tripunithura Station, then take a 15-minute auto.</span></div>
+            <div><strong style="color: var(--green);" data-i18n="venue1TrainLabel">🚂 From Ernakulam Junction (South):</strong> <span data-i18n="venue1Train">~18 km away. Take a direct taxi/auto via Vyttila (40 mins), or take the Kochi Metro directly to Tripunithura Station followed by a short auto ride.</span></div>
+            <div><strong style="color: var(--green);" data-i18n="fromBusLabel">🚌 From Bus Stands:</strong> <span data-i18n="venue1Bus">Direct local and KSRTC buses run frequently to Chottanikkara from Vyttila Mobility Hub and Kaloor Private Bus Stand.</span></div>
+            <div><strong style="color: var(--green);" data-i18n="byRoadLabel">🚗 By Road:</strong> <span data-i18n="venue1Road">From North, use Seaport-Airport Road via Thiruvankulam. From South, exit Kochi Bypass at Kundannoor Junction and proceed through Tripunithura.</span></div>
           </div>
           <div style="margin-top:10px">
             <a class="map-btn gold" href="https://maps.app.goo.gl/URDdppBnLdLF7BVt5" target="_blank">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Open in Google Maps
+              <span data-i18n="openMaps">Open in Google Maps</span>
             </a>
           </div>
         </div>
@@ -1335,27 +1427,27 @@ function toggleMusic(){
 
       <div style="background:white; border:1px solid var(--parchment); border-radius:6px; padding:28px; position:relative;">
         <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(to right, #1A2E40, var(--copper));"></div>
-        <p style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--copper); font-weight:600; margin-bottom:10px;">RECEPTION</p>
-        <p style="font-family:'Playfair Display',serif; font-size:22px; color:var(--charcoal); margin-bottom:6px;">Ramyas Hotel</p>
-        <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Trichy (Tiruchirappalli), Tamil Nadu</p>
+        <p style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--copper); font-weight:600; margin-bottom:10px;" data-i18n="venue2Tag">RECEPTION</p>
+        <p style="font-family:'Playfair Display',serif; font-size:22px; color:var(--charcoal); margin-bottom:6px;" data-i18n="venue2Name">Ramyas Hotel</p>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;" data-i18n="venue2City">Trichy (Tiruchirappalli), Tamil Nadu</p>
         
         <!-- <p style="font-size:13px; color:var(--charcoal-soft); line-height:1.75; margin-bottom:20px;">
           Ramyas Hotel is one of Trichy's most celebrated hospitality landmarks, centrally located in the heart of the city. Renowned for its warm service and elegant banquet facilities, it makes for a perfect venue to celebrate and welcome the newlyweds into their new chapter.
         </p> -->
 
         <div style="border-top: 1px dashed var(--parchment); padding-top: 16px; margin-bottom: 20px;">
-          <p style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--charcoal); font-weight: 600; margin-bottom: 12px;">HOW TO REACH THE VENUE</p>
+          <p style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--charcoal); font-weight: 600; margin-bottom: 12px;" data-i18n="howToReach">HOW TO REACH THE VENUE</p>
           
           <div style="display: grid; gap: 12px; font-size: 12px; line-height: 1.5; color: var(--charcoal-soft);">
-            <div><strong style="color: var(--copper);">✈️ From Airport:</strong> ~5.5 km from Tiruchirappalli International Airport (TRZ). A direct taxi or auto via the Airport Road takes roughly 15 to 20 minutes.</div>
-            <div><strong style="color: var(--copper);">🚂 From Trichy Railway Junction:</strong> ~1 km away. Located just a 5-minute drive or walk down Williams Road. Readily accessible by auto-rickshaws stationed outside the terminal.</div>
-            <div><strong style="color: var(--copper);">🚌 From Bus Stands:</strong> Diagonally opposite the Trichy Central Bus Stand (less than a 3-minute walk). Highly convenient for guests arriving via long-distance government or private buses.</div>
-            <div><strong style="color: var(--copper);">🚗 By Road:</strong> Centrally positioned in Cantonment. Easily accessed via the Chennai-Trichy Highway (NH 45). Direct entry via Williams Road with dedicated guest parking spaces on-site.</div>
+            <div><strong style="color: var(--copper);" data-i18n="fromAirportLabel">✈️ From Airport:</strong> <span data-i18n="venue2Airport">~5.5 km from Tiruchirappalli International Airport (TRZ). A direct taxi or auto via the Airport Road takes roughly 15 to 20 minutes.</span></div>
+            <div><strong style="color: var(--copper);" data-i18n="venue2TrainLabel">🚂 From Trichy Railway Junction:</strong> <span data-i18n="venue2Train">~1 km away. Located just a 5-minute drive or walk down Williams Road. Readily accessible by auto-rickshaws stationed outside the terminal.</span></div>
+            <div><strong style="color: var(--copper);" data-i18n="fromBusLabel">🚌 From Bus Stands:</strong> <span data-i18n="venue2Bus">Diagonally opposite the Trichy Central Bus Stand (less than a 3-minute walk). Highly convenient for guests arriving via long-distance government or private buses.</span></div>
+            <div><strong style="color: var(--copper);" data-i18n="byRoadLabel">🚗 By Road:</strong> <span data-i18n="venue2Road">Centrally positioned in Cantonment. Easily accessed via the Chennai-Trichy Highway (NH 45). Direct entry via Williams Road with dedicated guest parking spaces on-site.</span></div>
           </div>
           <div style="margin-top:10px">
             <a class="map-btn gold" href="https://maps.app.goo.gl/RDsKGrFqJDD9FHcw7" target="_blank">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Open in Google Maps
+              <span data-i18n="openMaps">Open in Google Maps</span>
             </a>
           </div>
         </div>
@@ -1367,8 +1459,8 @@ function toggleMusic(){
 
 <div id="contact">
   <section>
-    <p class="section-eyebrow">Reach Out</p>
-    <h2 class="section-title">Family <em>Contacts</em></h2>
+    <p class="section-eyebrow" data-i18n="contactEyebrow">Reach Out</p>
+    <h2 class="section-title" data-i18n="contactTitle">Family <em>Contacts</em></h2>
 
     <div class="family-grid">
 
@@ -1376,8 +1468,8 @@ function toggleMusic(){
         <div class="family-card-header">
           <div class="family-icon">🤵</div>
           <div>
-            <div class="family-label">Groom's Family</div>
-            <div class="family-side-name">Er N. Thiagu Family</div>
+            <div class="family-label" data-i18n="groomFamilyLabel">Groom's Family</div>
+            <div class="family-side-name" data-i18n="groomFamilyName">Er N. Thiagu Family</div>
           </div>
         </div>
 
@@ -1386,7 +1478,7 @@ function toggleMusic(){
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B38F4D" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div class="contact-info">
-            <div class="contact-relation">Father of the Groom</div>
+            <div class="contact-relation" data-i18n="fatherOfGroom">Father of the Groom</div>
             <div class="contact-name">Er. N. Thiagu</div>
             <a class="contact-number" href="tel:+919443162324">+91 94431 62324</a>
           </div>
@@ -1397,7 +1489,7 @@ function toggleMusic(){
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B38F4D" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div class="contact-info">
-            <div class="contact-relation">Mother of the Groom</div>
+            <div class="contact-relation" data-i18n="motherOfGroom">Mother of the Groom</div>
             <div class="contact-name">T. Maheshwari</div>
             <a class="contact-number" href="tel:+919843738259">+91 98437 38259</a>
           </div>
@@ -1408,7 +1500,7 @@ function toggleMusic(){
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4A154B" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div class="contact-info">
-            <div class="contact-relation">The Groom</div>
+            <div class="contact-relation" data-i18n="theGroom">The Groom</div>
             <div class="contact-name">T. Ramakrishnan</div>
             <a class="contact-number" href="tel:+917373219594">+91 73732 19594</a>
           </div>
@@ -1419,7 +1511,7 @@ function toggleMusic(){
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4A154B" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div class="contact-info">
-            <div class="contact-relation">Brother of the Groom</div>
+            <div class="contact-relation" data-i18n="brotherOfGroom">Brother of the Groom</div>
             <div class="contact-name">T. Gopikrishna</div>
             <a class="contact-number" href="tel:+919655598002">+91 96555 98002</a>
           </div>
@@ -1430,8 +1522,8 @@ function toggleMusic(){
         <div class="family-card-header">
           <div class="family-icon">👰</div>
           <div>
-            <div class="family-label">Bride's Family</div>
-            <div class="family-side-name">Pradeepkumar Family</div>
+            <div class="family-label" data-i18n="brideFamilyLabel">Bride's Family</div>
+            <div class="family-side-name" data-i18n="brideFamilyName">Pradeepkumar Family</div>
           </div>
         </div>
 
@@ -1440,7 +1532,7 @@ function toggleMusic(){
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B38F4D" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div class="contact-info">
-            <div class="contact-relation">Father of the Bride</div>
+            <div class="contact-relation" data-i18n="fatherOfBride">Father of the Bride</div>
             <div class="contact-name">Pradeepkumar</div>
             <a class="contact-number" href="tel:+919999999904">+91 99999 99904</a>
           </div>
@@ -1451,7 +1543,7 @@ function toggleMusic(){
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B38F4D" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div class="contact-info">
-            <div class="contact-relation">Brother of the Bride</div>
+            <div class="contact-relation" data-i18n="brotherOfBride">Brother of the Bride</div>
             <div class="contact-name">Sreejith</div>
             <a class="contact-number" href="tel:+919999999905">+91 99999 99905</a>
           </div>
@@ -1462,7 +1554,7 @@ function toggleMusic(){
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B38F4D" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div class="contact-info">
-            <div class="contact-relation">Mother of the Bride</div>
+            <div class="contact-relation" data-i18n="motherOfBride">Mother of the Bride</div>
             <div class="contact-name">Selvi</div>
             <a class="contact-number" href="tel:+919999999905">+91 99999 99905</a>
           </div>
@@ -1473,7 +1565,7 @@ function toggleMusic(){
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4A154B" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div class="contact-info">
-            <div class="contact-relation">The Bride</div>
+            <div class="contact-relation" data-i18n="theBride">The Bride</div>
             <div class="contact-name">Dr. Pradeetha P</div>
             <a class="contact-number" href="tel:+919999999906">+91 99999 99906</a>
           </div>
@@ -1485,35 +1577,35 @@ function toggleMusic(){
 
 <div id="wishes" style="background: var(--ivory);">
   <section>
-    <p class="section-eyebrow">From the Heart</p>
-    <h2 class="section-title">Send Your <em>Wishes</em></h2>
+    <p class="section-eyebrow" data-i18n="wishesEyebrow">From the Heart</p>
+    <h2 class="section-title" data-i18n="wishesTitle">Send Your <em>Wishes</em></h2>
 
     <div style="background:var(--white); border:1px solid var(--parchment); border-radius:6px; padding:36px; margin-bottom:40px;">
       <div class="wish-form-grid">
         <div>
-          <label style="display:block; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px;">Your Name *</label>
-          <input id="wish-name" type="text" placeholder="e.g. Suresh Kumar" style="width:100%; padding:12px 14px; border:1px solid var(--parchment); border-radius:4px; font-size:14px; font-family:'Inter',sans-serif; color:var(--charcoal); background:var(--ivory); outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--parchment)'" />
+          <label style="display:block; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px;" data-i18n="yourName">Your Name *</label>
+          <input id="wish-name" type="text" data-i18n-placeholder="namePlaceholder" placeholder="e.g. Suresh Kumar" style="width:100%; padding:12px 14px; border:1px solid var(--parchment); border-radius:4px; font-size:14px; font-family:'Inter',sans-serif; color:var(--charcoal); background:var(--ivory); outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--parchment)'" />
         </div>
         <div>
-          <label style="display:block; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px;">Relation to Couple</label>
-          <input id="wish-relation" type="text" placeholder="e.g. College friend of Groom" style="width:100%; padding:12px 14px; border:1px solid var(--parchment); border-radius:4px; font-size:14px; font-family:'Inter',sans-serif; color:var(--charcoal); background:var(--ivory); outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--parchment)'" />
+          <label style="display:block; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px;" data-i18n="relationLabel">Relation to Couple</label>
+          <input id="wish-relation" type="text" data-i18n-placeholder="relationPlaceholder" placeholder="e.g. College friend of Groom" style="width:100%; padding:12px 14px; border:1px solid var(--parchment); border-radius:4px; font-size:14px; font-family:'Inter',sans-serif; color:var(--charcoal); background:var(--ivory); outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--parchment)'" />
         </div>
       </div>
       <div style="margin-bottom:20px;">
-        <label style="display:block; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px;">Your Wish *</label>
-        <textarea id="wish-message" rows="4" placeholder="Write your heartfelt wishes for Ramakrishnan & Pradeetha…" style="width:100%; padding:12px 14px; border:1px solid var(--parchment); border-radius:4px; font-size:14px; font-family:'Inter',sans-serif; color:var(--charcoal); background:var(--ivory); outline:none; resize:vertical; transition:border 0.2s; line-height:1.6;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--parchment)'"></textarea>
+        <label style="display:block; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:6px;" data-i18n="yourWish">Your Wish *</label>
+        <textarea id="wish-message" rows="4" data-i18n-placeholder="wishPlaceholder" placeholder="Write your heartfelt wishes for Ramakrishnan & Pradeetha…" style="width:100%; padding:12px 14px; border:1px solid var(--parchment); border-radius:4px; font-size:14px; font-family:'Inter',sans-serif; color:var(--charcoal); background:var(--ivory); outline:none; resize:vertical; transition:border 0.2s; line-height:1.6;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--parchment)'"></textarea>
       </div>
       <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
         <button id="wish-submit" onclick="submitWish()" style="display:inline-flex; align-items:center; gap:8px; background:var(--green); color:var(--white); font-size:13px; font-weight:500; letter-spacing:0.08em; padding:13px 28px; border-radius:4px; border:none; cursor:pointer; transition:background 0.2s; font-family:'Inter',sans-serif;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          Send Wishes
+          <span data-i18n="sendWishes">Send Wishes</span>
         </button>
         <span id="wish-status" style="font-size:13px; color:var(--text-muted); font-style:italic;"></span>
       </div>
     </div>
 
     <div id="wishes-wall" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:20px;">
-      <div style="text-align:center; padding:40px 20px; color:var(--text-muted); font-style:italic; font-size:14px; grid-column:1/-1;">
+      <div style="text-align:center; padding:40px 20px; color:var(--text-muted); font-style:italic; font-size:14px; grid-column:1/-1;" data-i18n="wishesPlaceholderText">
         💜 Wishes from loved ones will appear here…
       </div>
     </div>
@@ -1581,8 +1673,8 @@ function toggleMusic(){
     </svg>
   </div>
   <div class="footer-names">Ramakrishnan & Pradeetha</div>
-  <div class="footer-tagline">September 2026 · Chottanikara, Kerala & Trichy, Tamil Nadu</div>
-  <div class="footer-note">Made with love · Two families, one beautiful beginning</div>
+  <div class="footer-tagline" data-i18n="footerTagline">September 2026 · Chottanikara, Kerala & Trichy, Tamil Nadu</div>
+  <div class="footer-note" data-i18n="footerNote">Made with love · Two families, one beautiful beginning</div>
 </footer>
 
 <script>
@@ -1705,6 +1797,294 @@ function toggleMusic(){
   loadWishes();
   updateCountdown();
   setInterval(updateCountdown, 1000);
+
+  /* ═══════════════════════════════════════════════
+     TRANSLATION ENGINE
+  ═══════════════════════════════════════════════ */
+  const translations = {
+
+    en: {
+      navCelebrations: "Celebrations",
+      navVenues: "Venues",
+      navContact: "Contact",
+      navWishes: "Wishes",
+      heroEyebrow: "✨ &nbsp; Together with our families, we warmly invite you to celebrate the beginning of our journey together &nbsp; ✨",
+      heroWeds: "weds",
+      heroDate: "September 2026 &nbsp;·&nbsp; Kerala & Tamil Nadu",
+      envTitleTop: "✨ &nbsp; A Wedding Invitation &nbsp; ✨",
+      envBlessings: "🪔 &nbsp; With our families' blessings &nbsp; 🪔",
+      envTapPrompt: "Tap the seal to open your invitation",
+      countdownLabel: "Counting down to the moment",
+      countdownSubtitle: "🌸 Thirumanam · 13 September 2026 · 7:00 AM",
+      cdDays: "Days", cdHours: "Hours", cdMin: "Min", cdSec: "Sec",
+      cdDone: "🎉 They are married! Congratulations!",
+      celebrationsEyebrow: "Three Days of Celebration",
+      sectionCelebrations: "Our <em>Celebrations</em>",
+      monthSep: "September",
+      dateSat: "Saturday · 2026",
+      dateSun: "Sunday · 2026",
+      dateTue: "Tuesday · 2026",
+      event1Name: "💍 Nichayathartham - Engagement",
+      event1Time: "6:30 PM - 9:00 PM",
+      event2Name: "🌸 Thirumanam - Wedding",
+      event2Time: "7:00 AM - 10:00 AM",
+      event3Name: "🎊 Varaverpu - Reception",
+      event3Time: "12:30 PM - 2:30 PM",
+      venue1Name: "Mangalya Auditorium",
+      venue1Address: "Chottanikkara Vandippetta Rd, Chottanikkara, Thrippunithura, Ernakulam, Kerala 682312",
+      venue2Name: "Ramyas Hotel",
+      venue2Address: "13-D/2, Williams Rd, Cantonment, Tiruchirappalli, Tamil Nadu 620001",
+      openMaps: "Open in Google Maps",
+      venuesEyebrow: "Getting There",
+      venuesTitle: "<em>Venues</em> at a Glance",
+      venue1Tag: "ENGAGEMENT &amp; WEDDING",
+      venue1City: "Chottanikara, Ernakulam, Kerala",
+      venue2Tag: "RECEPTION",
+      venue2City: "Trichy (Tiruchirappalli), Tamil Nadu",
+      howToReach: "HOW TO REACH THE VENUE",
+      fromAirportLabel: "✈️ From Airport:",
+      fromBusLabel: "🚌 From Bus Stands:",
+      byRoadLabel: "🚗 By Road:",
+      venue1TrainLabel: "🚂 From Ernakulam Junction (South):",
+      venue1Airport: "~38 km away via Seaport-Airport Road (1 hr 15 mins). Alternatively, take a feeder bus to Aluva Metro, ride to Tripunithura Station, then take a 15-minute auto.",
+      venue1Train: "~18 km away. Take a direct taxi/auto via Vyttila (40 mins), or take the Kochi Metro directly to Tripunithura Station followed by a short auto ride.",
+      venue1Bus: "Direct local and KSRTC buses run frequently to Chottanikkara from Vyttila Mobility Hub and Kaloor Private Bus Stand.",
+      venue1Road: "From North, use Seaport-Airport Road via Thiruvankulam. From South, exit Kochi Bypass at Kundannoor Junction and proceed through Tripunithura.",
+      venue2TrainLabel: "🚂 From Trichy Railway Junction:",
+      venue2Airport: "~5.5 km from Tiruchirappalli International Airport (TRZ). A direct taxi or auto via the Airport Road takes roughly 15 to 20 minutes.",
+      venue2Train: "~1 km away. Located just a 5-minute drive or walk down Williams Road. Readily accessible by auto-rickshaws stationed outside the terminal.",
+      venue2Bus: "Diagonally opposite the Trichy Central Bus Stand (less than a 3-minute walk). Highly convenient for guests arriving via long-distance government or private buses.",
+      venue2Road: "Centrally positioned in Cantonment. Easily accessed via the Chennai-Trichy Highway (NH 45). Direct entry via Williams Road with dedicated guest parking spaces on-site.",
+      contactEyebrow: "Reach Out",
+      contactTitle: "Family <em>Contacts</em>",
+      groomFamilyLabel: "Groom's Family",
+      groomFamilyName: "Er N. Thiagu Family",
+      brideFamilyLabel: "Bride's Family",
+      brideFamilyName: "Pradeepkumar Family",
+      fatherOfGroom: "Father of the Groom",
+      motherOfGroom: "Mother of the Groom",
+      theGroom: "The Groom",
+      brotherOfGroom: "Brother of the Groom",
+      fatherOfBride: "Father of the Bride",
+      brotherOfBride: "Brother of the Bride",
+      motherOfBride: "Mother of the Bride",
+      theBride: "The Bride",
+      wishesEyebrow: "From the Heart",
+      wishesTitle: "Send Your <em>Wishes</em>",
+      yourName: "Your Name *",
+      relationLabel: "Relation to Couple",
+      yourWish: "Your Wish *",
+      sendWishes: "Send Wishes",
+      wishesPlaceholderText: "💜 Wishes from loved ones will appear here…",
+      footerTagline: "September 2026 · Chottanikara, Kerala & Trichy, Tamil Nadu",
+      footerNote: "Made with love · Two families, one beautiful beginning",
+      namePlaceholder: "e.g. Suresh Kumar",
+      relationPlaceholder: "e.g. College friend of Groom",
+      wishPlaceholder: "Write your heartfelt wishes for Ramakrishnan & Pradeetha…"
+    },
+
+    ta: {
+      navCelebrations: "விழாக்கள்",
+      navVenues: "இடங்கள்",
+      navContact: "தொடர்பு",
+      navWishes: "வாழ்த்துகள்",
+      heroEyebrow: "✨ &nbsp; எங்கள் குடும்பங்களுடன் இணைந்து, எங்கள் பயணத்தின் தொடக்கத்தைக் கொண்டாட உங்களை அன்புடன் அழைக்கிறோம் &nbsp; ✨",
+      heroWeds: "திருமணம்",
+      heroDate: "செப்டம்பர் 2026 &nbsp;·&nbsp; கேரளா & தமிழ்நாடு",
+      envTitleTop: "✨ &nbsp; ஒரு திருமண அழைப்பிதழ் &nbsp; ✨",
+      envBlessings: "🪔 &nbsp; எங்கள் குடும்பங்களின் ஆசியுடன் &nbsp; 🪔",
+      envTapPrompt: "உங்கள் அழைப்பிதழைத் திறக்க முத்திரையைத் தொடவும்",
+      countdownLabel: "தருணத்திற்கான எண்ணிக்கை",
+      countdownSubtitle: "🌸 திருமணம் · 13 செப்டம்பர் 2026 · காலை 7:00",
+      cdDays: "நாட்கள்", cdHours: "மணி", cdMin: "நிமிடம்", cdSec: "வினாடி",
+      cdDone: "🎉 அவர்கள் திருமணமானார்கள்! வாழ்த்துக்கள்!",
+      celebrationsEyebrow: "மூன்று நாட்கள் கொண்டாட்டம்",
+      sectionCelebrations: "எங்கள் <em>விழாக்கள்</em>",
+      monthSep: "செப்டம்பர்",
+      dateSat: "சனிக்கிழமை · 2026",
+      dateSun: "ஞாயிற்றுக்கிழமை · 2026",
+      dateTue: "செவ்வாய்க்கிழமை · 2026",
+      event1Name: "💍 நிச்சயதார்த்தம்",
+      event1Time: "மாலை 6:30 - இரவு 9:00",
+      event2Name: "🌸 திருமணம்",
+      event2Time: "காலை 7:00 - காலை 10:00",
+      event3Name: "🎊 வரவேற்பு",
+      event3Time: "மதியம் 12:30 - 2:30",
+      venue1Name: "மங்கள்யா ஆடிட்டோரியம்",
+      venue1Address: "சோட்டானிக்கரா வண்டிப்பேட்டை சாலை, சோட்டானிக்கரா, திருப்புனித்துறை, எர்ணாகுளம், கேரளா 682312",
+      venue2Name: "ராம்யாஸ் ஹோட்டல்",
+      venue2Address: "13-D/2, வில்லியம்ஸ் சாலை, கன்டோன்மென்ட், திருச்சிராப்பள்ளி, தமிழ்நாடு 620001",
+      openMaps: "கூகுள் மேப்ஸில் திற",
+      venuesEyebrow: "வழித்தடம்",
+      venuesTitle: "<em>இடங்கள்</em> ஒரு பார்வையில்",
+      venue1Tag: "நிச்சயதார்த்தம் & திருமணம்",
+      venue1City: "சோட்டானிக்கரா, எர்ணாகுளம், கேரளா",
+      venue2Tag: "வரவேற்பு",
+      venue2City: "திருச்சி (திருச்சிராப்பள்ளி), தமிழ்நாடு",
+      howToReach: "இடத்தை அடைவது எப்படி",
+      fromAirportLabel: "✈️ விமான நிலையத்திலிருந்து:",
+      fromBusLabel: "🚌 பேருந்து நிலையங்களிலிருந்து:",
+      byRoadLabel: "🚗 சாலை வழியாக:",
+      venue1TrainLabel: "🚂 எர்ணாகுளம் ஜங்ஷன் (தெற்கு) இலிருந்து:",
+      venue1Airport: "சீபோர்ட்-ஏர்போர்ட் சாலை வழியாக சுமார் 38 கி.மீ தொலைவில் (1 மணி 15 நிமிடம்). மாற்றாக, ஆலுவா மெட்ரோவிற்கு ஃபீடர் பேருந்து எடுத்து, திருப்புனித்துறை நிலையத்திற்குச் சென்று, பின் 15 நிமிட ஆட்டோ பயணம் செய்யலாம்.",
+      venue1Train: "சுமார் 18 கி.மீ தொலைவில். வைட்டிலா வழியாக நேரடி டாக்ஸி/ஆட்டோவில் (40 நிமிடம்) செல்லலாம், அல்லது கொச்சி மெட்ரோவில் நேரடியாக திருப்புனித்துறை நிலையம் சென்று குறுகிய ஆட்டோ பயணம் செய்யலாம்.",
+      venue1Bus: "வைட்டிலா மொபிலிட்டி ஹப் மற்றும் காலூர் தனியார் பேருந்து நிலையத்திலிருந்து சோட்டானிக்கராவிற்கு நேரடி உள்ளூர் மற்றும் KSRTC பேருந்துகள் அடிக்கடி இயங்குகின்றன.",
+      venue1Road: "வடக்கிலிருந்து, திருவன்குளம் வழியாக சீபோர்ட்-ஏர்போர்ட் சாலையைப் பயன்படுத்தவும். தெற்கிலிருந்து, குந்தன்னூர் சந்திப்பில் கொச்சி பைபாஸிலிருந்து வெளியேறி திருப்புனித்துறை வழியாக செல்லவும்.",
+      venue2TrainLabel: "🚂 திருச்சி ரயில்வே ஜங்ஷனிலிருந்து:",
+      venue2Airport: "திருச்சிராப்பள்ளி சர்வதேச விமான நிலையத்திலிருந்து (TRZ) சுமார் 5.5 கி.மீ. ஏர்போர்ட் சாலை வழியாக நேரடி டாக்ஸி அல்லது ஆட்டோவில் சுமார் 15 முதல் 20 நிமிடங்கள் ஆகும்.",
+      venue2Train: "சுமார் 1 கி.மீ தொலைவில். வில்லியம்ஸ் சாலையில் 5 நிமிட பயணம் அல்லது நடைபயணத் தொலைவில் அமைந்துள்ளது. முனையத்திற்கு வெளியே நிறுத்தப்பட்டுள்ள ஆட்டோ-ரிக்ஷாக்கள் மூலம் எளிதில் அடையலாம்.",
+      venue2Bus: "திருச்சி மத்திய பேருந்து நிலையத்திற்கு குறுக்கே (3 நிமிட நடைபயணத்திற்கும் குறைவாக). தொலைதூர அரசு அல்லது தனியார் பேருந்துகள் மூலம் வரும் விருந்தினர்களுக்கு மிகவும் வசதியானது.",
+      venue2Road: "கன்டோன்மென்டில் மையமாக அமைந்துள்ளது. சென்னை-திருச்சி நெடுஞ்சாலை (NH 45) வழியாக எளிதில் அடையலாம். விருந்தினர் பார்க்கிங் வசதியுடன் வில்லியம்ஸ் சாலை வழியாக நேரடி நுழைவு.",
+      contactEyebrow: "தொடர்பு கொள்ள",
+      contactTitle: "குடும்ப <em>தொடர்புகள்</em>",
+      groomFamilyLabel: "மாப்பிள்ளை குடும்பம்",
+      groomFamilyName: "எர். என். தியாகு குடும்பம்",
+      brideFamilyLabel: "மணமகள் குடும்பம்",
+      brideFamilyName: "பிரதீப்குமார் குடும்பம்",
+      fatherOfGroom: "மாப்பிள்ளையின் தந்தை",
+      motherOfGroom: "மாப்பிள்ளையின் தாய்",
+      theGroom: "மாப்பிள்ளை",
+      brotherOfGroom: "மாப்பிள்ளையின் சகோதரர்",
+      fatherOfBride: "மணமகளின் தந்தை",
+      brotherOfBride: "மணமகளின் சகோதரர்",
+      motherOfBride: "மணமகளின் தாய்",
+      theBride: "மணமகள்",
+      wishesEyebrow: "இதயத்திலிருந்து",
+      wishesTitle: "உங்கள் <em>வாழ்த்துகளை</em> அனுப்புங்கள்",
+      yourName: "உங்கள் பெயர் *",
+      relationLabel: "தம்பதியருடனான உறவு",
+      yourWish: "உங்கள் வாழ்த்து *",
+      sendWishes: "வாழ்த்துகளை அனுப்பு",
+      wishesPlaceholderText: "💜 அன்புக்குரியவர்களின் வாழ்த்துகள் இங்கே தோன்றும்…",
+      footerTagline: "செப்டம்பர் 2026 · சோட்டானிக்கரா, கேரளா & திருச்சி, தமிழ்நாடு",
+      footerNote: "அன்புடன் உருவாக்கப்பட்டது · இரு குடும்பங்கள், ஒரு அழகான தொடக்கம்",
+      namePlaceholder: "எ.கா. சுரேஷ் குமார்",
+      relationPlaceholder: "எ.கா. மாப்பிள்ளையின் கல்லூரி நண்பர்",
+      wishPlaceholder: "ராமகிருஷ்ணன் & பிரதீதாவிற்கு உங்கள் இதயப்பூர்வமான வாழ்த்துகளை எழுதுங்கள்…"
+    },
+
+    ml: {
+      navCelebrations: "ആഘോഷങ്ങൾ",
+      navVenues: "സ്ഥലങ്ങൾ",
+      navContact: "ബന്ധപ്പെടുക",
+      navWishes: "ആശംസകൾ",
+      heroEyebrow: "✨ &nbsp; ഞങ്ങളുടെ കുടുംബങ്ങളോടൊപ്പം, ഞങ്ങളുടെ യാത്രയുടെ ആരംഭം ആഘോഷിക്കാൻ നിങ്ങളെ സ്നേഹപൂർവ്വം ക്ഷണിക്കുന്നു &nbsp; ✨",
+      heroWeds: "വിവാഹം",
+      heroDate: "സെപ്റ്റംബർ 2026 &nbsp;·&nbsp; കേരളം & തമിഴ്നാട്",
+      envTitleTop: "✨ &nbsp; ഒരു വിവാഹ ക്ഷണക്കത്ത് &nbsp; ✨",
+      envBlessings: "🪔 &nbsp; ഞങ്ങളുടെ കുടുംബങ്ങളുടെ അനുഗ്രഹത്തോടെ &nbsp; 🪔",
+      envTapPrompt: "നിങ്ങളുടെ ക്ഷണക്കത്ത് തുറക്കാൻ മുദ്ര സ്പർശിക്കുക",
+      countdownLabel: "ആ നിമിഷത്തിലേക്കുള്ള കൗണ്ട്ഡൗൺ",
+      countdownSubtitle: "🌸 തിരുമണം · 13 സെപ്റ്റംബർ 2026 · രാവിലെ 7:00",
+      cdDays: "ദിവസം", cdHours: "മണിക്കൂർ", cdMin: "മിനിറ്റ്", cdSec: "സെക്കൻഡ്",
+      cdDone: "🎉 അവർ വിവാഹിതരായി! അഭിനന്ദനങ്ങൾ!",
+      celebrationsEyebrow: "മൂന്ന് ദിവസത്തെ ആഘോഷം",
+      sectionCelebrations: "ഞങ്ങളുടെ <em>ആഘോഷങ്ങൾ</em>",
+      monthSep: "സെപ്റ്റംബർ",
+      dateSat: "ശനിയാഴ്ച · 2026",
+      dateSun: "ഞായറാഴ്ച · 2026",
+      dateTue: "ചൊവ്വാഴ്ച · 2026",
+      event1Name: "💍 നിശ്ചയം",
+      event1Time: "വൈകുന്നേരം 6:30 - രാത്രി 9:00",
+      event2Name: "🌸 തിരുമണം",
+      event2Time: "രാവിലെ 7:00 - 10:00",
+      event3Name: "🎊 വരവേൽപ്പ്",
+      event3Time: "ഉച്ചയ്ക്ക് 12:30 - 2:30",
+      venue1Name: "മംഗല്യ ഓഡിറ്റോറിയം",
+      venue1Address: "ചോറ്റാനിക്കര വണ്ടിപ്പേട്ട റോഡ്, ചോറ്റാനിക്കര, തൃപ്പൂണിത്തുറ, എറണാകുളം, കേരളം 682312",
+      venue2Name: "രാംയാസ് ഹോട്ടൽ",
+      venue2Address: "13-D/2, വില്യംസ് റോഡ്, കന്റോൺമെന്റ്, തിരുച്ചിറപ്പള്ളി, തമിഴ്നാട് 620001",
+      openMaps: "ഗൂഗിൾ മാപ്സിൽ തുറക്കുക",
+      venuesEyebrow: "എങ്ങനെ എത്താം",
+      venuesTitle: "<em>സ്ഥലങ്ങൾ</em> ഒറ്റനോട്ടത്തിൽ",
+      venue1Tag: "നിശ്ചയവും വിവാഹവും",
+      venue1City: "ചോറ്റാനിക്കര, എറണാകുളം, കേരളം",
+      venue2Tag: "വരവേൽപ്പ്",
+      venue2City: "തിരുച്ചി (തിരുച്ചിറപ്പള്ളി), തമിഴ്നാട്",
+      howToReach: "സ്ഥലത്ത് എത്തിച്ചേരേണ്ട വിധം",
+      fromAirportLabel: "✈️ വിമാനത്താവളത്തിൽ നിന്ന്:",
+      fromBusLabel: "🚌 ബസ് സ്റ്റാൻഡുകളിൽ നിന്ന്:",
+      byRoadLabel: "🚗 റോഡ് മാർഗം:",
+      venue1TrainLabel: "🚂 എറണാകുളം ജംഗ്ഷനിൽ (സൗത്ത്) നിന്ന്:",
+      venue1Airport: "സീപോർട്ട്-എയർപോർട്ട് റോഡ് വഴി ഏകദേശം 38 കി.മീ (1 മണിക്കൂർ 15 മിനിറ്റ്). പകരം, ആലുവ മെട്രോയിലേക്ക് ഫീഡർ ബസ് എടുത്ത്, തൃപ്പൂണിത്തുറ സ്റ്റേഷനിലേക്ക് പോയി, പിന്നെ 15 മിനിറ്റ് ഓട്ടോ യാത്ര ചെയ്യാം.",
+      venue1Train: "ഏകദേശം 18 കി.മീ അകലെ. വൈറ്റില വഴി നേരിട്ട് ടാക്സി/ഓട്ടോയിൽ (40 മിനിറ്റ്) പോകാം, അല്ലെങ്കിൽ കൊച്ചി മെട്രോയിൽ നേരിട്ട് തൃപ്പൂണിത്തുറ സ്റ്റേഷനിലേക്ക് പോയി ചെറിയ ഓട്ടോ യാത്ര ചെയ്യാം.",
+      venue1Bus: "വൈറ്റില മൊബിലിറ്റി ഹബിൽ നിന്നും കലൂർ പ്രൈവറ്റ് ബസ് സ്റ്റാൻഡിൽ നിന്നും ചോറ്റാനിക്കരയിലേക്ക് നേരിട്ടുള്ള ലോക്കൽ, KSRTC ബസുകൾ ഇടയ്ക്കിടെ ഓടുന്നു.",
+      venue1Road: "വടക്ക് നിന്ന്, തിരുവൻകുളം വഴി സീപോർട്ട്-എയർപോർട്ട് റോഡ് ഉപയോഗിക്കുക. തെക്ക് നിന്ന്, കുന്നംനൂർ ജംഗ്ഷനിൽ കൊച്ചി ബൈപാസിൽ നിന്ന് ഇറങ്ങി തൃപ്പൂണിത്തുറ വഴി പോകുക.",
+      venue2TrainLabel: "🚂 തിരുച്ചി റെയിൽവേ ജംഗ്ഷനിൽ നിന്ന്:",
+      venue2Airport: "തിരുച്ചിറപ്പള്ളി അന്താരാഷ്ട്ര വിമാനത്താവളത്തിൽ (TRZ) നിന്ന് ഏകദേശം 5.5 കി.മീ. എയർപോർട്ട് റോഡ് വഴി നേരിട്ട് ടാക്സിയിലോ ഓട്ടോയിലോ ഏകദേശം 15 മുതൽ 20 മിനിറ്റ് വരെ എടുക്കും.",
+      venue2Train: "ഏകദേശം 1 കി.മീ അകലെ. വില്യംസ് റോഡിൽ 5 മിനിറ്റ് ഡ്രൈവ് അല്ലെങ്കിൽ നടത്തദൂരത്തിലാണ്. ടെർമിനലിന് പുറത്ത് നിർത്തിയിട്ടിരിക്കുന്ന ഓട്ടോ-റിക്ഷകൾ വഴി എളുപ്പത്തിൽ എത്തിച്ചേരാം.",
+      venue2Bus: "തിരുച്ചി സെൻട്രൽ ബസ് സ്റ്റാൻഡിന് എതിർവശത്ത് (3 മിനിറ്റിൽ താഴെ നടത്തദൂരം). ദീർഘദൂര സർക്കാർ അല്ലെങ്കിൽ സ്വകാര്യ ബസുകളിൽ എത്തുന്ന അതിഥികൾക്ക് വളരെ സൗകര്യപ്രദമാണ്.",
+      venue2Road: "കന്റോൺമെന്റിൽ മധ്യഭാഗത്തായി സ്ഥിതി ചെയ്യുന്നു. ചെന്നൈ-തിരുച്ചി ഹൈവേ (NH 45) വഴി എളുപ്പത്തിൽ എത്തിച്ചേരാം. അതിഥികൾക്കുള്ള പാർക്കിംഗ് സൗകര്യത്തോടെ വില്യംസ് റോഡ് വഴി നേരിട്ടുള്ള പ്രവേശനം.",
+      contactEyebrow: "ബന്ധപ്പെടുക",
+      contactTitle: "കുടുംബ <em>ബന്ധപ്പെടാനുള്ളവ</em>",
+      groomFamilyLabel: "വരന്റെ കുടുംബം",
+      groomFamilyName: "ഏർ. എൻ. തിയാഗു കുടുംബം",
+      brideFamilyLabel: "വധുവിന്റെ കുടുംബം",
+      brideFamilyName: "പ്രദീപ്കുമാർ കുടുംബം",
+      fatherOfGroom: "വരന്റെ പിതാവ്",
+      motherOfGroom: "വരന്റെ മാതാവ്",
+      theGroom: "വരൻ",
+      brotherOfGroom: "വരന്റെ സഹോദരൻ",
+      fatherOfBride: "വധുവിന്റെ പിതാവ്",
+      brotherOfBride: "വധുവിന്റെ സഹോദരൻ",
+      motherOfBride: "വധുവിന്റെ മാതാവ്",
+      theBride: "വധു",
+      wishesEyebrow: "ഹൃദയത്തിൽ നിന്ന്",
+      wishesTitle: "നിങ്ങളുടെ <em>ആശംസകൾ</em> അയക്കുക",
+      yourName: "നിങ്ങളുടെ പേര് *",
+      relationLabel: "ദമ്പതികളുമായുള്ള ബന്ധം",
+      yourWish: "നിങ്ങളുടെ ആശംസ *",
+      sendWishes: "ആശംസകൾ അയക്കുക",
+      wishesPlaceholderText: "💜 പ്രിയപ്പെട്ടവരുടെ ആശംസകൾ ഇവിടെ ദൃശ്യമാകും…",
+      footerTagline: "സെപ്റ്റംബർ 2026 · ചോറ്റാനിക്കര, കേരളം & തിരുച്ചി, തമിഴ്നാട്",
+      footerNote: "സ്നേഹത്തോടെ നിർമ്മിച്ചത് · രണ്ട് കുടുംബങ്ങൾ, ഒരു മനോഹരമായ തുടക്കം",
+      namePlaceholder: "ഉദാ. സുരേഷ് കുമാർ",
+      relationPlaceholder: "ഉദാ. വരന്റെ കോളേജ് സുഹൃത്ത്",
+      wishPlaceholder: "രാമകൃഷ്ണനും പ്രദീതയ്ക്കും നിങ്ങളുടെ ഹൃദയംഗമമായ ആശംസകൾ എഴുതുക…"
+    }
+  };
+
+  let currentLang = 'en';
+
+  function setLanguage(lang) {
+    if (!translations[lang]) return;
+    currentLang = lang;
+    const dict = translations[lang];
+
+    // Update active button state
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+
+    // Translate all tagged text elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) {
+        el.innerHTML = dict[key];
+      }
+    });
+
+    // Translate placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (dict[key] !== undefined) {
+        el.setAttribute('placeholder', dict[key]);
+      }
+    });
+
+    // Persist choice for this session
+    try { sessionStorage.setItem('weddingLang', lang); } catch(e) {}
+
+    // Update html lang attribute for accessibility
+    document.documentElement.setAttribute('lang', lang);
+  }
+
+  // Restore previously chosen language (if any) on load
+  (function initLanguage() {
+    let saved = 'en';
+    try { saved = sessionStorage.getItem('weddingLang') || 'en'; } catch(e) {}
+    if (saved !== 'en') setLanguage(saved);
+  })();
 </script>
 
 </body>
