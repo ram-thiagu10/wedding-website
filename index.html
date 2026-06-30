@@ -1855,11 +1855,11 @@ function toggleMusic(){
       </div>
 
       <form id="event-capture-form" onsubmit="handlePhotoUpload(event)">
-        <input type="file" id="camera-file-input" accept="image/*" capture="environment" style="display: none;" onchange="previewCapturedImage(this)" required />
-        
+        <!-- <input type="file" id="camera-file-input" accept="image/*" capture="environment" style="display: none;" onchange="previewCapturedImage(this)" required /> -->
+        <input type="file" id="camera-file-input" accept="image/*" style="display: none;" onchange="previewCapturedImage(this)" required />
         <div style="text-align: center; margin-bottom: 20px;">
           <button type="button" class="map-btn gold" onclick="document.getElementById('camera-file-input').click()">
-            ✨ Launch Camera
+            ✨ Take Photo or Choose from Gallery
           </button>
         </div>
 
@@ -2323,7 +2323,7 @@ const MAX_PHOTOS_ALLOWED = 3;
 
 // Initialize counts and restrictions on page load
 document.addEventListener("DOMContentLoaded", () => {
-  checkEventDayRestriction();
+  // checkEventDayRestriction();
   updateUploadCounterDisplay();
 });
 
