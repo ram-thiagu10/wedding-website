@@ -1236,14 +1236,16 @@ function toggleMusic(){
 <!-- Floating translate toggle (bottom-left, mirrors music button) -->
 <div id="translate-wrap">
   <button id="translate-toggle" onclick="toggleTranslateMenu()" title="Translate">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <circle cx="12" cy="12" r="10"/>
-      <line x1="2" y1="12" x2="22" y2="12"/>
-      <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-    </svg>
-  </button>
+  <svg width="22" height="22" viewBox="0 0 44 44" fill="currentColor">
+    <text x="2" y="16" font-family="Arial, sans-serif" font-weight="bold" font-size="16" fill="var(--gold-light)">A</text>
+    
+    <text x="24" y="18" font-family="sans-serif" font-weight="bold" font-size="14" fill="#ffffff">அ</text>
+    
+    <text x="12" y="38" font-family="sans-serif" font-weight="bold" font-size="14" fill="var(--gold)">അ</text>
+  </svg>
+</button>
   <div id="translate-menu">
-    <button type="button" class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+    <button type="button" class="lang-btn active" data-lang="en" onclick="setLanguage('en')">ENGLISH</button>
     <button type="button" class="lang-btn" data-lang="ta" onclick="setLanguage('ta')">தமிழ்</button>
     <button type="button" class="lang-btn" data-lang="ml" onclick="setLanguage('ml')">മലയാളം</button>
   </div>
