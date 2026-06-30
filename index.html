@@ -1787,25 +1787,25 @@ function toggleMusic(){
   }
 </style>
 <section id="gallery" class="gallery-section">
-  <div class="section-eyebrow">Shared Memories</div>
-  <h2 class="section-title">Event <em>Gallery</em></h2>
+  <div class="section-eyebrow" data-i18n="galleryEyebrow">Shared Memories</div>
+  <h2 class="section-title" data-i18n="galleryTitle">Event <em>Gallery</em></h2>
   
   <div class="family-card" style="max-width: 600px; margin: 0 auto 48px auto;">
     <div class="family-card-header">
       <div class="family-icon">📸</div>
       <div>
-        <div class="family-label">Capture the Moments</div>
-        <div class="family-side-name">Click & Upload</div>
+        <div class="family-label" data-i18n="galleryLabel">Capture the Moments</div>
+        <div class="family-side-name" data-i18n="gallerySubLabel">Click & Upload</div>
       </div>
     </div>
 
     <div id="upload-interface">
-      <p style="font-size: 14px; color: var(--text-on-dark-soft); margin-bottom: 16px;">
+      <p data-i18n="galleryHelpText" style="font-size: 14px; color: var(--text-on-dark-soft); margin-bottom: 16px;">
         Help us save our memories! You can capture and upload up to <strong style="color:var(--gold-light)">3 photos</strong> directly from your camera during the event days (Sept 12, 13, & 15).
       </p>
       
       <div id="upload-status-badge" class="person-title-badge" style="margin-bottom: 16px;">
-        Photos Uploaded: <span id="photo-count-tracker">0</span> / 3
+        <span data-i18n="photosUploadedLabel">Photos Uploaded:</span> <span id="photo-count-tracker">0</span> / 3
       </div>
 
       <form id="event-capture-form" onsubmit="handlePhotoUpload(event)">
@@ -1813,7 +1813,7 @@ function toggleMusic(){
         <input type="file" id="camera-file-input" accept="image/*" style="display: none;" onchange="previewCapturedImages(this)" multiple required />
 
         <div style="text-align: center; margin-bottom: 20px;">
-          <button type="button" class="map-btn gold" onclick="document.getElementById('camera-file-input').click()">
+          <button type="button" class="map-btn gold" onclick="document.getElementById('camera-file-input').click()" data-i18n="galleryButton">
             ✨ Take Photos or Select From Gallery
           </button>
         </div>
@@ -1823,10 +1823,10 @@ function toggleMusic(){
         </div>
 
         <div class="wish-form-grid" style="grid-template-columns: 1fr;">
-          <textarea id="photo-message" class="map-btn" style="width:100%; height:80px; background: rgba(0,0,0,0.2); text-align: left; padding: 10px; color: white;" placeholder="Write a brief message with this photo... (Optional)"></textarea>
+          <textarea id="photo-message" class="map-btn" style="width:100%; height:80px; background: rgba(0,0,0,0.2); text-align: left; padding: 10px; color: white;" data-i18n-placeholder="galleryMessagePlaceholder" placeholder="Write a brief message with this photo... (Optional)"></textarea>
         </div>
 
-        <button type="submit" id="submit-photo-btn" class="map-btn" style="width: 100%; justify-content: center; background: var(--gold); color: var(--royal-bg-deep); font-weight: 600;" disabled>
+        <button type="submit" id="submit-photo-btn" class="map-btn" data-i18n="galleryUploadButton" style="width: 100%; justify-content: center; background: var(--gold); color: var(--royal-bg-deep); font-weight: 600;" disabled>
           Upload Photo to Gallery
         </button>
       </form>
@@ -1834,14 +1834,14 @@ function toggleMusic(){
 
     <div id="upload-lock-interface" style="display: none; text-align: center; padding: 20px 0;">
       <div style="font-size: 40px; margin-bottom: 10px;">🔒</div>
-      <p style="color: var(--gold-light); font-weight: 500;">Camera Uploads Open Only on Event Days</p>
-      <p style="font-size: 13px; color: var(--text-on-dark-soft); margin-top: 4px;"> Join us on September 12th, 13th, and 15th, 2026 to upload your photos! </p>
+      <p style="color: var(--gold-light); font-weight: 500;" data-i18n="galleryUploadLockTitle">Camera Uploads Open Only on Event Days</p>
+      <p style="font-size: 13px; color: var(--text-on-dark-soft); margin-top: 4px;" data-i18n="galleryUploadLockSubtitle"> Join us on September 12th, 13th, and 15th, 2026 to upload your photos! </p>
     </div>
   </div>
 
   <div class="venues-grid" id="live-gallery-grid">
     <div class="person-card" style="text-align: center; padding: 40px 20px; grid-column: 1 / -1;">
-      <p style="color: var(--text-on-dark-muted); font-style: italic;">No photos uploaded yet. Be the first to share a moment!</p>
+      <p style="color: var(--text-on-dark-muted); font-style: italic;" data-i18n="galleryEmptyState">No photos uploaded yet. Be the first to share a moment!</p>
     </div>
   </div>
 </section>
@@ -2183,7 +2183,19 @@ function toggleMusic(){
       footerNote: "Made with love · Two families, one beautiful beginning",
       namePlaceholder: "e.g. Suresh Kumar",
       relationPlaceholder: "e.g. College friend of Groom",
-      wishPlaceholder: "Write your heartfelt wishes for Ramakrishnan & Pradeetha…"
+      wishPlaceholder: "Write your heartfelt wishes for Ramakrishnan & Pradeetha…",
+      galleryEyebrow: "Shared Memories",
+      galleryTitle: "Event <em>Gallery</em>",
+      galleryLabel: "Capture the Moments",
+      gallerySubLabel: "Click & Upload",
+      galleryHelpText: "Help us save our memories! You can capture and upload up to <strong style=\"color:var(--gold-light)\">3 photos</strong> directly from your camera during the event days (Sept 12, 13, & 15).",
+      photosUploadedLabel: "Photos Uploaded:",
+      galleryButton: "✨ Take Photos or Select From Gallery",
+      galleryMessagePlaceholder: "Write a brief message with this photo... (Optional)",
+      galleryUploadButton: "Upload Photo to Gallery",
+      galleryUploadLockTitle: "Camera Uploads Open Only on Event Days",
+      galleryUploadLockSubtitle: "Join us on September 12th, 13th, and 15th, 2026 to upload your photos!",
+      galleryEmptyState: "No photos uploaded yet. Be the first to share a moment!"
     },
 
     ta: {
@@ -2263,7 +2275,19 @@ function toggleMusic(){
       footerNote: "அன்புடன் உருவாக்கப்பட்டது · இரு குடும்பங்கள், ஒரு அழகான தொடக்கம்",
       namePlaceholder: "எ.கா. சுரேஷ் குமார்",
       relationPlaceholder: "எ.கா. மாப்பிள்ளையின் கல்லூரி நண்பர்",
-      wishPlaceholder: "ராமகிருஷ்ணன் & பிரதீதாவிற்கு உங்கள் இதயப்பூர்வமான வாழ்த்துகளை எழுதுங்கள்…"
+      wishPlaceholder: "ராமகிருஷ்ணன் & பிரதீதாவிற்கு உங்கள் இதயப்பூர்வமான வாழ்த்துகளை எழுதுங்கள்…",
+      galleryEyebrow: "பகிர்ந்த நினைவுகள்",
+      galleryTitle: "நிகழ்ச்சி <em>கேலரி</em>",
+      galleryLabel: "நினைவுகளை பிடிக்கவும்",
+      gallerySubLabel: "க்ளிக் செய்து பதிவேற்று",
+      galleryHelpText: "எமது நினைவுகளை சேமிக்க உதவுங்கள்! நிகழ்ச்சி நாட்களில் (செப் 12, 13, மற்றும் 15) உங்கள் கேமராவில் இருந்து நேரடியாக <strong style=\"color:var(--gold-light)\">3 படங்களை</strong> பிடித்து பதிவேற்றலாம்.",
+      photosUploadedLabel: "படங்கள் பதிவேற்றப்பட்டவை:",
+      galleryButton: "✨ புகைப்படம் எடு அல்லது கேலரியிலிருந்து தேர்வுசெய்",
+      galleryMessagePlaceholder: "இந்த படத்துடன் சிறிய செய்தியை எழுதவும்... (விரும்பினால்)",
+      galleryUploadButton: "படத்தை கேலரிக்கு பதிவேற்று",
+      galleryUploadLockTitle: "நிகழ்ச்சி நாட்களில் மட்டுமே கேமரா பதிவேடுகள் திறக்கப்படும்",
+      galleryUploadLockSubtitle: "செப்டம்பர் 12, 13 மற்றும் 15, 2026 அன்று உங்கள் படங்களை பதிவேற்றுங்கள்!",
+      galleryEmptyState: "இன்னும் எந்த படமும் பதிவேற்றப்படவில்லை. முதல் ஒருவராக நினைவுகளை பகிரவும்!"
     },
 
     ml: {
@@ -2343,7 +2367,19 @@ function toggleMusic(){
       footerNote: "സ്നേഹത്തോടെ നിർമ്മിച്ചത് · രണ്ട് കുടുംബങ്ങൾ, ഒരു മനോഹരമായ തുടക്കം",
       namePlaceholder: "ഉദാ. സുരേഷ് കുമാർ",
       relationPlaceholder: "ഉദാ. വരന്റെ കോളേജ് സുഹൃത്ത്",
-      wishPlaceholder: "രാമകൃഷ്ണനും പ്രദീതയ്ക്കും നിങ്ങളുടെ ഹൃദയംഗമമായ ആശംസകൾ എഴുതുക…"
+      wishPlaceholder: "രാമകൃഷ്ണനും പ്രദീതയ്ക്കും നിങ്ങളുടെ ഹൃദയംഗമമായ ആശംസകൾ എഴുതുക…",
+      galleryEyebrow: "പങ്കുവെച്ച ഓർമകൾ",
+      galleryTitle: "ഇവന്റ് <em>ഗ്യാലറി</em>",
+      galleryLabel: "ക്ഷണങ്ങളെ പിടിക്കുക",
+      gallerySubLabel: "ക്ലിക്ക് ചെയ്ത് അപ്‌ലോഡ് ചെയ്യുക",
+      galleryHelpText: "ഞങ്ങളുടെ ഓർമകൾ സംരക്ഷിക്കാൻ സഹായിക്കൂ! ഇവന്റ് ദിവസങ്ങളിൽ (സെപ്റ്റംബർ 12, 13, & 15) നിങ്ങളുടെ ക്യാമറയിൽ നിന്ന് നേരിട്ട് <strong style=\"color:var(--gold-light)\">3 ഫോട്ടോകൾ</strong> പകർത്തി അപ്‌ലോഡ് ചെയ്യാം.",
+      photosUploadedLabel: "അപ്‌ലോഡ് ചെയ്ത ഫോട്ടോകൾ:",
+      galleryButton: "✨ ഫോട്ടോകൾ എടുക്കുക അല്ലെങ്കിൽ ഗ്യാലറിയിൽ നിന്നും തിരഞ്ഞെടുക്കുക",
+      galleryMessagePlaceholder: "ഈ ഫോട്ടോയ്‌ക്കൊപ്പം ചെറിയ സന്ദേശം എഴുതൂ... (ഐച്ഛികം)",
+      galleryUploadButton: "ഫോട്ടോ ഗ്യാലറിയിലേക്ക് അപ്‌ലോഡ് ചെയ്യൂ",
+      galleryUploadLockTitle: "ഇവന്റ് ദിവസങ്ങളിൽ മാത്രമേ ക്യാമറ അപ്‌ലോഡുകൾ തുറക്കൂ",
+      galleryUploadLockSubtitle: "സെപ്റ്റംബർ 12, 13, 15, 2026-ന് നിങ്ങളുടെ ഫോട്ടോകൾ അപ്‌ലോഡ് ചെയ്യൂ!",
+      galleryEmptyState: "ഇപ്പോഴും ഫോട്ടോകൾ അപ്‌ലോഡ് ചെയ്യപ്പെട്ടിട്ടില്ല. ആദ്യമായി ഒരു നിമിഷം പങ്കിടൂ!"
     }
   };
 
