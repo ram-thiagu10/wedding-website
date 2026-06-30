@@ -1856,15 +1856,16 @@ function toggleMusic(){
 
       <form id="event-capture-form" onsubmit="handlePhotoUpload(event)">
         <!-- <input type="file" id="camera-file-input" accept="image/*" capture="environment" style="display: none;" onchange="previewCapturedImage(this)" required /> -->
-        <input type="file" id="camera-file-input" accept="image/*" style="display: none;" onchange="previewCapturedImage(this)" required />
+        <input type="file" id="camera-file-input" accept="image/*" style="display: none;" onchange="previewCapturedImages(this)" multiple required />
+
         <div style="text-align: center; margin-bottom: 20px;">
           <button type="button" class="map-btn gold" onclick="document.getElementById('camera-file-input').click()">
-            ✨ Take Photo or Choose from Gallery
+            ✨ Take Photos or Select From Gallery
           </button>
         </div>
 
         <div id="camera-preview-container" style="display: none; text-align: center; margin-bottom: 16px;">
-          <img id="image-preview" src="" alt="Captured preview" style="max-width: 100%; max-height: 250px; border-radius: 6px; border: 1px solid var(--gold);" />
+          <div id="preview-thumbnails-grid" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px;"></div>
         </div>
 
         <div class="wish-form-grid" style="grid-template-columns: 1fr;">
@@ -1939,6 +1940,124 @@ function toggleMusic(){
     document.getElementById('cd-hours').textContent   = String(hours).padStart(2, '0');
     document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
     document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
+  }
+
+  let selectedFilesArray = [];
+
+  function previewCapturedImages(input) {
+    const previewGrid = document.getElementById("preview-thumbnails-grid");
+    previewGrid.innerHTML = ""; // Clear old previews
+    selectedFilesArray = Array.from(input.files);
+
+    // Enforce maximum selection of 3 files at once
+    if (selectedFilesArray.length > 3) {
+      alert("You can select a maximum of 3 photos at one time.");
+      input.value = "";
+      selectedFilesArray = [];
+      document.getElementById("camera-preview-container").style.display = "none";
+      document.getElementById("submit-photo-btn").setAttribute("disabled", "true");
+      return;
+    }
+
+    if (selectedFilesArray.length > 0) {
+      document.getElementById("camera-preview-container").style.display = "block";
+      document.getElementById("submit-photo-btn").removeAttribute("disabled");
+
+      selectedFilesArray.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.createElement("img");
+          img.src = e.target.result;
+          img.style.cssText = "width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid var(--gold);";
+          previewGrid.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  }
+
+  async function handlePhotoUpload(event) {
+    event.preventDefault();
+    
+    let currentUploads = parseInt(localStorage.getItem("user_upload_count") || "0", 10);
+    if (currentUploads + selectedFilesArray.length > MAX_PHOTOS_ALLOWED) {
+      alert(`This would exceed your remaining photo limit. You can only upload ${MAX_PHOTOS_ALLOWED - currentUploads} more photos.`);
+      return;
+    }
+
+    const messageInput = document.getElementById("photo-message");
+    const submitBtn = document.getElementById("submit-photo-btn");
+
+    submitBtn.innerText = `Uploading ${selectedFilesArray.length} Photo(s)...`;
+    submitBtn.setAttribute("disabled", "true");
+
+    // Loop and upload each selected file sequentially
+    for (let i = 0; i < selectedFilesArray.length; i++) {
+      const file = selectedFilesArray[i];
+      await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+          const base64Data = e.target.result.split(",")[1];
+          const payload = {
+            filename: file.name,
+            mimeType: file.type,
+            data: base64Data,
+            message: messageInput.value
+          };
+
+          try {
+            const response = await fetch(APP_SCRIPT_WEBHOOK_URL, {
+              method: "POST",
+              body: JSON.stringify(payload)
+            });
+            if (response.ok) {
+              currentUploads++;
+              localStorage.setItem("user_upload_count", currentUploads);
+            }
+          } catch (err) {
+            console.error("Failed uploading a file", err);
+          }
+          resolve();
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    alert("All photos uploaded successfully!");
+    document.getElementById("event-capture-form").reset();
+    document.getElementById("camera-preview-container").style.display = "none";
+    updateUploadCounterDisplay();
+    loadGlobalGallery(); // Refresh view
+  }
+
+  async function loadGlobalGallery() {
+    const grid = document.getElementById("live-gallery-grid");
+    try {
+      const response = await fetch(APP_SCRIPT_WEBHOOK_URL);
+      const result = await response.json();
+      
+      if (result.status === "success" && result.files.length > 0) {
+        grid.innerHTML = ""; 
+        
+        result.files.forEach(file => {
+          // Universal direct URL constructor for displaying Drive assets publicly
+          const publicImageUrl = `https://drive.google.com/uc?export=view&id=${file.id}`;
+          
+          const photoHtml = `
+            <div class="person-card">
+              <div style="position:relative; width:100%; padding-top:75%; overflow:hidden; background: rgba(0,0,0,0.1);">
+                <img src="${publicImageUrl}" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;" onerror="this.src='https://placehold.co/400x300?text=Image+Loading...'"/>
+              </div>
+              <div class="person-card-inner" style="padding: 16px;">
+                <p class="person-desc" style="font-style: italic;">"${file.message || 'Best Wishes!'}"</p>
+              </div>
+            </div>`;
+          grid.insertAdjacentHTML("beforeend", photoHtml);
+        });
+      }
+    } catch (err) {
+      console.error("Could not load gallery images:", err);
+    }
   }
 
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzoo2_KLeDevK54-qVhzj8iDgxyyYSQ7HjJqeipqjmncxCk44SS9Np3I6_3X416sux7tg/exec';
