@@ -1901,14 +1901,23 @@ function toggleMusic(){
 
   let selectedFilesArray = [];
 
+  // How many more photos this guest is still allowed to upload right now
+  function getRemainingSlots() {
+    const currentUploads = parseInt(localStorage.getItem("user_upload_count") || "0", 10);
+    return Math.max(0, MAX_PHOTOS_ALLOWED - currentUploads);
+  }
+
   function previewCapturedImages(input) {
     const previewGrid = document.getElementById("preview-thumbnails-grid");
     previewGrid.innerHTML = ""; // Clear old previews
     selectedFilesArray = Array.from(input.files);
 
-    // Enforce maximum selection of 3 files at once
-    if (selectedFilesArray.length > 3) {
-      alert("You can select a maximum of 3 photos at one time.");
+    const remainingSlots = getRemainingSlots();
+
+    // Guests can upload 1, 2, or 3 photos total, in any combination of batches —
+    // what matters is never exceeding whatever is left of their personal quota.
+    if (selectedFilesArray.length > remainingSlots) {
+      alert(`You can only upload ${remainingSlots} more photo${remainingSlots === 1 ? "" : "s"}. Please select ${remainingSlots} or fewer.`);
       input.value = "";
       selectedFilesArray = [];
       document.getElementById("camera-preview-container").style.display = "none";
@@ -1933,56 +1942,75 @@ function toggleMusic(){
     }
   }
 
+  // Uploads one file straight to Cloudinary and returns its permanent CDN URL
+  async function uploadToCloudinary(file) {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+    formData.append("folder", CLOUDINARY_FOLDER);
+
+    const response = await fetch(CLOUDINARY_UPLOAD_URL, { method: "POST", body: formData });
+    if (!response.ok) throw new Error("Cloudinary upload failed");
+    const data = await response.json();
+    return data.secure_url;
+  }
+
+  // Records the Cloudinary URL + caption via Apps Script, which appends it as a
+  // row in a Google Sheet — a lightweight list the gallery reads back from.
+  async function saveGalleryRecord(url, message) {
+    await fetch(APP_SCRIPT_WEBHOOK_URL, {
+      method: "POST",
+      body: JSON.stringify({ url, message })
+    });
+  }
+
   async function handlePhotoUpload(event) {
     event.preventDefault();
-    
-    let currentUploads = parseInt(localStorage.getItem("user_upload_count") || "0", 10);
-    if (currentUploads + selectedFilesArray.length > MAX_PHOTOS_ALLOWED) {
-      alert(`This would exceed your remaining photo limit. You can only upload ${MAX_PHOTOS_ALLOWED - currentUploads} more photos.`);
+
+    if (selectedFilesArray.length === 0) return;
+
+    const remainingSlots = getRemainingSlots();
+    if (selectedFilesArray.length > remainingSlots) {
+      alert(`You can only upload ${remainingSlots} more photo${remainingSlots === 1 ? "" : "s"}.`);
       return;
     }
 
     const messageInput = document.getElementById("photo-message");
     const submitBtn = document.getElementById("submit-photo-btn");
+    const totalToUpload = selectedFilesArray.length;
 
-    submitBtn.innerText = `Uploading ${selectedFilesArray.length} Photo(s)...`;
+    submitBtn.innerText = `Uploading ${totalToUpload} Photo(s)...`;
     submitBtn.setAttribute("disabled", "true");
 
-    // Loop and upload each selected file sequentially
-    for (let i = 0; i < selectedFilesArray.length; i++) {
-      const file = selectedFilesArray[i];
-      await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = async function(e) {
-          const base64Data = e.target.result.split(",")[1];
-          const payload = {
-            filename: file.name,
-            mimeType: file.type,
-            data: base64Data,
-            message: messageInput.value
-          };
+    let currentUploads = parseInt(localStorage.getItem("user_upload_count") || "0", 10);
+    let uploadedCount = 0;
 
-          try {
-            const response = await fetch(APP_SCRIPT_WEBHOOK_URL, {
-              method: "POST",
-              body: JSON.stringify(payload)
-            });
-            if (response.ok) {
-              currentUploads++;
-              localStorage.setItem("user_upload_count", currentUploads);
-            }
-          } catch (err) {
-            console.error("Failed uploading a file", err);
-          }
-          resolve();
-        };
-        reader.readAsDataURL(file);
-      });
+    // Upload sequentially so the running count/localStorage stays accurate
+    for (const file of selectedFilesArray) {
+      try {
+        const secureUrl = await uploadToCloudinary(file);
+        await saveGalleryRecord(secureUrl, messageInput.value);
+        currentUploads++;
+        uploadedCount++;
+        localStorage.setItem("user_upload_count", currentUploads);
+      } catch (err) {
+        console.error("Failed uploading a file", err);
+      }
     }
 
-    alert("All photos uploaded successfully!");
+    if (uploadedCount === 0) {
+      alert("Sorry, the upload failed. Please check your connection and try again.");
+    } else if (currentUploads >= MAX_PHOTOS_ALLOWED) {
+      alert("\u2728 All 3 photos uploaded \u2014 thank you for sharing your memories!");
+    } else {
+      alert(`${uploadedCount} photo${uploadedCount === 1 ? "" : "s"} uploaded! You can upload ${MAX_PHOTOS_ALLOWED - currentUploads} more whenever you'd like.`);
+    }
+
+    selectedFilesArray = [];
     document.getElementById("event-capture-form").reset();
     document.getElementById("camera-preview-container").style.display = "none";
+    document.getElementById("preview-thumbnails-grid").innerHTML = "";
+    submitBtn.innerText = "Upload Photo to Gallery";
     updateUploadCounterDisplay();
     loadGlobalGallery(); // Refresh view
   }
@@ -1992,19 +2020,16 @@ function toggleMusic(){
     try {
       const response = await fetch(APP_SCRIPT_WEBHOOK_URL);
       const result = await response.json();
-      
+
       if (result.status === "success" && result.files.length > 0) {
-        grid.innerHTML = ""; 
-        
+        grid.innerHTML = "";
+
         result.files.forEach(file => {
-          // Proxy the image through Apps Script itself (avoids Google Drive's
-          // unreliable uc?export=view hotlink, which returns 403s under load)
-          const publicImageUrl = `${APP_SCRIPT_WEBHOOK_URL}?id=${file.id}`;
-          
+          // file.url is a permanent Cloudinary CDN link — reliable, no proxying needed
           const photoHtml = `
             <div class="person-card">
               <div style="position:relative; width:100%; padding-top:75%; overflow:hidden; background: rgba(0,0,0,0.1);">
-                <img src="${publicImageUrl}" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;" onerror="this.src='https://placehold.co/400x300?text=Image+Loading...'"/>
+                <img src="${file.url}" loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;" onerror="this.src='https://placehold.co/400x300?text=Image+Unavailable'"/>
               </div>
               <div class="person-card-inner" style="padding: 16px;">
                 <p class="person-desc" style="font-style: italic;">"${file.message || 'Best Wishes!'}"</p>
@@ -2437,10 +2462,19 @@ const APP_SCRIPT_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxsAODSh
 const EVENT_DAYS = ["2026-09-12", "2026-09-13", "2026-09-15"]; // Target Event Dates
 const MAX_PHOTOS_ALLOWED = 3;
 
-// Initialize counts and restrictions on page load
+// --- CLOUDINARY CONFIGURATION ---
+// Replace with your own Cloudinary cloud name + unsigned upload preset
+// (Dashboard > Settings > Upload > Upload presets > Add upload preset > Signing mode: Unsigned)
+const CLOUDINARY_CLOUD_NAME = "jjvj8sd2";
+const CLOUDINARY_UPLOAD_PRESET = "wedding_gallery";
+const CLOUDINARY_FOLDER = "wedding-gallery";
+const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
+
+// Initialize counts, restrictions, and the live gallery on page load
 document.addEventListener("DOMContentLoaded", () => {
   // checkEventDayRestriction();
   updateUploadCounterDisplay();
+  loadGlobalGallery();
 });
 
 function checkEventDayRestriction() {
@@ -2469,99 +2503,6 @@ function updateUploadCounterDisplay() {
         ✨ Thank you! You have successfully reached your limit of 3 photo uploads.
       </div>`;
   }
-}
-
-function previewCapturedImage(input) {
-  if (input.files && input.files[0]) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      document.getElementById("image-preview").src = e.target.result;
-      document.getElementById("camera-preview-container").style.display = "block";
-      document.getElementById("submit-photo-btn").removeAttribute("disabled");
-    }
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-
-async function handlePhotoUpload(event) {
-  event.preventDefault();
-  
-  const currentUploads = parseInt(localStorage.getItem("user_upload_count") || "0", 10);
-  if (currentUploads >= MAX_PHOTOS_ALLOWED) {
-    alert("You have reached the limit of 5 uploads.");
-    return;
-  }
-
-  const fileInput = document.getElementById("camera-file-input");
-  const messageInput = document.getElementById("photo-message");
-  const submitBtn = document.getElementById("submit-photo-btn");
-
-  if (!fileInput.files.length) return;
-
-  submitBtn.innerText = "Uploading... Please Wait";
-  submitBtn.setAttribute("disabled", "true");
-
-  const file = fileInput.files[0];
-  const reader = new FileReader();
-
-  reader.onload = async function(e) {
-    const base64Data = e.target.result.split(",")[1];
-    
-    const payload = {
-      filename: file.name,
-      mimeType: file.type,
-      data: base64Data,
-      message: messageInput.value
-    };
-
-    try {
-      const response = await fetch(APP_SCRIPT_WEBHOOK_URL, {
-        method: "POST",
-        body: JSON.stringify(payload)
-      });
-      
-      if (response.ok) {
-        // Success tracking updates
-        localStorage.setItem("user_upload_count", currentUploads + 1);
-        alert("Photo uploaded successfully to the wedding album!");
-        
-        // Clear Form & Update View
-        document.getElementById("event-capture-form").reset();
-        document.getElementById("camera-preview-container").style.display = "none";
-        updateUploadCounterDisplay();
-        
-        // Append dynamically to front-end session gallery grid
-        appendPhotoToSessionGallery(e.target.result, messageInput.value);
-      } else {
-        throw new Error("Upload failed");
-      }
-    } catch (err) {
-      alert("Error uploading image. Please check your connection and try again.");
-      submitBtn.innerText = "Upload Photo to Gallery";
-      submitBtn.removeAttribute("disabled");
-    }
-  };
-  
-  reader.readAsDataURL(file);
-}
-
-function appendPhotoToSessionGallery(imageSrc, userMsg) {
-  const grid = document.getElementById("live-gallery-grid");
-  // Clear the placeholder notice on the very first upload
-  if (grid.innerHTML.includes("No photos uploaded yet")) {
-    grid.innerHTML = "";
-  }
-
-  const photoHtml = `
-    <div class="person-card">
-      <div style="position:relative; width:100%; padding-top:75%; overflow:hidden;">
-         <img src="${imageSrc}" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;" />
-      </div>
-      <div class="person-card-inner" style="padding: 16px;">
-        <p class="person-desc" style="font-style: italic;">"${userMsg || 'Best Wishes!'}"</p>
-      </div>
-    </div>`;
-  grid.insertAdjacentHTML("afterbegin", photoHtml);
 }
 </script>
 
