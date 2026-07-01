@@ -1925,7 +1925,7 @@ function toggleMusic(){
         </div>
 
         <div id="camera-preview-container" style="display: none; text-align: center; margin-bottom: 16px;">
-          <div id="preview-thumbnails-grid" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px;"></div>
+          <div id="preview-thumbnails-grid" style="display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: nowrap; overflow-x: auto; margin-bottom: 12px; padding-bottom: 4px;"></div>
         </div>
 
         <div class="wish-form-grid" style="grid-template-columns: 1fr;">
@@ -1950,7 +1950,7 @@ function toggleMusic(){
     <p>Thank you for sharing these precious moments with us.</p>
   </div>
 
-  <div class="venues-grid" id="live-gallery-grid">
+  <div class="venues-grid" id="live-gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
     <div class="person-card" style="text-align: center; padding: 40px 20px; grid-column: 1 / -1;">
       <p style="color: var(--text-on-dark-muted); font-style: italic;" data-i18n="galleryEmptyState">No memories saved on this device yet. Be the first to share a moment!</p>
     </div>
