@@ -1997,8 +1997,9 @@ function toggleMusic(){
         grid.innerHTML = ""; 
         
         result.files.forEach(file => {
-          // Universal direct URL constructor for displaying Drive assets publicly
-          const publicImageUrl = `https://drive.google.com/uc?export=view&id=${file.id}`;
+          // Proxy the image through Apps Script itself (avoids Google Drive's
+          // unreliable uc?export=view hotlink, which returns 403s under load)
+          const publicImageUrl = `${APP_SCRIPT_WEBHOOK_URL}?id=${file.id}`;
           
           const photoHtml = `
             <div class="person-card">
@@ -2438,7 +2439,7 @@ const MAX_PHOTOS_ALLOWED = 3;
 
 // Initialize counts and restrictions on page load
 document.addEventListener("DOMContentLoaded", () => {
-  checkEventDayRestriction();
+  // checkEventDayRestriction();
   updateUploadCounterDisplay();
 });
 
