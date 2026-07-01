@@ -1789,6 +1789,103 @@ function toggleMusic(){
     color: var(--text-on-dark-muted);
   }
 </style>
+<style>
+  .gallery-action-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .gallery-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(212,175,55,0.35);
+    background: rgba(255,255,255,0.08);
+    color: var(--text-on-dark);
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .gallery-action-btn:hover {
+    transform: translateY(-1px);
+    background: rgba(255,255,255,0.14);
+  }
+  .gallery-action-btn.gold {
+    background: linear-gradient(to right, var(--copper), var(--gold));
+    color: var(--royal-bg-deep);
+  }
+  .gallery-action-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .upload-progress-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 8, 8, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 10000;
+  }
+  .upload-progress-overlay.visible {
+    display: flex;
+  }
+  .upload-progress-card {
+    width: min(420px, 100%);
+    background: rgba(255,255,255,0.97);
+    color: var(--royal-bg-deep);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.24);
+  }
+  .upload-progress-bar {
+    height: 10px;
+    border-radius: 999px;
+    background: #efe2bf;
+    overflow: hidden;
+    margin: 14px 0 10px;
+  }
+  .upload-progress-bar > div {
+    height: 100%;
+    width: 0%;
+    border-radius: inherit;
+    background: linear-gradient(to right, var(--copper), var(--gold));
+    transition: width 0.25s ease;
+  }
+  .upload-progress-meta {
+    font-size: 13px;
+    color: var(--charcoal);
+  }
+  .your-memories-banner {
+    margin: 0 auto 24px;
+    max-width: 640px;
+    text-align: center;
+    padding: 16px 18px;
+    border: 1px solid rgba(212,175,55,0.25);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.06);
+  }
+  .your-memories-banner strong {
+    display: block;
+    font-size: 16px;
+    color: var(--gold-light);
+    margin-bottom: 6px;
+  }
+  .your-memories-banner p {
+    margin: 0;
+    color: var(--text-on-dark-soft);
+    font-size: 14px;
+  }
+</style>
 <section id="gallery" class="gallery-section">
   <div class="section-eyebrow" data-i18n="galleryEyebrow">Shared Memories</div>
   <h2 class="section-title" data-i18n="galleryTitle">Event <em>Gallery</em></h2>
@@ -1810,14 +1907,20 @@ function toggleMusic(){
       <div id="upload-status-badge" class="person-title-badge" style="margin-bottom: 16px;">
         <span data-i18n="photosUploadedLabel">Photos Uploaded:</span> <span id="photo-count-tracker">0</span> / 3
       </div>
+      <div id="upload-limit-note" style="display:none; margin-bottom: 16px; color: var(--gold-light); font-size: 13px;">
+        ✨ Thank you! You have used all 3 uploads for this device.
+      </div>
 
       <form id="event-capture-form" onsubmit="handlePhotoUpload(event)">
-        <!-- <input type="file" id="camera-file-input" accept="image/*" capture="environment" style="display: none;" onchange="previewCapturedImage(this)" required /> -->
-        <input type="file" id="camera-file-input" accept="image/*" style="display: none;" onchange="previewCapturedImages(this)" multiple required />
+        <input type="file" id="camera-file-input" accept="image/*" capture="environment" style="display: none;" onchange="previewCapturedImages(this)" multiple />
+        <input type="file" id="gallery-file-input" accept="image/*" style="display: none;" onchange="previewCapturedImages(this)" multiple />
 
-        <div style="text-align: center; margin-bottom: 20px;">
-          <button type="button" class="map-btn gold" onclick="document.getElementById('camera-file-input').click()" data-i18n="galleryButton">
-            ✨ Take Photos or Select From Gallery
+        <div class="gallery-action-row">
+          <button type="button" class="gallery-action-btn gold" onclick="triggerPhotoPicker('camera')" data-i18n="galleryButton">
+            📷 Take Photo
+          </button>
+          <button type="button" class="gallery-action-btn" onclick="triggerPhotoPicker('gallery')" data-i18n="gallerySelectButton">
+            🖼️ Select From Gallery
           </button>
         </div>
 
@@ -1842,12 +1945,27 @@ function toggleMusic(){
     </div>
   </div>
 
+  <div class="your-memories-banner">
+    <strong>Your Uploaded Memories</strong>
+    <p>Thank you for sharing these precious moments with us.</p>
+  </div>
+
   <div class="venues-grid" id="live-gallery-grid">
     <div class="person-card" style="text-align: center; padding: 40px 20px; grid-column: 1 / -1;">
-      <p style="color: var(--text-on-dark-muted); font-style: italic;" data-i18n="galleryEmptyState">No photos uploaded yet. Be the first to share a moment!</p>
+      <p style="color: var(--text-on-dark-muted); font-style: italic;" data-i18n="galleryEmptyState">No memories saved on this device yet. Be the first to share a moment!</p>
     </div>
   </div>
 </section>
+
+<div id="upload-progress-overlay" class="upload-progress-overlay" aria-live="polite">
+  <div class="upload-progress-card">
+    <div style="font-size: 32px; margin-bottom: 10px; text-align: center;">📸</div>
+    <h3 style="margin: 0 0 6px; text-align: center; font-size: 20px;">Uploading your memories</h3>
+    <p id="upload-progress-text" style="margin: 0 0 12px; text-align: center; color: var(--charcoal);">Please keep this page open while your photos are being saved.</p>
+    <div class="upload-progress-bar"><div id="upload-progress-fill"></div></div>
+    <div id="upload-progress-meta" class="upload-progress-meta">Preparing your photos…</div>
+  </div>
+</div>
 <footer>
   <div style="margin-bottom:20px;">
     <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1900,6 +2018,49 @@ function toggleMusic(){
   }
 
   let selectedFilesArray = [];
+
+  function triggerPhotoPicker(mode) {
+    const cameraInput = document.getElementById("camera-file-input");
+    const galleryInput = document.getElementById("gallery-file-input");
+    if (mode === "camera") {
+      cameraInput.click();
+    } else {
+      galleryInput.click();
+    }
+  }
+
+  function showUploadProgress(total) {
+    const overlay = document.getElementById("upload-progress-overlay");
+    const fill = document.getElementById("upload-progress-fill");
+    const text = document.getElementById("upload-progress-text");
+    const meta = document.getElementById("upload-progress-meta");
+    fill.style.width = "0%";
+    text.textContent = `Uploading ${total} photo${total > 1 ? "s" : ""}...`;
+    meta.textContent = "Please keep this page open while we save your memories.";
+    overlay.classList.add("visible");
+  }
+
+  function updateUploadProgress(step, total, label) {
+    const fill = document.getElementById("upload-progress-fill");
+    const meta = document.getElementById("upload-progress-meta");
+    const percent = Math.min(100, Math.round((step / total) * 100));
+    fill.style.width = `${percent}%`;
+    meta.textContent = label || `Uploading ${step} of ${total}`;
+  }
+
+  function hideUploadProgress() {
+    document.getElementById("upload-progress-overlay").classList.remove("visible");
+  }
+
+  function persistMyMemory(memory) {
+    try {
+      const memories = JSON.parse(localStorage.getItem("my_uploaded_memories") || "[]");
+      const nextMemories = [memory, ...memories.filter(item => item.url !== memory.url)].slice(0, MAX_PHOTOS_ALLOWED);
+      localStorage.setItem("my_uploaded_memories", JSON.stringify(nextMemories));
+    } catch (err) {
+      console.error("Could not save memory locally", err);
+    }
+  }
 
   // How many more photos this guest is still allowed to upload right now
   function getRemainingSlots() {
@@ -1979,6 +2140,7 @@ function toggleMusic(){
     const submitBtn = document.getElementById("submit-photo-btn");
     const totalToUpload = selectedFilesArray.length;
 
+    showUploadProgress(totalToUpload);
     submitBtn.innerText = `Uploading ${totalToUpload} Photo(s)...`;
     submitBtn.setAttribute("disabled", "true");
 
@@ -1986,10 +2148,13 @@ function toggleMusic(){
     let uploadedCount = 0;
 
     // Upload sequentially so the running count/localStorage stays accurate
-    for (const file of selectedFilesArray) {
+    for (const [index, file] of selectedFilesArray.entries()) {
       try {
+        updateUploadProgress(index + 1, totalToUpload, `Uploading ${index + 1} of ${totalToUpload}...`);
         const secureUrl = await uploadToCloudinary(file);
-        await saveGalleryRecord(secureUrl, messageInput.value);
+        const messageValue = messageInput.value.trim();
+        await saveGalleryRecord(secureUrl, messageValue);
+        persistMyMemory({ url: secureUrl, message: messageValue, timestamp: new Date().toISOString() });
         currentUploads++;
         uploadedCount++;
         localStorage.setItem("user_upload_count", currentUploads);
@@ -1997,6 +2162,8 @@ function toggleMusic(){
         console.error("Failed uploading a file", err);
       }
     }
+
+    hideUploadProgress();
 
     if (uploadedCount === 0) {
       alert("Sorry, the upload failed. Please check your connection and try again.");
@@ -2018,25 +2185,27 @@ function toggleMusic(){
   async function loadGlobalGallery() {
     const grid = document.getElementById("live-gallery-grid");
     try {
-      const response = await fetch(APP_SCRIPT_WEBHOOK_URL);
-      const result = await response.json();
+      const memories = JSON.parse(localStorage.getItem("my_uploaded_memories") || "[]");
+      grid.innerHTML = "";
 
-      if (result.status === "success" && result.files.length > 0) {
-        grid.innerHTML = "";
-
-        result.files.forEach(file => {
-          // file.url is a permanent Cloudinary CDN link — reliable, no proxying needed
+      if (memories.length > 0) {
+        memories.forEach(memory => {
           const photoHtml = `
             <div class="person-card">
               <div style="position:relative; width:100%; padding-top:75%; overflow:hidden; background: rgba(0,0,0,0.1);">
-                <img src="${file.url}" loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;" onerror="this.src='https://placehold.co/400x300?text=Image+Unavailable'"/>
+                <img src="${memory.url}" loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;" onerror="this.src='https://placehold.co/400x300?text=Image+Unavailable'"/>
               </div>
               <div class="person-card-inner" style="padding: 16px;">
-                <p class="person-desc" style="font-style: italic;">"${file.message || 'Best Wishes!'}"</p>
+                <p class="person-desc" style="font-style: italic;">"${escapeHtml(memory.message || 'Best Wishes!')}"</p>
               </div>
             </div>`;
           grid.insertAdjacentHTML("beforeend", photoHtml);
         });
+      } else {
+        grid.insertAdjacentHTML("beforeend", `
+          <div class="person-card" style="text-align: center; padding: 40px 20px; grid-column: 1 / -1;">
+            <p style="color: var(--text-on-dark-muted); font-style: italic;">No memories saved on this device yet. Be the first to share a moment!</p>
+          </div>`);
       }
     } catch (err) {
       console.error("Could not load gallery images:", err);
@@ -2220,7 +2389,8 @@ function toggleMusic(){
       gallerySubLabel: "Click & Upload",
       galleryHelpText: "Help us save our memories! You can capture and upload up to <strong style=\"color:var(--gold-light)\">3 photos</strong> directly from your camera during the event days (Sept 12, 13, & 15).",
       photosUploadedLabel: "Photos Uploaded:",
-      galleryButton: "✨ Take Photos or Select From Gallery",
+      galleryButton: "📷 Take Photo",
+      gallerySelectButton: "🖼️ Select From Gallery",
       galleryMessagePlaceholder: "Write a brief message with this photo... (Optional)",
       galleryUploadButton: "Upload Photo to Gallery",
       galleryUploadLockTitle: "Camera Uploads Open Only on Event Days",
@@ -2313,7 +2483,8 @@ function toggleMusic(){
       gallerySubLabel: "க்ளிக் செய்து பதிவேற்று",
       galleryHelpText: "எமது நினைவுகளை சேமிக்க உதவுங்கள்! நிகழ்ச்சி நாட்களில் (செப் 12, 13, மற்றும் 15) உங்கள் கேமராவில் இருந்து நேரடியாக <strong style=\"color:var(--gold-light)\">3 படங்களை</strong> பிடித்து பதிவேற்றலாம்.",
       photosUploadedLabel: "படங்கள் பதிவேற்றப்பட்டவை:",
-      galleryButton: "✨ புகைப்படம் எடு அல்லது கேலரியிலிருந்து தேர்வுசெய்",
+      galleryButton: "📷 புகைப்படம் எடு",
+      gallerySelectButton: "🖼️ கேலரியிலிருந்து தேர்ந்தெடு",
       galleryMessagePlaceholder: "இந்த படத்துடன் சிறிய செய்தியை எழுதவும்... (விரும்பினால்)",
       galleryUploadButton: "படத்தை கேலரிக்கு பதிவேற்று",
       galleryUploadLockTitle: "நிகழ்ச்சி நாட்களில் மட்டுமே கேமரா பதிவேடுகள் திறக்கப்படும்",
@@ -2404,9 +2575,10 @@ function toggleMusic(){
       galleryTitle: "ഇവന്റ് <em>ഗ്യാലറി</em>",
       galleryLabel: "ക്ഷണങ്ങളെ പിടിക്കുക",
       gallerySubLabel: "ക്ലിക്ക് ചെയ്ത് അപ്‌ലോഡ് ചെയ്യുക",
-      galleryHelpText: "ഞങ്ങളുടെ ഓർമകൾ സംരക്ഷിക്കാൻ സഹായിക്കൂ! ഇവന്റ് ദിവസങ്ങളിൽ (സെപ്റ്റംബർ 12, 13, & 15) നിങ്ങളുടെ ക്യാമറയിൽ നിന്ന് നേരിട്ട് <strong style=\"color:var(--gold-light)\">3 ഫോട്ടോകൾ</strong> പകർത്തി അപ്‌ലോഡ് ചെയ്യാം.",
+      galleryHelpText: "ഞങ്ങളുടെ ഓർമകൾ സംരക്ഷിക്കാൻ സഹായിക്കൂ! ഇവന്റ് ദിവസങ്ങളിൽ (സെപ്റ്റംബർ 12, 13, & 15) നിങ്ങളുടെ క్యാമറയിൽ നിന്ന് നേരിട്ട് <strong style=\"color:var(--gold-light)\">3 ഫോട്ടോകൾ</strong> പകർത്തി അപ്‌ലോഡ് ചെയ്യാം.",
       photosUploadedLabel: "അപ്‌ലോഡ് ചെയ്ത ഫോട്ടോകൾ:",
-      galleryButton: "✨ ഫോട്ടോകൾ എടുക്കുക അല്ലെങ്കിൽ ഗ്യാലറിയിൽ നിന്നും തിരഞ്ഞെടുക്കുക",
+      galleryButton: "📷 ഫോട്ടോ എടുക്കൂ",
+      gallerySelectButton: "🖼️ ഗാലറിയിൽ നിന്ന് തിരഞ്ഞെടുക്കൂ",
       galleryMessagePlaceholder: "ഈ ഫോട്ടോയ്‌ക്കൊപ്പം ചെറിയ സന്ദേശം എഴുതൂ... (ഐച്ഛികം)",
       galleryUploadButton: "ഫോട്ടോ ഗ്യാലറിയിലേക്ക് അപ്‌ലോഡ് ചെയ്യൂ",
       galleryUploadLockTitle: "ഇവന്റ് ദിവസങ്ങളിൽ മാത്രമേ ക്യാമറ അപ്‌ലോഡുകൾ തുറക്കൂ",
@@ -2495,13 +2667,49 @@ function checkEventDayRestriction() {
 
 function updateUploadCounterDisplay() {
   const currentUploads = parseInt(localStorage.getItem("user_upload_count") || "0", 10);
-  document.getElementById("photo-count-tracker").innerText = currentUploads;
-  
-  if (currentUploads >= MAX_PHOTOS_ALLOWED) {
-    document.getElementById("upload-interface").innerHTML = `
-      <div style="text-align:center; padding:10px; color:var(--gold-light);">
-        ✨ Thank you! You have successfully reached your limit of 3 photo uploads.
-      </div>`;
+  const counter = document.getElementById("photo-count-tracker");
+  const limitNote = document.getElementById("upload-limit-note");
+  const actionButtons = document.querySelectorAll(".gallery-action-btn");
+  const submitBtn = document.getElementById("submit-photo-btn");
+  const cameraInput = document.getElementById("camera-file-input");
+  const galleryInput = document.getElementById("gallery-file-input");
+
+  if (counter) counter.innerText = currentUploads;
+
+  if (limitNote) {
+    limitNote.style.display = currentUploads >= MAX_PHOTOS_ALLOWED ? "block" : "none";
+  }
+
+  actionButtons.forEach(btn => {
+    if (currentUploads >= MAX_PHOTOS_ALLOWED) {
+      btn.setAttribute("disabled", "true");
+    } else {
+      btn.removeAttribute("disabled");
+    }
+  });
+
+  if (cameraInput) {
+    if (currentUploads >= MAX_PHOTOS_ALLOWED) {
+      cameraInput.setAttribute("disabled", "true");
+    } else {
+      cameraInput.removeAttribute("disabled");
+    }
+  }
+
+  if (galleryInput) {
+    if (currentUploads >= MAX_PHOTOS_ALLOWED) {
+      galleryInput.setAttribute("disabled", "true");
+    } else {
+      galleryInput.removeAttribute("disabled");
+    }
+  }
+
+  if (submitBtn) {
+    if (currentUploads >= MAX_PHOTOS_ALLOWED) {
+      submitBtn.setAttribute("disabled", "true");
+    } else {
+      submitBtn.removeAttribute("disabled");
+    }
   }
 }
 </script>
