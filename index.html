@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>T. Ramakrishnan & Dr. Pradeetha P — Wedding Celebrations</title>
+<meta name="description" content="Join T. Ramakrishnan & Dr. Pradeetha P for engagement, wedding and reception celebrations in Kerala and Tamil Nadu on 12, 13 and 15 September 2026."/>
+<meta property="og:title" content="T. Ramakrishnan & Dr. Pradeetha P — Wedding Celebrations"/>
+<meta property="og:description" content="Join our engagement, wedding and reception celebrations in Kerala and Tamil Nadu on 12, 13 and 15 September 2026."/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://ram-weds-pradee.vercel.app/assets/invite_img.png"/>
+<meta property="og:image:type" content="image/png"/>
+<meta property="og:image:alt" content="Wedding invitation for Ramakrishnan & Pradeetha"/>
+
+<meta property="og:url" content="https://ram-weds-pradee.vercel.app/">
+<meta property="og:site_name" content="Ramakrishnan & Pradeetha Wedding">
+
+<meta property="og:image" content="https://ram-weds-pradee.vercel.app/assets/invite_img.png">
+<meta property="og:image:secure_url" content="https://ram-weds-pradee.vercel.app/assets/invite_img.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="T. Ramakrishnan & Dr. Pradeetha P — Wedding Celebrations"/>
+<meta name="twitter:description" content="Join our engagement, wedding and reception celebrations in Kerala and Tamil Nadu on 12, 13 and 15 September 2026."/>
+<meta name="twitter:image" content="https://ram-weds-pradee.vercel.app/assets/invite_img.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ROYAL ENVELOPE INTRO OVERLAY
+════════════════════════════════════════════════════════════ -->
+<div id="envelope-overlay">
+  <div class="env-stars" id="env-stars"></div>
+
+  <div class="env-scene">
+
+    <!-- Title above envelope -->
+    <div class="env-title">
+      <p class="env-title-top" data-i18n="envTitleTop">✨ &nbsp; A Wedding Invitation &nbsp; ✨</p>
+      <p class="env-title-names">T. Ramakrishnan &amp; Dr. Pradeetha P</p>
+    </div>
+
+    <!-- The full envelope is one SVG — solid, no transparency -->
+    <div class="env-wrap" id="env-wrap">
+
+      <!-- SVG envelope body (back + side flaps + bottom flap) — always visible -->
+      <svg class="env-svg-body" viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg">
+        <!-- Envelope base rectangle -->
+        <rect x="0" y="0" width="360" height="240" rx="6" fill="#EDD9A3"/>
+        <!-- Left triangle fold -->
+        <polygon points="0,0 0,240 180,120" fill="#D4B870"/>
+        <!-- Right triangle fold -->
+        <polygon points="360,0 360,240 180,120" fill="#C9A94A"/>
+        <!-- Bottom triangle fold -->
+        <polygon points="0,240 360,240 180,120" fill="#E0C87A"/>
+        <!-- Gold seam lines -->
+        <line x1="0" y1="0" x2="180" y2="120" stroke="#B8962A" stroke-width="0.6" opacity="0.5"/>
+        <line x1="360" y1="0" x2="180" y2="120" stroke="#B8962A" stroke-width="0.6" opacity="0.5"/>
+        <line x1="0" y1="240" x2="180" y2="120" stroke="#B8962A" stroke-width="0.6" opacity="0.5"/>
+        <line x1="360" y1="240" x2="180" y2="120" stroke="#B8962A" stroke-width="0.6" opacity="0.5"/>
+        <!-- Outer border -->
+        <rect x="1" y="1" width="358" height="238" rx="5" fill="none" stroke="#C9A94A" stroke-width="1.5"/>
+        <!-- Inner border -->
+        <rect x="8" y="8" width="344" height="224" rx="4" fill="none" stroke="rgba(212,175,55,0.3)" stroke-width="0.8"/>
+      </svg>
+
+      <!-- The invitation card nestled inside (sits behind the top flap) -->
+      <div class="env-inner-card" id="env-inner-card">
+        <p class="env-card-eyebrow" data-i18n="envBlessings">🪔 &nbsp; With our families' blessings &nbsp; 🪔</p>
+        <p class="env-card-names">Ramakrishnan<br/><em class="env-amp" data-i18n="heroWeds">weds</em><br/><em>Dr. Pradeetha P</em></p>
+        <p class="env-card-date" data-i18n="heroDate">September 2026 · Kerala &amp; Tamil Nadu</p>
+      </div>
+
+      <!-- Top flap — rotates open on click, contains the seal -->
+      <div class="env-top-flap" id="env-top-flap">
+        <svg class="env-top-svg" viewBox="0 0 360 130" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <!-- Solid filled top flap triangle -->
+          <polygon points="0,0 360,0 180,130" fill="#C4933A"/>
+          <!-- Lighter inner triangle -->
+          <polygon points="10,0 350,0 180,120" fill="#D4A94A" opacity="0.6"/>
+          <!-- Gold edge -->
+          <line x1="0" y1="0" x2="180" y2="130" stroke="#B8852A" stroke-width="0.8" opacity="0.7"/>
+          <line x1="360" y1="0" x2="180" y2="130" stroke="#B8852A" stroke-width="0.8" opacity="0.7"/>
+        </svg>
+
+        <!-- Wax seal — centred on the flap fold line -->
+        <div class="env-seal" id="env-seal">
+          <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer glow ring -->
+            <circle cx="45" cy="45" r="43" fill="none" stroke="#D4AF37" stroke-width="0.8" opacity="0.4"/>
+            <!-- Main seal disc -->
+            <circle cx="45" cy="45" r="38" fill="#6B0F50"/>
+            <circle cx="45" cy="45" r="36" fill="#7D1260"/>
+            <!-- Decorative ring -->
+            <circle cx="45" cy="45" r="32" fill="none" stroke="#D4AF37" stroke-width="1" opacity="0.7"/>
+            <circle cx="45" cy="45" r="27" fill="none" stroke="#D4AF37" stroke-width="0.4" opacity="0.4"/>
+            <!-- Lotus petals N/S/E/W -->
+            <ellipse cx="45" cy="26" rx="4.5" ry="11" fill="#D4AF37" opacity="0.95"/>
+            <ellipse cx="45" cy="64" rx="4.5" ry="11" fill="#D4AF37" opacity="0.95"/>
+            <ellipse cx="26" cy="45" rx="11" ry="4.5" fill="#D4AF37" opacity="0.95"/>
+            <ellipse cx="64" cy="45" rx="11" ry="4.5" fill="#D4AF37" opacity="0.95"/>
+            <!-- Diagonal petals -->
+            <ellipse cx="32" cy="32" rx="4" ry="9" fill="#D4AF37" opacity="0.55" transform="rotate(45 32 32)"/>
+            <ellipse cx="58" cy="32" rx="4" ry="9" fill="#D4AF37" opacity="0.55" transform="rotate(-45 58 32)"/>
+            <ellipse cx="32" cy="58" rx="4" ry="9" fill="#D4AF37" opacity="0.55" transform="rotate(-45 32 58)"/>
+            <ellipse cx="58" cy="58" rx="4" ry="9" fill="#D4AF37" opacity="0.55" transform="rotate(45 58 58)"/>
+            <!-- Centre -->
+            <circle cx="45" cy="45" r="10" fill="#D4AF37"/>
+            <circle cx="45" cy="45" r="7"  fill="#6B0F50"/>
+            <text x="45" y="49" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#D4AF37" font-style="italic" font-weight="bold">R&amp;P</text>
+          </svg>
+        </div>
+      </div>
+
+    </div><!-- /env-wrap -->
+
+    <!-- Prompt -->
+    <div class="env-prompt" id="env-prompt">
+      <p data-i18n="envTapPrompt">Tap the seal to open your invitation</p>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(212,175,55,0.7)" stroke-width="1.5" style="animation:floatArrow 1.8s ease-in-out infinite; margin-top:4px;">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </div>
+
+  </div><!-- /env-scene -->
+</div><!-- /envelope-overlay -->
+
+<!-- Background music -->
+<audio id="bg-music" loop preload="auto">
+  <source src="./assets/invite_tone.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Floating music toggle -->
+<button id="music-toggle" onclick="toggleMusic()" title="Toggle music">
+  <svg id="music-icon-on" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+  </svg>
+  <svg id="music-icon-off" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+    <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+    <line x1="1" y1="1" x2="23" y2="23"/>
+  </svg>
+</button>
+
+
+
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     END OF ENVELOPE INTRO
+════════════════════════════════════════════════════════════ -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     GOLDEN SPARKLE SHOWER — persistent ambient overlay
+════════════════════════════════════════════════════════════ -->
+<canvas id="sparkle-canvas" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:9999;"></canvas>
+
+<!-- ═══════════════════════════════════════════════════════════
+     END OF SPARKLE SHOWER
+════════════════════════════════════════════════════════════ -->
+
+<nav>
+  <a href="#events" data-i18n="navCelebrations">Celebrations</a>
+  <a href="#venues" data-i18n="navVenues">Venues</a>
+  <a href="#gallery" data-i18n="navGallery">Gallery</a>
+  <a href="#contact" data-i18n="navContact">Contact</a>
+  <a href="#wishes" data-i18n="navWishes">Wishes</a>
+</nav>
+
+<!-- Floating translate toggle (bottom-left, mirrors music button) -->
+<div id="translate-wrap">
+  <button id="translate-toggle" onclick="toggleTranslateMenu()" title="Translate">
+  <svg width="22" height="22" viewBox="0 0 44 44" fill="currentColor">
+    <text x="2" y="16" font-family="Arial, sans-serif" font-weight="bold" font-size="16" fill="var(--gold-light)">a</text>
+    
+    <text x="24" y="18" font-family="sans-serif" font-weight="bold" font-size="14" fill="#ffffff">அ</text>
+    
+    <text x="12" y="38" font-family="sans-serif" font-weight="bold" font-size="14" fill="var(--gold)">അ</text>
+  </svg>
+</button>
+  <div id="translate-menu">
+    <button type="button" class="lang-btn active" data-lang="en" onclick="setLanguage('en')">ENGLISH</button>
+    <button type="button" class="lang-btn" data-lang="ta" onclick="setLanguage('ta')">தமிழ்</button>
+    <button type="button" class="lang-btn" data-lang="ml" onclick="setLanguage('ml')">മലയാളം</button>
+  </div>
+</div>
+
+
+
+
+
+<div class="hero">
+  <div class="hero-border"></div>
+  <div class="corner c-tl">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2 L30 2 Q2 2 2 30" stroke="#D4AF37" stroke-width="1" fill="none"/>
+      <path d="M8 2 L8 20" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+      <path d="M2 8 L20 8" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+      <circle cx="8" cy="8" r="2.5" fill="#D4AF37" opacity="0.7"/>
+      <path d="M14 2 Q8 8 2 14" stroke="#D4AF37" stroke-width="0.5" opacity="0.4"/>
+    </svg>
+  </div>
+  <div class="corner c-tr">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2 L30 2 Q2 2 2 30" stroke="#D4AF37" stroke-width="1" fill="none"/>
+      <path d="M8 2 L8 20" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+      <path d="M2 8 L20 8" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+      <circle cx="8" cy="8" r="2.5" fill="#D4AF37" opacity="0.7"/>
+    </svg>
+  </div>
+  <div class="corner c-bl">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2 L30 2 Q2 2 2 30" stroke="#D4AF37" stroke-width="1" fill="none"/>
+      <path d="M8 2 L8 20" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+      <path d="M2 8 L20 8" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+      <circle cx="8" cy="8" r="2.5" fill="#D4AF37" opacity="0.7"/>
+    </svg>
+  </div>
+  <div class="corner c-br">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2 L30 2 Q2 2 2 30" stroke="#D4AF37" stroke-width="1" fill="none"/>
+      <path d="M8 2 L8 20" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+      <path d="M2 8 L20 8" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+      <circle cx="8" cy="8" r="2.5" fill="#D4AF37" opacity="0.7"/>
+    </svg>
+  </div>
+
+  <p id="hero-eyebrow" class="hero-eyebrow" data-i18n="heroEyebrow">&nbsp; Together with our families and friends, we invite you to celebrate the coming together of two people, and a future built on love, respect, equality, and understanding. &nbsp;</p>
+
+  <h1 class="hero-names">
+    T. Ramakrishnan
+    <span class="hero-amp" data-i18n="heroWeds">weds</span>
+    <em>Dr. Pradeetha P</em>
+  </h1>
+
+  <div class="hero-divider">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 20c0 0-8-5-8-11a8 8 0 0116 0c0 6-8 11-8 11z" stroke="#D4AF37" stroke-width="1" fill="none"/>
+      <path d="M12 20V10" stroke="#D4AF37" stroke-width="1"/>
+      <path d="M8 14c1-2 2-3 4-4M16 14c-1-2-2-3-4-4" stroke="#D4AF37" stroke-width="0.8" opacity="0.7"/>
+    </svg>
+  </div>
+
+  <p id="hero-date" class="hero-date" data-i18n="heroDate">September 2026 &nbsp;·&nbsp; Kerala & Tamil Nadu</p>
+
+</div>
+
+<div class="countdown-container">
+  <div class="countdown-inner">
+    <p data-i18n="countdownLabel" style="font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold-light); margin-bottom:12px;">Counting down to the moment</p>
+    <p id="countdown-subtitle" data-i18n="countdownSubtitle" style="font-family:'Playfair Display',serif; font-size:22px; font-style:italic; color:rgba(255,255,255,0.9); margin-bottom:32px;">🌸 Thirumanam · 13 September 2026 · 7:00 AM</p>
+    
+    <div class="countdown-grid">
+      <div class="cd-box">
+        <div class="cd-num" id="cd-days">--</div>
+        <div class="cd-label" data-i18n="cdDays">Days</div>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-box">
+        <div class="cd-num" id="cd-hours">--</div>
+        <div class="cd-label" data-i18n="cdHours">Hours</div>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-box">
+        <div class="cd-num" id="cd-minutes">--</div>
+        <div class="cd-label" data-i18n="cdMin">Min</div>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-box">
+        <div class="cd-num" id="cd-seconds">--</div>
+        <div class="cd-label" data-i18n="cdSec">Sec</div>
+      </div>
+    </div>
+    <p id="cd-done" data-i18n="cdDone" style="display:none; font-family:'Playfair Display',serif; font-size:26px; color:var(--gold-light); margin-top:16px;">🎉 They are married! Congratulations!</p>
+  </div>
+</div>
+
+<div id="events">
+  <section>
+    <p class="section-eyebrow" data-i18n="celebrationsEyebrow">Three Days of Celebration</p>
+    <h2 class="section-title" data-i18n="sectionCelebrations">Our <em>Celebrations</em></h2>
+
+    <div class="events-stack">
+
+      <div class="event-card">
+        <div class="event-date-block">
+          <div class="event-day">12</div>
+          <div class="event-month" data-i18n="monthSep">September</div>
+          <div class="event-weekday" data-i18n="dateSat">Saturday · 2026</div>
+          
+        </div>
+        <div class="event-details">
+          <div class="event-name" data-i18n="event1Name">💍 Nichayathartham - Engagement</div>
+          <div class="event-time" data-i18n="event1Time">6:30 PM - 9:00 PM</div>
+          <div class="event-venue">
+            <span class="event-venue-name" data-i18n="venue1Name">Mangalya Auditorium</span><br/>
+            <span data-i18n="venue1Address">Chottanikkara Vandippetta Rd, Chottanikkara, Thrippunithura, Ernakulam, Kerala 682312</span>
+          </div>
+          <div style="margin-top:10px">
+            <a class="map-btn gold" href="https://maps.app.goo.gl/URDdppBnLdLF7BVt5" target="_blank">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <span data-i18n="openMaps">Open in Google Maps</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-date-block" style="background: var(--plum-deep);">
+          <div class="event-day">13</div>
+          <div class="event-month" data-i18n="monthSep">September</div>
+          <div class="event-weekday" data-i18n="dateSun">Sunday · 2026</div>
+          
+        </div>
+        <div class="event-details">
+          <div class="event-name" data-i18n="event2Name">🌸 Thirumanam - Wedding</div>
+          <div class="event-time" data-i18n="event2Time">7:00 AM - 10:00 AM</div>
+          <div class="event-venue">
+            <span class="event-venue-name" data-i18n="venue1Name">Mangalya Auditorium</span><br/>
+            <span data-i18n="venue1Address">Chottanikkara Vandippetta Rd, Chottanikkara, Thrippunithura, Ernakulam, Kerala 682312</span>
+          </div>
+          <div style="margin-top:10px">
+            <a class="map-btn gold" href="https://maps.app.goo.gl/URDdppBnLdLF7BVt5" target="_blank">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <span data-i18n="openMaps">Open in Google Maps</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-date-block" style="background: #1A2E40;">
+          <div class="event-day">15</div>
+          <div class="event-month" data-i18n="monthSep">September</div>
+          <div class="event-weekday" data-i18n="dateTue">Tuesday · 2026</div>
+          
+        </div>
+        <div class="event-details">
+          <div class="event-name" data-i18n="event3Name">🎊 Varaverpu - Reception</div>
+          <div class="event-time" data-i18n="event3Time">12:30 PM - 2:30 PM</div>
+          <div class="event-venue">
+            <span class="event-venue-name" data-i18n="venue2Name">Ramyas Hotel</span><br/>
+            <span data-i18n="venue2Address">13-D/2, Williams Rd, Cantonment, Tiruchirappalli, Tamil Nadu 620001</span>
+          </div>
+          <div style="margin-top:10px">
+            <a class="map-btn gold" href="https://maps.app.goo.gl/RDsKGrFqJDD9FHcw7" target="_blank">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <span data-i18n="openMaps">Open in Google Maps</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<div class="kolam-divider">
+  <div class="line rev"></div>
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="24" cy="24" r="3" fill="#B38F4D"/>
+    <g stroke="#D4AF37" stroke-width="1" fill="none">
+      <ellipse cx="24" cy="14" rx="3" ry="7" opacity="0.9"/>
+      <ellipse cx="24" cy="34" rx="3" ry="7" opacity="0.9"/>
+      <ellipse cx="14" cy="24" rx="7" ry="3" opacity="0.9"/>
+      <ellipse cx="34" cy="24" rx="7" ry="3" opacity="0.9"/>
+      <ellipse cx="17" cy="17" rx="3" ry="7" transform="rotate(45 17 17)" opacity="0.5"/>
+      <ellipse cx="31" cy="17" rx="3" ry="7" transform="rotate(-45 31 17)" opacity="0.5"/>
+      <ellipse cx="17" cy="31" rx="3" ry="7" transform="rotate(-45 17 31)" opacity="0.5"/>
+      <ellipse cx="31" cy="31" rx="3" ry="7" transform="rotate(45 31 31)" opacity="0.5"/>
+    </g>
+    <circle cx="24" cy="24" r="6" stroke="#D4AF37" stroke-width="0.5" fill="none" opacity="0.4"/>
+    <circle cx="24" cy="24" r="12" stroke="#D4AF37" stroke-width="0.3" fill="none" opacity="0.2"/>
+  </svg>
+  <div class="line"></div>
+</div>
+
+<div id="venues">
+  <section>
+    <p class="section-eyebrow" data-i18n="venuesEyebrow">Getting There</p>
+    <h2 class="section-title" data-i18n="venuesTitle"><em>Venues</em> at a Glance</h2>
+    
+    <div class="venues-grid">
+
+      <div style="background: var(--card-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); background-image: url('./assets/mangalya_audit.png'); background-size: 437px auto; background-position: right bottom; background-repeat: no-repeat; background-blend-mode: luminosity; background-attachment: scroll; border: 1px solid var(--card-glass-border); border-radius: 6px; padding: 28px; position: relative; overflow: hidden;">
+        <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(to right, var(--gold), var(--copper)); z-index:2;"></div>
+        <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(22,2,40,0.55); pointer-events:none; z-index:0;"></div>
+        <div style="position:relative; z-index:1;">
+          <p style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-light); font-weight:600; margin-bottom:10px;" data-i18n="venue1Tag">ENGAGEMENT &amp; WEDDING</p>
+        <p style="font-family:'Playfair Display',serif; font-size:22px; color:var(--text-on-dark); margin-bottom:6px;" data-i18n="venue1Name">Mangalya Auditorium</p>
+        <p style="font-size:13px; color:var(--text-on-dark-soft); margin-bottom:16px;" data-i18n="venue1City">Chottanikara, Ernakulam, Kerala</p>
+        
+
+        <div style="border-top: 1px dashed var(--card-glass-border); padding-top: 16px; margin-bottom: 20px;">
+          <p style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-on-dark); font-weight: 600; margin-bottom: 12px;" data-i18n="howToReach">HOW TO REACH THE VENUE</p>
+          
+          <div style="display: grid; gap: 12px; font-size: 12px; line-height: 1.5; color: var(--text-on-dark-soft);">
+            <div><strong style="color: var(--gold-light);" data-i18n="fromAirportLabel">✈️ From Airport:</strong> <span data-i18n="venue1Airport">~38 km away via Seaport-Airport Road (1 hr 15 mins). Alternatively, take a feeder bus to Aluva Metro, ride to Tripunithura Station, then take a 15-minute auto.</span></div>
+            <div><strong style="color: var(--gold-light);" data-i18n="venue1TrainLabel">🚂 From Ernakulam Junction (South):</strong> <span data-i18n="venue1Train">~18 km away. Take a direct taxi/auto via Vyttila (40 mins), or take the Kochi Metro directly to Tripunithura Station followed by a short auto ride.</span></div>
+            <div><strong style="color: var(--gold-light);" data-i18n="fromBusLabel">🚌 From Bus Stands:</strong> <span data-i18n="venue1Bus">Direct local and KSRTC buses run frequently to Chottanikkara from Vyttila Mobility Hub and Kaloor Private Bus Stand.</span></div>
+            <div><strong style="color: var(--gold-light);" data-i18n="byRoadLabel">🚗 By Road:</strong> <span data-i18n="venue1Road">From North, use Seaport-Airport Road via Thiruvankulam. From South, exit Kochi Bypass at Kundannoor Junction and proceed through Tripunithura.</span></div>
+          </div>
+          <div style="margin-top:10px">
+            <a class="map-btn gold" href="https://maps.app.goo.gl/URDdppBnLdLF7BVt5" target="_blank">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <span data-i18n="openMaps">Open in Google Maps</span>
+            </a>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div style="background: var(--card-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); background-image: url('./assets/ramyas2.png'); background-size: 437px auto; background-position: right bottom; background-repeat: no-repeat; background-blend-mode: luminosity; background-attachment: scroll; border: 1px solid var(--card-glass-border); border-radius: 6px; padding: 28px; position: relative; overflow: hidden;">
+        <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(to right, var(--gold-light), var(--copper)); z-index:2;"></div>
+        <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(22,2,40,0.55); pointer-events:none; z-index:0;"></div>
+        <div style="position:relative; z-index:1;">
+          <p style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-light); font-weight:600; margin-bottom:10px;" data-i18n="venue2Tag">RECEPTION</p>
+        <p style="font-family:'Playfair Display',serif; font-size:22px; color:var(--text-on-dark); margin-bottom:6px;" data-i18n="venue2Name">Ramyas Hotel</p>
+        <p style="font-size:13px; color:var(--text-on-dark-soft); margin-bottom:16px;" data-i18n="venue2City">Trichy (Tiruchirappalli), Tamil Nadu</p>
+
+        <div style="border-top: 1px dashed var(--card-glass-border); padding-top: 16px; margin-bottom: 20px;">
+          <p style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-on-dark); font-weight: 600; margin-bottom: 12px;" data-i18n="howToReach">HOW TO REACH THE VENUE</p>
+          
+          <div style="display: grid; gap: 12px; font-size: 12px; line-height: 1.5; color: var(--text-on-dark-soft);">
+            <div><strong style="color: var(--gold-light);" data-i18n="fromAirportLabel">✈️ From Airport:</strong> <span data-i18n="venue2Airport">~5.5 km from Tiruchirappalli International Airport (TRZ). A direct taxi or auto via the Airport Road takes roughly 15 to 20 minutes.</span></div>
+            <div><strong style="color: var(--gold-light);" data-i18n="venue2TrainLabel">🚂 From Trichy Railway Junction:</strong> <span data-i18n="venue2Train">~1 km away. Located just a 5-minute drive or walk down Williams Road. Readily accessible by auto-rickshaws stationed outside the terminal.</span></div>
+            <div><strong style="color: var(--gold-light);" data-i18n="fromBusLabel">🚌 From Bus Stands:</strong> <span data-i18n="venue2Bus">Diagonally opposite the Trichy Central Bus Stand (less than a 3-minute walk). Highly convenient for guests arriving via long-distance government or private buses.</span></div>
+            <div><strong style="color: var(--gold-light);" data-i18n="byRoadLabel">🚗 By Road:</strong> <span data-i18n="venue2Road">Centrally positioned in Cantonment. Easily accessed via the Chennai-Trichy Highway (NH 45). Direct entry via Williams Road with dedicated guest parking spaces on-site.</span></div>
+          </div>
+          <div style="margin-top:10px">
+            <a class="map-btn gold" href="https://maps.app.goo.gl/RDsKGrFqJDD9FHcw7" target="_blank">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <span data-i18n="openMaps">Open in Google Maps</span>
+            </a>
+          </div>
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<div id="contact">
+  <section>
+    <p class="section-eyebrow" data-i18n="contactEyebrow">Reach Out</p>
+    <h2 class="section-title" data-i18n="contactTitle">Family <em>Contacts</em></h2>
+
+    <div class="family-grid">
+
+      <div class="family-card">
+        <div class="family-card-header">
+          <div class="family-icon">🤵</div>
+          <div>
+            <div class="family-label" data-i18n="groomFamilyLabel">Groom's Family</div>
+            <div class="family-side-name" data-i18n="groomFamilyName">Er N. Thiagu Family</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E6CA65" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="contact-info">
+            <div class="contact-relation" data-i18n="theGroom">The Groom</div>
+            <div class="contact-name">T. Ramakrishnan</div>
+            <a class="contact-number" href="tel:+917373219594">+91 73732 19594</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="contact-info">
+            <div class="contact-relation" data-i18n="fatherOfGroom">Father of the Groom</div>
+            <div class="contact-name">Er. N. Thiagu</div>
+            <a class="contact-number" href="tel:+919443162324">+91 94431 62324</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="contact-info">
+            <div class="contact-relation" data-i18n="motherOfGroom">Mother of the Groom</div>
+            <div class="contact-name">T. Maheshwari</div>
+            <a class="contact-number" href="tel:+919843738259">+91 98437 38259</a>
+          </div>
+        </div>
+
+        
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E6CA65" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="contact-info">
+            <div class="contact-relation" data-i18n="brotherOfGroom">Brother of the Groom</div>
+            <div class="contact-name">T. Gopikrishna</div>
+            <a class="contact-number" href="tel:+919655598002">+91 96555 98002</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="family-card">
+        <div class="family-card-header">
+          <div class="family-icon">👰</div>
+          <div>
+            <div class="family-label" data-i18n="brideFamilyLabel">Bride's Family</div>
+            <div class="family-side-name" data-i18n="brideFamilyName">Pradeepkumar Family</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E6CA65" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="contact-info">
+            <div class="contact-relation" data-i18n="theBride">The Bride</div>
+            <div class="contact-name">Dr. Pradeetha P</div>
+            <a class="contact-number" href="tel:+917339642304">+91 73396 42304</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="contact-info">
+            <div class="contact-relation" data-i18n="fatherOfBride">Father of the Bride</div>
+            <div class="contact-name">Pradeepkumar</div>
+            <a class="contact-number" href="tel:+919744472884">+91 97444 72884</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="contact-info">
+            <div class="contact-relation" data-i18n="brotherOfBride">Brother of the Bride</div>
+            <div class="contact-name">Sreejith</div>
+            <a class="contact-number" href="tel:+919895631018">+91 98956 31018</a>
+          </div>
+        </div>
+
+        <!-- <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="contact-info">
+            <div class="contact-relation" data-i18n="motherOfBride">Mother of the Bride</div>
+            <div class="contact-name">Selvi</div>
+            <a class="contact-number" href="tel:+919999999905">+91 99999 99905</a>
+          </div>
+        </div> -->
+
+        
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="wishes">
+  <section>
+    <p class="section-eyebrow" data-i18n="wishesEyebrow">From the Heart</p>
+    <h2 class="section-title" data-i18n="wishesTitle">Send Your <em>Wishes</em></h2>
+
+    <div style="background:var(--card-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border:1px solid var(--card-glass-border); border-radius:6px; padding:36px; margin-bottom:40px;">
+      <div class="wish-form-grid">
+        <div>
+          <label style="display:block; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-on-dark-muted); margin-bottom:6px;" data-i18n="yourName">Your Name *</label>
+          <input id="wish-name" type="text" data-i18n-placeholder="namePlaceholder" placeholder="e.g. Suresh Kumar" style="width:100%; padding:12px 14px; border:1px solid var(--card-glass-border); border-radius:4px; font-size:14px; font-family:'Inter',sans-serif; color:var(--text-on-dark); background:rgba(255,255,255,0.05); outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--card-glass-border)'" />
+        </div>
+        <div>
+          <label style="display:block; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-on-dark-muted); margin-bottom:6px;" data-i18n="relationLabel">Relation to Couple</label>
+          <input id="wish-relation" type="text" data-i18n-placeholder="relationPlaceholder" placeholder="e.g. College friend of Groom" style="width:100%; padding:12px 14px; border:1px solid var(--card-glass-border); border-radius:4px; font-size:14px; font-family:'Inter',sans-serif; color:var(--text-on-dark); background:rgba(255,255,255,0.05); outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--card-glass-border)'" />
+        </div>
+      </div>
+      <div style="margin-bottom:20px;">
+        <label style="display:block; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-on-dark-muted); margin-bottom:6px;" data-i18n="yourWish">Your Wish *</label>
+        <textarea id="wish-message" rows="4" data-i18n-placeholder="wishPlaceholder" placeholder="Write your heartfelt wishes for Ramakrishnan & Pradeetha…" style="width:100%; padding:12px 14px; border:1px solid var(--card-glass-border); border-radius:4px; font-size:14px; font-family:'Inter',sans-serif; color:var(--text-on-dark); background:rgba(255,255,255,0.05); outline:none; resize:vertical; transition:border 0.2s; line-height:1.6;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--card-glass-border)'"></textarea>
+      </div>
+      <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+        <button id="wish-submit" onclick="submitWish()" style="display:inline-flex; align-items:center; gap:8px; background:linear-gradient(to right, var(--copper), var(--gold)); color:var(--royal-bg-deep); font-size:13px; font-weight:600; letter-spacing:0.08em; padding:13px 28px; border-radius:4px; border:none; cursor:pointer; transition:opacity 0.2s; font-family:'Inter',sans-serif;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          <span data-i18n="sendWishes">Send Wishes</span>
+        </button>
+        <span id="wish-status" style="font-size:13px; color:var(--text-on-dark-muted); font-style:italic;"></span>
+      </div>
+    </div>
+
+    <div id="wishes-wall" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:20px;">
+      <div style="text-align:center; padding:40px 20px; color:var(--text-on-dark-muted); font-style:italic; font-size:14px; grid-column:1/-1;" data-i18n="wishesPlaceholderText">
+        💜 Wishes from loved ones will appear here…
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+<section id="gallery" class="gallery-section">
+  <div class="section-eyebrow" data-i18n="galleryEyebrow">Shared Memories</div>
+  <h2 class="section-title" data-i18n="galleryTitle">Event <em>Gallery</em></h2>
+  
+  <div class="family-card" style="max-width: 600px; margin: 0 auto 48px auto;">
+    <div class="family-card-header">
+      <div class="family-icon">📸</div>
+      <div>
+        <div class="family-label" data-i18n="galleryLabel">Capture the Moments</div>
+        <div class="family-side-name" data-i18n="gallerySubLabel">Click & Upload</div>
+      </div>
+    </div>
+
+    <div id="upload-interface">
+      <p data-i18n="galleryHelpText" style="font-size: 14px; color: var(--text-on-dark-soft); margin-bottom: 16px;">
+        Help us save our memories! You can capture and upload up to <strong style="color:var(--gold-light)">3 photos</strong> directly from your camera during the event days (Sept 12, 13, & 15).
+      </p>
+      
+      <div id="upload-status-badge" class="person-title-badge" style="margin-bottom: 16px;">
+        <span data-i18n="photosUploadedLabel">Photos Uploaded:</span> <span id="photo-count-tracker">0</span> / 3
+      </div>
+      <div id="upload-limit-note" style="display:none; margin-bottom: 16px; color: var(--gold-light); font-size: 13px;">
+        ✨ Thank you! You have used all 3 uploads for this device.
+      </div>
+
+      <form id="event-capture-form" onsubmit="handlePhotoUpload(event)">
+        <input type="file" id="camera-file-input" accept="image/*" capture="environment" style="display: none;" onchange="previewCapturedImages(this)" multiple />
+        <input type="file" id="gallery-file-input" accept="image/*" style="display: none;" onchange="previewCapturedImages(this)" multiple />
+
+        <div class="gallery-action-row">
+          <button type="button" class="gallery-action-btn gold" onclick="triggerPhotoPicker('camera')" data-i18n="galleryButton">
+            📷 Take Photo
+          </button>
+          <button type="button" class="gallery-action-btn" onclick="triggerPhotoPicker('gallery')" data-i18n="gallerySelectButton">
+            🖼️ Select From Gallery
+          </button>
+        </div>
+
+        <div id="camera-preview-container" style="display: none; text-align: center; margin-bottom: 16px;">
+          <div id="preview-thumbnails-grid" style="display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: nowrap; overflow-x: auto; margin-bottom: 12px; padding-bottom: 4px;"></div>
+        </div>
+
+        <div class="wish-form-grid" style="grid-template-columns: 1fr;">
+          <textarea id="photo-message" class="map-btn" style="width:100%; height:80px; background: rgba(0,0,0,0.2); text-align: left; padding: 10px; color: white;" data-i18n-placeholder="galleryMessagePlaceholder" placeholder="Write a brief message with this photo... (Optional)"></textarea>
+        </div>
+
+        <button type="submit" id="submit-photo-btn" class="map-btn" data-i18n="galleryUploadButton" style="width: 100%; justify-content: center; background: var(--gold); color: var(--royal-bg-deep); font-weight: 600;" disabled>
+          Upload Photo to Gallery
+        </button>
+      </form>
+    </div>
+
+    <div id="upload-lock-interface" style="display: none; text-align: center; padding: 20px 0;">
+      <div style="font-size: 40px; margin-bottom: 10px;">🔒</div>
+      <p style="color: var(--gold-light); font-weight: 500;" data-i18n="galleryUploadLockTitle">Camera Uploads Open Only on Event Days</p>
+      <p style="font-size: 13px; color: var(--text-on-dark-soft); margin-top: 4px;" data-i18n="galleryUploadLockSubtitle"> Join us on September 12th, 13th, and 15th, 2026 to upload your photos! </p>
+    </div>
+  </div>
+
+  <div class="your-memories-banner">
+    <strong>Your Uploaded Memories</strong>
+    <p>Thank you for sharing these precious moments with us.</p>
+  </div>
+
+  <div class="venues-grid" id="live-gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+    <div class="person-card" style="text-align: center; padding: 40px 20px; grid-column: 1 / -1;">
+      <p style="color: var(--text-on-dark-muted); font-style: italic;" data-i18n="galleryEmptyState">No memories saved on this device yet. Be the first to share a moment!</p>
+    </div>
+  </div>
+</section>
+
+<div id="upload-progress-overlay" class="upload-progress-overlay" aria-live="polite">
+  <div class="upload-progress-card">
+    <div style="font-size: 32px; margin-bottom: 10px; text-align: center;">📸</div>
+    <h3 style="margin: 0 0 6px; text-align: center; font-size: 20px;">Uploading your memories</h3>
+    <p id="upload-progress-text" style="margin: 0 0 12px; text-align: center; color: var(--charcoal);">Please keep this page open while your photos are being saved.</p>
+    <div class="upload-progress-bar"><div id="upload-progress-fill"></div></div>
+    <div id="upload-progress-meta" class="upload-progress-meta">Preparing your photos…</div>
+  </div>
+</div>
+<footer>
+  <div style="margin-bottom:20px;">
+    <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="3" fill="#E6CA65"/>
+      <g stroke="#E6CA65" stroke-width="1" fill="none" opacity="0.7">
+        <ellipse cx="24" cy="14" rx="3" ry="7"/>
+        <ellipse cx="24" cy="34" rx="3" ry="7"/>
+        <ellipse cx="14" cy="24" rx="7" ry="3"/>
+        <ellipse cx="34" cy="24" rx="7" ry="3"/>
+      </g>
+    </svg>
+  </div>
+  <div class="footer-names">Ramakrishnan & Pradeetha</div>
+  <div class="footer-tagline" data-i18n="footerTagline">September 2026 · Chottanikara, Kerala & Trichy, Tamil Nadu</div>
+  <div class="footer-note" data-i18n="footerNote">Made with love · Two families, one beautiful beginning</div>
+</footer>
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>
