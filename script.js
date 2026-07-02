@@ -409,9 +409,10 @@ function toggleMusic(){
           grid.insertAdjacentHTML("beforeend", photoHtml);
         });
       } else {
+        const emptyStateText = (translations[currentLang] || translations.en).galleryEmptyState || "No memories saved on this device yet. Be the first to share a moment!";
         grid.insertAdjacentHTML("beforeend", `
           <div class="person-card" style="text-align: center; padding: 40px 20px; grid-column: 1 / -1;">
-            <p style="color: var(--text-on-dark-muted); font-style: italic;">No memories saved on this device yet. Be the first to share a moment!</p>
+            <p style="color: var(--text-on-dark-muted); font-style: italic;">${emptyStateText}</p>
           </div>`);
       }
     } catch (err) {
@@ -596,13 +597,15 @@ function toggleMusic(){
       gallerySubLabel: "Click & Upload",
       galleryHelpText: "Help us save our memories! You can capture and upload up to <strong style=\"color:var(--gold-light)\">3 photos</strong> directly from your camera during the event days (Sept 12, 13, & 15).",
       photosUploadedLabel: "Photos Uploaded:",
+      memoriesBannerTitle: "Your Uploaded Memories",
+      memoriesBannerSubtitle: "Thank you for sharing these precious moments with us.",
       galleryButton: "📷 Take Photo",
       gallerySelectButton: "🖼️ Select From Gallery",
       galleryMessagePlaceholder: "Write a brief message with this photo... (Optional)",
       galleryUploadButton: "Upload Photo to Gallery",
       galleryUploadLockTitle: "Camera Uploads Open Only on Event Days",
       galleryUploadLockSubtitle: "Join us on September 12th, 13th, and 15th, 2026 to upload your photos!",
-      galleryEmptyState: "No photos uploaded yet. Be the first to share a moment!"
+      galleryEmptyState: "No memories saved on this device yet. Be the first to share a moment!"
     },
 
     ta: {
@@ -690,13 +693,15 @@ function toggleMusic(){
       gallerySubLabel: "க்ளிக் செய்து பதிவேற்று",
       galleryHelpText: "எமது நினைவுகளை சேமிக்க உதவுங்கள்! நிகழ்ச்சி நாட்களில் (செப் 12, 13, மற்றும் 15) உங்கள் கேமராவில் இருந்து நேரடியாக <strong style=\"color:var(--gold-light)\">3 படங்களை</strong> பிடித்து பதிவேற்றலாம்.",
       photosUploadedLabel: "படங்கள் பதிவேற்றப்பட்டவை:",
+      memoriesBannerTitle: "உங்கள் பதிவேற்றிய நினைவுகள்",
+      memoriesBannerSubtitle: "இந்த விலைமதிப்பற்ற தருணங்களைப் பகிர்ந்ததற்கு நன்றி.",
       galleryButton: "📷 புகைப்படம் எடு",
       gallerySelectButton: "🖼️ கேலரியிலிருந்து தேர்ந்தெடு",
       galleryMessagePlaceholder: "இந்த படத்துடன் சிறிய செய்தியை எழுதவும்... (விரும்பினால்)",
       galleryUploadButton: "படத்தை கேலரிக்கு பதிவேற்று",
       galleryUploadLockTitle: "நிகழ்ச்சி நாட்களில் மட்டுமே கேமரா பதிவேடுகள் திறக்கப்படும்",
       galleryUploadLockSubtitle: "செப்டம்பர் 12, 13 மற்றும் 15, 2026 அன்று உங்கள் படங்களை பதிவேற்றுங்கள்!",
-      galleryEmptyState: "இன்னும் எந்த படமும் பதிவேற்றப்படவில்லை. முதல் ஒருவராக நினைவுகளை பகிரவும்!"
+      galleryEmptyState: "இந்த சாதனத்தில் இதுவரை எந்த நினைவுகளும் சேமிக்கப்படவில்லை. முதல் ஒருவராக நினைவுகளை பகிரவும்!"
     },
 
     ml: {
@@ -790,7 +795,7 @@ function toggleMusic(){
       galleryUploadButton: "ഫോട്ടോ ഗ്യാലറിയിലേക്ക് അപ്‌ലോഡ് ചെയ്യൂ",
       galleryUploadLockTitle: "ഇവന്റ് ദിവസങ്ങളിൽ മാത്രമേ ക്യാമറ അപ്‌ലോഡുകൾ തുറക്കൂ",
       galleryUploadLockSubtitle: "സെപ്റ്റംബർ 12, 13, 15, 2026-ന് നിങ്ങളുടെ ഫോട്ടോകൾ അപ്‌ലോഡ് ചെയ്യൂ!",
-      galleryEmptyState: "ഇപ്പോഴും ഫോട്ടോകൾ അപ്‌ലോഡ് ചെയ്യപ്പെട്ടിട്ടില്ല. ആദ്യമായി ഒരു നിമിഷം പങ്കിടൂ!"
+      galleryEmptyState: "ഈ ഡിവൈസിൽ ഇതുവരെ ഓർമ്മകൾ സേവ് ചെയ്തിട്ടില്ല. ആദ്യമായി ഒരു നിമിഷം പങ്കിടൂ!"
     }
   };
 
