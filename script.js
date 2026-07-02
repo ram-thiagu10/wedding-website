@@ -409,10 +409,9 @@ function toggleMusic(){
           grid.insertAdjacentHTML("beforeend", photoHtml);
         });
       } else {
-        const emptyStateText = (translations[currentLang] || translations.en).galleryEmptyState || "No memories saved on this device yet. Be the first to share a moment!";
         grid.insertAdjacentHTML("beforeend", `
           <div class="person-card" style="text-align: center; padding: 40px 20px; grid-column: 1 / -1;">
-            <p style="color: var(--text-on-dark-muted); font-style: italic;">${emptyStateText}</p>
+            <p style="color: var(--text-on-dark-muted); font-style: italic;" data-i18n="galleryEmptyState">No memories saved on this device yet. Be the first to share a moment!</p>
           </div>`);
       }
     } catch (err) {
