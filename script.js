@@ -200,7 +200,7 @@ function toggleMusic(){
     }
   }
 
-  const weddingDate = new Date('2026-09-13T07:00:00+05:30');
+  const weddingDate = new Date('2026-09-13T11:20:00+05:30');
 
   function updateCountdown() {
     const now = new Date();
@@ -524,7 +524,7 @@ function toggleMusic(){
       envBlessings: "🪔 &nbsp; With our families' blessings &nbsp; 🪔",
       envTapPrompt: "Tap the seal to open your invitation",
       countdownLabel: "Counting down to the moment",
-      countdownSubtitle: "🌸 Thirumanam · 13 September 2026 · 7:00 AM",
+      countdownSubtitle: "🌸 Thirumanam · 13 September 2026 · 11:20 AM",
       cdDays: "Days", cdHours: "Hours", cdMin: "Min", cdSec: "Sec",
       cdDone: "🎉 They are married! Congratulations!",
       celebrationsEyebrow: "Three Days of Celebration",
@@ -534,9 +534,9 @@ function toggleMusic(){
       dateSun: "Sunday · 2026",
       dateTue: "Tuesday · 2026",
       event1Name: "💍 Nichayathartham - Engagement",
-      event1Time: "6:30 PM - 9:00 PM",
+      event1Time: "7:20 AM - 8:30 AM",
       event2Name: "🌸 Thirumanam - Wedding",
-      event2Time: "7:00 AM - 10:00 AM",
+      event2Time: "11:20 AM - 11:56 AM",
       event3Name: "🎊 Varaverpu - Reception",
       event3Time: "12:30 PM - 2:30 PM",
       venue1Name: "Mangalya Auditorium",
@@ -594,7 +594,7 @@ function toggleMusic(){
       galleryTitle: "Event <em>Gallery</em>",
       galleryLabel: "Capture the Moments",
       gallerySubLabel: "Click & Upload",
-      galleryHelpText: "Help us save our memories! You can capture and upload up to <strong style=\"color:var(--gold-light)\">3 photos</strong> directly from your camera during the event days (Sept 12, 13, & 15).",
+      galleryHelpText: "Help us save our memories! You can capture and upload up to <strong style=\"color:var(--gold-light)\">3 photos</strong> directly from your camera during the event days (Sept 13 & 15).",
       photosUploadedLabel: "Photos Uploaded:",
       memoriesBannerTitle: "Your Uploaded Memories",
       memoriesBannerSubtitle: "Thank you for sharing these precious moments with us.",
@@ -603,7 +603,7 @@ function toggleMusic(){
       galleryMessagePlaceholder: "Write a brief message with this photo... (Optional)",
       galleryUploadButton: "Upload Photo to Gallery",
       galleryUploadLockTitle: "Camera Uploads Open Only on Event Days",
-      galleryUploadLockSubtitle: "Join us on September 12th, 13th, and 15th, 2026 to upload your photos!",
+      galleryUploadLockSubtitle: "Join us on September 13th and 15th, 2026 to upload your photos!",
       galleryEmptyState: "No memories saved on this device yet. Be the first to share a moment!"
     },
 
@@ -620,7 +620,7 @@ function toggleMusic(){
       envBlessings: "🪔 &nbsp; எங்கள் குடும்பங்களின் ஆசியுடன் &nbsp; 🪔",
       envTapPrompt: "உங்கள் அழைப்பிதழைத் திறக்க முத்திரையைத் தொடவும்",
       countdownLabel: "தருணத்திற்கான எண்ணிக்கை",
-      countdownSubtitle: "🌸 திருமணம் · 13 செப்டம்பர் 2026 · காலை 7:00",
+      countdownSubtitle: "🌸 திருமணம் · 13 செப்டம்பர் 2026 · காலை 11:20",
       cdDays: "நாட்கள்", cdHours: "மணி", cdMin: "நிமிடம்", cdSec: "வினாடி",
       cdDone: "🎉 அவர்கள் திருமணமானார்கள்! வாழ்த்துக்கள்!",
       celebrationsEyebrow: "மூன்று நாட்கள் கொண்டாட்டம்",
@@ -630,9 +630,9 @@ function toggleMusic(){
       dateSun: "ஞாயிற்றுக்கிழமை · 2026",
       dateTue: "செவ்வாய்க்கிழமை · 2026",
       event1Name: "💍 நிச்சயதார்த்தம்",
-      event1Time: "மாலை 6:30 - 9:00",
+      event1Time: "காலை 7:20 - 8:30",
       event2Name: "🌸 திருமணம்",
-      event2Time: "காலை 7:00 - 10:00",
+      event2Time: "காலை 11:20 - 11:56",
       event3Name: "🎊 வரவேற்பு",
       event3Time: "மதியம் 12:30 - 2:30",
       venue1Name: "மங்கள்யா ஆடிட்டோரியம்",
@@ -690,7 +690,7 @@ function toggleMusic(){
       galleryTitle: "நிகழ்ச்சி <em>கேலரி</em>",
       galleryLabel: "நினைவுகளை பிடிக்கவும்",
       gallerySubLabel: "க்ளிக் செய்து பதிவேற்று",
-      galleryHelpText: "எமது நினைவுகளை சேமிக்க உதவுங்கள்! நிகழ்ச்சி நாட்களில் (செப் 12, 13, மற்றும் 15) உங்கள் கேமராவில் இருந்து நேரடியாக <strong style=\"color:var(--gold-light)\">3 படங்களை</strong> பிடித்து பதிவேற்றலாம்.",
+      galleryHelpText: "எமது நினைவுகளை சேமிக்க உதவுங்கள்! நிகழ்ச்சி நாட்களில் (செப் 13 & 15) உங்கள் கேமராவில் இருந்து நேரடியாக <strong style=\"color:var(--gold-light)\">3 படங்களை</strong> பிடித்து பதிவேற்றலாம்.",
       photosUploadedLabel: "படங்கள் பதிவேற்றப்பட்டவை:",
       memoriesBannerTitle: "உங்கள் பதிவேற்றிய நினைவுகள்",
       memoriesBannerSubtitle: "இந்த விலைமதிப்பற்ற தருணங்களைப் பகிர்ந்ததற்கு நன்றி.",
@@ -699,7 +699,7 @@ function toggleMusic(){
       galleryMessagePlaceholder: "இந்த படத்துடன் சிறிய செய்தியை எழுதவும்... (விரும்பினால்)",
       galleryUploadButton: "படத்தை கேலரிக்கு பதிவேற்று",
       galleryUploadLockTitle: "நிகழ்ச்சி நாட்களில் மட்டுமே கேமரா பதிவேடுகள் திறக்கப்படும்",
-      galleryUploadLockSubtitle: "செப்டம்பர் 12, 13 மற்றும் 15, 2026 அன்று உங்கள் படங்களை பதிவேற்றுங்கள்!",
+      galleryUploadLockSubtitle: "செப்டம்பர் 13 மற்றும் 15, 2026 அன்று உங்கள் படங்களை பதிவேற்றுங்கள்!",
       galleryEmptyState: "இந்தச் சாதனத்தில் இன்னும் நினைவுகள் எதுவும் சேமிக்கப்படவில்லை. ஒரு தருணத்தை முதலில் பகிர்ந்துகொள்பவராக நீங்களிருங்கள்!"
     },
 
@@ -716,7 +716,7 @@ function toggleMusic(){
       envBlessings: "🪔 &nbsp; ഞങ്ങളുടെ കുടുംബങ്ങളുടെ അനുഗ്രഹത്തോടെ &nbsp; 🪔",
       envTapPrompt: "നിങ്ങളുടെ ക്ഷണക്കത്ത് തുറക്കാൻ മുദ്ര സ്പർശിക്കുക",
       countdownLabel: "ആ നിമിഷത്തിലേക്കുള്ള കൗണ്ട്ഡൗൺ",
-      countdownSubtitle: "🌸 തിരുമണം · 13 സെപ്റ്റംബർ 2026 · രാവിലെ 7:00",
+      countdownSubtitle: "🌸 തിരുമണം · 13 സെപ്റ്റംബർ 2026 · രാവിലെ 11:20",
       cdDays: "ദിവസം", cdHours: "മണിക്കൂർ", cdMin: "മിനിറ്റ്", cdSec: "സെക്കൻഡ്",
       cdDone: "🎉 അവർ വിവാഹിതരായി! അഭിനന്ദനങ്ങൾ!",
       celebrationsEyebrow: "മൂന്ന് ദിവസത്തെ ആഘോഷം",
@@ -726,9 +726,9 @@ function toggleMusic(){
       dateSun: "ഞായറാഴ്ച · 2026",
       dateTue: "ചൊവ്വാഴ്ച · 2026",
       event1Name: "💍 നിശ്ചയം",
-      event1Time: "വൈകുന്നേരം 6:30 - രാത്രി 9:00",
+      event1Time: "രാവിലെ 7:20 - 8:30",
       event2Name: "🌸 തിരുമണം",
-      event2Time: "രാവിലെ 7:00 - 10:00",
+      event2Time: "രാവിലെ 11:20 - 11:56",
       event3Name: "🎊 വരവേൽപ്പ്",
       event3Time: "ഉച്ചയ്ക്ക് 12:30 - 2:30",
       venue1Name: "മംഗല്യ ഓഡിറ്റോറിയം",
@@ -786,14 +786,14 @@ function toggleMusic(){
       galleryTitle: "ഇവന്റ് <em>ഗ്യാലറി</em>",
       galleryLabel: "ക്ഷണങ്ങളെ പിടിക്കുക",
       gallerySubLabel: "ക്ലിക്ക് ചെയ്ത് അപ്‌ലോഡ് ചെയ്യുക",
-      galleryHelpText: "ഞങ്ങളുടെ ഓർമകൾ സംരക്ഷിക്കാൻ സഹായിക്കൂ! ഇവന്റ് ദിവസങ്ങളിൽ (സെപ്റ്റംബർ 12, 13, & 15) നിങ്ങളുടെ క్యാമറയിൽ നിന്ന് നേരിട്ട് <strong style=\"color:var(--gold-light)\">3 ഫോട്ടോകൾ</strong> പകർത്തി അപ്‌ലോഡ് ചെയ്യാം.",
+      galleryHelpText: "ഞങ്ങളുടെ ഓർമകൾ സംരക്ഷിക്കാൻ സഹായിക്കൂ! ഇവന്റ് ദിവസങ്ങളിൽ (സെപ്റ്റംബർ 13 & 15) നിങ്ങളുടെ ക്യാമറയിൽ നിന്ന് നേരിട്ട് <strong style=\"color:var(--gold-light)\">3 ഫോട്ടോകൾ</strong> പകർത്തി അപ്‌ലോഡ് ചെയ്യാം.",
       photosUploadedLabel: "അപ്‌ലോഡ് ചെയ്ത ഫോട്ടോകൾ:",
       galleryButton: "📷 ഫോട്ടോ എടുക്കൂ",
       gallerySelectButton: "🖼️ ഗാലറിയിൽ നിന്ന് തിരഞ്ഞെടുക്കൂ",
       galleryMessagePlaceholder: "ഈ ഫോട്ടോയ്‌ക്കൊപ്പം ചെറിയ സന്ദേശം എഴുതൂ... (ഐച്ഛികം)",
       galleryUploadButton: "ഫോട്ടോ ഗ്യാലറിയിലേക്ക് അപ്‌ലോഡ് ചെയ്യൂ",
       galleryUploadLockTitle: "ഇവന്റ് ദിവസങ്ങളിൽ മാത്രമേ ക്യാമറ അപ്‌ലോഡുകൾ തുറക്കൂ",
-      galleryUploadLockSubtitle: "സെപ്റ്റംബർ 12, 13, 15, 2026-ന് നിങ്ങളുടെ ഫോട്ടോകൾ അപ്‌ലോഡ് ചെയ്യൂ!",
+      galleryUploadLockSubtitle: "സെപ്റ്റംബർ 13, 15, 2026-ന് നിങ്ങളുടെ ഫോട്ടോകൾ അപ്‌ലോഡ് ചെയ്യൂ!",
       galleryEmptyState: "ഈ ഉപകരണത്തിൽ ഇതുവരെ ഓർമ്മകളൊന്നും സംരക്ഷിക്കപ്പെട്ടിട്ടില്ല. ആദ്യമായി ഒരു നിമിഷം പങ്കുവെക്കുന്നയാൾ നിങ്ങളാകൂ!"
     }
   };
@@ -842,7 +842,7 @@ function toggleMusic(){
 
   // --- PHOTO CAPTURE & EVENT RESTRICTION CONFIGURATION ---
 const APP_SCRIPT_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzKarcZW2n3eCEr8jKNzojPRJEGlibCx67_nrpuIHquBSe1zd0XqnSoqmfFtqbUcruQ/exec";
-const EVENT_DAYS = ["2026-09-12", "2026-09-13", "2026-09-15"]; // Target Event Dates
+const EVENT_DAYS = ["2026-09-13", "2026-09-15"]; // Target Event Dates
 const MAX_PHOTOS_ALLOWED = 3;
 
 // --- CLOUDINARY CONFIGURATION ---
