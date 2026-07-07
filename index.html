@@ -90,30 +90,33 @@
 
         <!-- Wax seal — centred on the flap fold line -->
         <div class="env-seal" id="env-seal">
-          <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-            <!-- Outer glow ring -->
-            <circle cx="45" cy="45" r="43" fill="none" stroke="#D4AF37" stroke-width="0.8" opacity="0.4"/>
-            <!-- Main seal disc -->
-            <circle cx="45" cy="45" r="38" fill="#6B0F50"/>
-            <circle cx="45" cy="45" r="36" fill="#7D1260"/>
-            <!-- Decorative ring -->
-            <circle cx="45" cy="45" r="32" fill="none" stroke="#D4AF37" stroke-width="1" opacity="0.7"/>
-            <circle cx="45" cy="45" r="27" fill="none" stroke="#D4AF37" stroke-width="0.4" opacity="0.4"/>
-            <!-- Lotus petals N/S/E/W -->
-            <ellipse cx="45" cy="26" rx="4.5" ry="11" fill="#D4AF37" opacity="0.95"/>
-            <ellipse cx="45" cy="64" rx="4.5" ry="11" fill="#D4AF37" opacity="0.95"/>
-            <ellipse cx="26" cy="45" rx="11" ry="4.5" fill="#D4AF37" opacity="0.95"/>
-            <ellipse cx="64" cy="45" rx="11" ry="4.5" fill="#D4AF37" opacity="0.95"/>
-            <!-- Diagonal petals -->
-            <ellipse cx="32" cy="32" rx="4" ry="9" fill="#D4AF37" opacity="0.55" transform="rotate(45 32 32)"/>
-            <ellipse cx="58" cy="32" rx="4" ry="9" fill="#D4AF37" opacity="0.55" transform="rotate(-45 58 32)"/>
-            <ellipse cx="32" cy="58" rx="4" ry="9" fill="#D4AF37" opacity="0.55" transform="rotate(-45 32 58)"/>
-            <ellipse cx="58" cy="58" rx="4" ry="9" fill="#D4AF37" opacity="0.55" transform="rotate(45 58 58)"/>
-            <!-- Centre -->
-            <circle cx="45" cy="45" r="10" fill="#D4AF37"/>
-            <circle cx="45" cy="45" r="7"  fill="#6B0F50"/>
-            <text x="45" y="49" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#D4AF37" font-style="italic" font-weight="bold">R&amp;P</text>
-          </svg>
+          <img src="./assets/seal.png" alt="Wax seal" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+          <div class="env-seal-fallback" style="display:none; width:100%; height:100%;">
+            <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+              <!-- Outer glow ring -->
+              <circle cx="45" cy="45" r="43" fill="none" stroke="#D4AF37" stroke-width="0.8" opacity="0.4"/>
+              <!-- Main seal disc -->
+              <circle cx="45" cy="45" r="38" fill="#6B0F50"/>
+              <circle cx="45" cy="45" r="36" fill="#7D1260"/>
+              <!-- Decorative ring -->
+              <circle cx="45" cy="45" r="32" fill="none" stroke="#D4AF37" stroke-width="1" opacity="0.7"/>
+              <circle cx="45" cy="45" r="27" fill="none" stroke="#D4AF37" stroke-width="0.4" opacity="0.4"/>
+              <!-- Lotus petals N/S/E/W -->
+              <ellipse cx="45" cy="26" rx="4.5" ry="11" fill="#D4AF37" opacity="0.95"/>
+              <ellipse cx="45" cy="64" rx="4.5" ry="11" fill="#D4AF37" opacity="0.95"/>
+              <ellipse cx="26" cy="45" rx="11" ry="4.5" fill="#D4AF37" opacity="0.95"/>
+              <ellipse cx="64" cy="45" rx="11" ry="4.5" fill="#D4AF37" opacity="0.95"/>
+              <!-- Diagonal petals -->
+              <ellipse cx="32" cy="32" rx="4" ry="9" fill="#D4AF37" opacity="0.55" transform="rotate(45 32 32)"/>
+              <ellipse cx="58" cy="32" rx="4" ry="9" fill="#D4AF37" opacity="0.55" transform="rotate(-45 58 32)"/>
+              <ellipse cx="32" cy="58" rx="4" ry="9" fill="#D4AF37" opacity="0.55" transform="rotate(-45 32 58)"/>
+              <ellipse cx="58" cy="58" rx="4" ry="9" fill="#D4AF37" opacity="0.55" transform="rotate(45 58 58)"/>
+              <!-- Centre -->
+              <circle cx="45" cy="45" r="10" fill="#D4AF37"/>
+              <circle cx="45" cy="45" r="7"  fill="#6B0F50"/>
+              <text x="45" y="49" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#D4AF37" font-style="italic" font-weight="bold">R&amp;P</text>
+            </svg>
+          </div>
         </div>
       </div>
 

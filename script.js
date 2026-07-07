@@ -13,16 +13,50 @@
 /* ── SEAL CLICK → open flap → auto-reveal website ── */
 let sealClicked = false;
 
+function playOpenSound() {
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  if (!AudioCtx) return;
+
+  if (!window.__inviteAudioCtx) {
+    window.__inviteAudioCtx = new AudioCtx();
+  }
+
+  const ctx = window.__inviteAudioCtx;
+  if (ctx.state === 'suspended') {
+    ctx.resume().catch(() => {});
+  }
+
+  const now = ctx.currentTime;
+  const gain = ctx.createGain();
+  gain.gain.setValueAtTime(0.0001, now);
+  gain.gain.exponentialRampToValueAtTime(0.04, now + 0.01);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
+
+  const osc = ctx.createOscillator();
+  osc.type = 'triangle';
+  osc.frequency.setValueAtTime(960, now);
+  osc.frequency.exponentialRampToValueAtTime(720, now + 0.12);
+
+  osc.connect(gain).connect(ctx.destination);
+  osc.start(now);
+  osc.stop(now + 0.16);
+}
+
 function onSealClick(e) {
   e.stopPropagation();
   if (sealClicked) return;
   sealClicked = true;
 
+  playOpenSound();
+
   // Hide prompt
   document.getElementById('env-prompt').classList.add('hidden');
 
-  // Open the envelope flap
-  document.getElementById('env-wrap').classList.add('opened');
+  // Open the envelope flap with a quick zoom transition
+  const envelope = document.getElementById('env-wrap');
+  envelope.classList.add('opened');
+  envelope.classList.add('opening');
+  setTimeout(() => envelope.classList.remove('opening'), 700);
 
   // After flap animation + card reveal, fade out overlay and start music
   setTimeout(() => {
@@ -39,7 +73,7 @@ function onSealClick(e) {
 
     // Start the golden sparkle shower
     if (window.startSparkleShower) window.startSparkleShower();
-  }, 1000); // reduced to 0.9s for faster reveal
+  }, 1000);
 }
 
 document.getElementById('env-seal').addEventListener('click', onSealClick);
