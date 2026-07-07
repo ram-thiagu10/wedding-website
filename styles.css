@@ -844,11 +844,11 @@
 .env-seal {
   position: absolute;
   /* Seal sits right at the tip of the top flap (bottom point of triangle) */
-  bottom: -22%;
+  bottom: -24%;
   left: 50%;
   transform: translateX(-50%);
-  width: clamp(56px, 16vw, 72px);
-  height: clamp(56px, 16vw, 72px);
+  width: clamp(64px, 18vw, 84px);
+  height: clamp(64px, 18vw, 84px);
   cursor: pointer;
   transition: filter 0.2s, transform 0.2s;
   filter: drop-shadow(0 4px 14px rgba(212,175,55,0.55));
