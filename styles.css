@@ -96,6 +96,7 @@
     border: 1px solid rgba(212,175,55,0.25);
     pointer-events: none;
   }
+
   .hero-border::before {
     content: '';
     position: absolute;
@@ -844,11 +845,11 @@
 .env-seal {
   position: absolute;
   /* Seal sits right at the tip of the top flap (bottom point of triangle) */
-  bottom: -24%;
+  bottom: -35%;
   left: 50%;
   transform: translateX(-50%);
-  width: clamp(64px, 18vw, 84px);
-  height: clamp(64px, 18vw, 84px);
+  width: clamp(80px, 22vw, 110px);
+  height: clamp(80px, 22vw, 110px);
   cursor: pointer;
   transition: filter 0.2s, transform 0.2s;
   filter: drop-shadow(0 4px 14px rgba(212,175,55,0.55));
@@ -856,7 +857,7 @@
 }
 .env-seal:hover {
   filter: drop-shadow(0 6px 22px rgba(212,175,55,0.9));
-  transform: translateX(-50%) scale(1.1);
+  transform: translateX(-50%) scale(1.15);
 }
 .env-seal img,
 .env-seal .env-seal-fallback {
