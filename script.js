@@ -551,7 +551,7 @@ function toggleMusic(){
       navGallery: "Gallery",
       navContact: "Contact",
       navWishes: "Wishes",
-      heroEyebrow: "✨ &nbsp; Together with our families and friends, we invite you to celebrate the coming together of two people, and a future built on love, respect, equality, and understanding &nbsp; ✨",
+      heroEyebrow: "✨<br />Together with our families and friends, we invite you to celebrate the coming together of two people, and a future built on love, respect, equality, and understanding",
       heroWeds: "weds",
       heroDate: "September 2026 &nbsp;·&nbsp; Kerala & Tamil Nadu",
       envTitleTop: "✨ &nbsp; A Wedding Invitation &nbsp; ✨",
