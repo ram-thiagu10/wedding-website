@@ -43,7 +43,7 @@ function playOpenSound() {
 }
 
 function onSealClick(e) {
-  e.stopPropagation();
+  if (e) e.stopPropagation();
   if (sealClicked) return;
   sealClicked = true;
 
