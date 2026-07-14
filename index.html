@@ -254,26 +254,29 @@
     <p data-i18n="countdownLabel" style="font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold-light); margin-bottom:12px;">Counting down to the moment</p>
     <p id="countdown-subtitle" data-i18n="countdownSubtitle" style="font-family:'Playfair Display',serif; font-size:22px; font-style:italic; color:rgba(255,255,255,0.9); margin-bottom:32px;">🌸 Wedding · 13 September 2026 · 11:20 AM</p>
     
-    <div class="countdown-grid">
-      <div class="cd-box">
-        <div class="cd-num" id="cd-days">--</div>
-        <div class="cd-label" data-i18n="cdDays">Days</div>
+    <div class="scratch-wrap" id="scratch-wrap">
+      <div class="countdown-grid">
+        <div class="cd-box">
+          <div class="cd-num" id="cd-days">--</div>
+          <div class="cd-label" data-i18n="cdDays">Days</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-box">
+          <div class="cd-num" id="cd-hours">--</div>
+          <div class="cd-label" data-i18n="cdHours">Hours</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-box">
+          <div class="cd-num" id="cd-minutes">--</div>
+          <div class="cd-label" data-i18n="cdMin">Min</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-box">
+          <div class="cd-num" id="cd-seconds">--</div>
+          <div class="cd-label" data-i18n="cdSec">Sec</div>
+        </div>
       </div>
-      <div class="cd-sep">:</div>
-      <div class="cd-box">
-        <div class="cd-num" id="cd-hours">--</div>
-        <div class="cd-label" data-i18n="cdHours">Hours</div>
-      </div>
-      <div class="cd-sep">:</div>
-      <div class="cd-box">
-        <div class="cd-num" id="cd-minutes">--</div>
-        <div class="cd-label" data-i18n="cdMin">Min</div>
-      </div>
-      <div class="cd-sep">:</div>
-      <div class="cd-box">
-        <div class="cd-num" id="cd-seconds">--</div>
-        <div class="cd-label" data-i18n="cdSec">Sec</div>
-      </div>
+      <canvas id="scratch-canvas" class="scratch-canvas"></canvas>
     </div>
     <p id="cd-done" data-i18n="cdDone" style="display:none; font-family:'Playfair Display',serif; font-size:26px; color:var(--gold-light); margin-top:16px;">🎉 They are married! Congratulations!</p>
   </div>

@@ -43,7 +43,7 @@ function playOpenSound() {
 }
 
 function onSealClick(e) {
-  if (e) e.stopPropagation();
+  e.stopPropagation();
   if (sealClicked) return;
   sealClicked = true;
 
@@ -79,15 +79,6 @@ function onSealClick(e) {
 document.getElementById('env-seal').addEventListener('click', onSealClick);
 // Also allow tapping anywhere on envelope as fallback
 document.getElementById('env-wrap').addEventListener('click', onSealClick);
-const params = new URLSearchParams(window.location.search);
-
-if (params.get("record") === "true") {
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      onSealClick();
-    }, 2000); // Wait 1.5 seconds before opening
-  });
-}
 
 /* ── MUSIC TOGGLE ── */
 let musicPlaying = true;
@@ -250,8 +241,8 @@ function toggleMusic(){
     const diff = weddingDate - now;
 
     if (diff <= 0) {
-      const grid = document.querySelector('.countdown-grid');
-      if (grid) grid.style.display = 'none';
+      const wrap = document.getElementById('scratch-wrap');
+      if (wrap) wrap.style.display = 'none';
       document.getElementById('cd-done').style.display = 'block';
       return;
     }
@@ -603,6 +594,7 @@ function toggleMusic(){
       countdownSubtitle: "🌸 Wedding · 13 September 2026 · 11:20 AM",
       cdDays: "Days", cdHours: "Hours", cdMin: "Min", cdSec: "Sec",
       cdDone: "🎉 The marriage ceremony is complete! Congratulations!",
+      scratchHint: "Scratch to reveal ✨",
       celebrationsEyebrow: "Two Days of Celebration",
       sectionCelebrations: "Our <em>Celebrations</em>",
       monthSep: "September",
@@ -700,6 +692,7 @@ function toggleMusic(){
       countdownSubtitle: "🌸 இணையேற்பு · 13 செப்டம்பர் 2026 · காலை 11:20",
       cdDays: "நாட்கள்", cdHours: "மணி", cdMin: "நிமிடம்", cdSec: "வினாடி",
       cdDone: "🎉 புதிய வாழ்க்கைப் பயணம் இனிதே தொடங்கியது! வாழ்த்துகள்!",
+      scratchHint: "வெளிப்படுத்த ஸ்க்ராட்ச் செய்யுங்கள் ✨",
       celebrationsEyebrow: "இரண்டு நாள் விழாக்கள்",
       sectionCelebrations: "எங்கள் <em>விழாக்கள்</em>",
       monthSep: "செப்டம்பர்",
@@ -797,6 +790,7 @@ function toggleMusic(){
       countdownSubtitle: "🌸 വിവാഹം · 13 സെപ്റ്റംബർ 2026 · രാവിലെ 11:20",
       cdDays: "ദിവസം", cdHours: "മണിക്കൂർ", cdMin: "മിനിറ്റ്", cdSec: "സെക്കൻഡ്",
       cdDone: "🎉 അവർ വിവാഹിതരായി! അഭിനന്ദനങ്ങൾ!",
+      scratchHint: "വെളിപ്പെടുത്താൻ ഉരയ്ക്കൂ ✨",
       celebrationsEyebrow: "രണ്ടു ദിവസത്തെ ആഘോഷങ്ങൾ",
       sectionCelebrations: "ഞങ്ങളുടെ <em>ആഘോഷങ്ങൾ</em>",
       monthSep: "സെപ്റ്റംബർ",
@@ -912,6 +906,8 @@ function toggleMusic(){
 
     // Update html lang attribute for accessibility
     document.documentElement.setAttribute('lang', lang);
+
+    if (typeof window.refreshScratchCardText === 'function') window.refreshScratchCardText();
   }
 
   // Restore previously chosen language (if any) on load
@@ -919,6 +915,184 @@ function toggleMusic(){
     let saved = 'en';
     try { saved = sessionStorage.getItem('weddingLang') || 'en'; } catch(e) {}
     if (saved !== 'en') setLanguage(saved);
+  })();
+
+  /* ── SCRATCH CARD (reveal countdown) ── */
+  (function initScratchCard() {
+    const wrap = document.getElementById('scratch-wrap');
+    const canvas = document.getElementById('scratch-canvas');
+    if (!wrap || !canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const REVEAL_THRESHOLD = 0.55; // fraction of the foil that must be scratched off
+    const BRUSH_RADIUS = 22;
+    let revealed = false;
+    let scratching = false;
+    let moveCount = 0;
+    let lastPos = null;
+
+    function getHintText() {
+      const lang = (typeof currentLang !== 'undefined') ? currentLang : 'en';
+      return (translations[lang] && translations[lang].scratchHint) || 'Scratch to reveal ✨';
+    }
+
+    function sizeCanvas() {
+      const rect = wrap.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.max(1, Math.round(rect.width * dpr));
+      canvas.height = Math.max(1, Math.round(rect.height * dpr));
+      canvas.style.width = rect.width + 'px';
+      canvas.style.height = rect.height + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function drawFoil() {
+      const dpr = window.devicePixelRatio || 1;
+      const w = canvas.width / dpr;
+      const h = canvas.height / dpr;
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.clearRect(0, 0, w, h);
+
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, '#E6CA65');
+      grad.addColorStop(0.5, '#D4AF37');
+      grad.addColorStop(1, '#B8962A');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Subtle dotted texture, echoing the kolam motif used elsewhere on the page
+      ctx.fillStyle = 'rgba(255,255,255,0.14)';
+      const spacing = 16;
+      for (let y = spacing / 2; y < h; y += spacing) {
+        for (let x = spacing / 2; x < w; x += spacing) {
+          ctx.beginPath();
+          ctx.arc(x, y, 1.2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      ctx.fillStyle = 'rgba(30,11,41,0.85)';
+      ctx.font = '600 15px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(getHintText(), w / 2, h / 2);
+    }
+
+    function initCanvas() {
+      sizeCanvas();
+      drawFoil();
+    }
+
+    function scratchDot(x, y) {
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(x, y, BRUSH_RADIUS, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function scratchLine(x0, y0, x1, y1) {
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+      ctx.lineWidth = BRUSH_RADIUS * 2;
+      ctx.beginPath();
+      ctx.moveTo(x0, y0);
+      ctx.lineTo(x1, y1);
+      ctx.stroke();
+    }
+
+    function getScratchedFraction() {
+      const w = canvas.width, h = canvas.height;
+      if (!w || !h) return 0;
+      const stride = 6; // sample every Nth pixel — plenty accurate, much cheaper
+      let transparent = 0, total = 0;
+      const data = ctx.getImageData(0, 0, w, h).data;
+      for (let i = 3; i < data.length; i += 4 * stride) {
+        total++;
+        if (data[i] < 20) transparent++;
+      }
+      return total ? transparent / total : 0;
+    }
+
+    function spawnBurst() {
+      const count = 22;
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = 'scratch-particle';
+        const angle = (Math.PI * 2 * i) / count + Math.random() * 0.4;
+        const dist = 90 + Math.random() * 70;
+        p.style.setProperty('--bx', Math.cos(angle) * dist + 'px');
+        p.style.setProperty('--by', Math.sin(angle) * dist + 'px');
+        p.style.animationDelay = (Math.random() * 0.08) + 's';
+        wrap.appendChild(p);
+        p.addEventListener('animationend', () => p.remove());
+      }
+    }
+
+    function triggerReveal(withBurst) {
+      if (revealed) return;
+      revealed = true;
+      try { localStorage.setItem('countdown_scratch_revealed', '1'); } catch (e) {}
+      wrap.classList.add('revealed');
+      if (withBurst) {
+        wrap.classList.add('bursting');
+        spawnBurst();
+        setTimeout(() => wrap.classList.remove('bursting'), 700);
+      }
+      setTimeout(() => { canvas.style.display = 'none'; }, 650);
+    }
+
+    function pointerPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    }
+
+    function handleMove(x, y) {
+      if (lastPos) scratchLine(lastPos.x, lastPos.y, x, y);
+      else scratchDot(x, y);
+      lastPos = { x, y };
+
+      moveCount++;
+      if (moveCount % 4 === 0) {
+        const frac = getScratchedFraction();
+        if (frac >= REVEAL_THRESHOLD) triggerReveal(true);
+      }
+    }
+
+    canvas.addEventListener('pointerdown', (e) => {
+      if (revealed) return;
+      scratching = true;
+      lastPos = null;
+      canvas.setPointerCapture(e.pointerId);
+      const { x, y } = pointerPos(e);
+      handleMove(x, y);
+    });
+    canvas.addEventListener('pointermove', (e) => {
+      if (!scratching || revealed) return;
+      const { x, y } = pointerPos(e);
+      handleMove(x, y);
+    });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(evt => {
+      canvas.addEventListener(evt, () => { scratching = false; lastPos = null; });
+    });
+
+    // Returning guests who already scratched it once shouldn't have to again
+    let alreadyRevealed = false;
+    try { alreadyRevealed = localStorage.getItem('countdown_scratch_revealed') === '1'; } catch (e) {}
+
+    if (alreadyRevealed) {
+      revealed = true;
+      wrap.classList.add('no-transition', 'revealed');
+      canvas.style.display = 'none';
+    } else {
+      initCanvas();
+      window.addEventListener('resize', () => { if (!revealed) initCanvas(); });
+    }
+
+    // Re-draw the foil's hint text if the guest switches language before scratching
+    window.refreshScratchCardText = function () {
+      if (!revealed) initCanvas();
+    };
   })();
 
   // --- PHOTO CAPTURE & EVENT RESTRICTION CONFIGURATION ---

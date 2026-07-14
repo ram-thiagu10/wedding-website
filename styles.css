@@ -522,6 +522,59 @@
     margin-top: -20px;
   }
 
+  /* ── SCRATCH CARD (over the countdown digits) ── */
+  .scratch-wrap {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+  .scratch-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 10px;
+    cursor: grab;
+    touch-action: none;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .scratch-canvas:active { cursor: grabbing; }
+  .scratch-wrap.revealed .scratch-canvas {
+    opacity: 0;
+    transform: scale(1.2);
+    pointer-events: none;
+  }
+  .scratch-wrap.no-transition .scratch-canvas { transition: none; }
+
+  .countdown-grid { transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .scratch-wrap.bursting .countdown-grid {
+    animation: cdPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  @keyframes cdPop {
+    0%   { transform: scale(0.85); }
+    60%  { transform: scale(1.06); }
+    100% { transform: scale(1); }
+  }
+
+  .scratch-particle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    pointer-events: none;
+    z-index: 30;
+    animation: scratchBurst 0.9s ease-out forwards;
+  }
+  @keyframes scratchBurst {
+    0%   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(calc(-50% + var(--bx)), calc(-50% + var(--by))) scale(0.2); opacity: 0; }
+  }
+
   /* ── VENUES RESPONSIVE GRID ── */
   .venues-grid {
     display: grid;
