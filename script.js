@@ -561,7 +561,7 @@ function toggleMusic(){
       countdownSubtitle: "🌸 Wedding · 13 September 2026 · 11:20 AM",
       cdDays: "Days", cdHours: "Hours", cdMin: "Min", cdSec: "Sec",
       cdDone: "🎉 The marriage ceremony is complete! Congratulations!",
-      celebrationsEyebrow: "Three Days of Celebration",
+      celebrationsEyebrow: "Two Days of Celebration",
       sectionCelebrations: "Our <em>Celebrations</em>",
       monthSep: "September",
       // dateSat: "Saturday · 2026",
