@@ -586,13 +586,29 @@
     font-style: italic;
     margin-bottom: 2px;
   }
-  .contact-number {
-    font-size: 13px;
-    color: var(--gold-light);
-    font-weight: 500;
+  .contact-call-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--plum-dark);
+    background: linear-gradient(135deg, var(--gold-light), var(--gold, #D4AF37));
+    border-radius: 999px;
     text-decoration: none;
+    box-shadow: 0 2px 10px rgba(212,175,55,0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .contact-number:hover { text-decoration: underline; }
+  .contact-call-btn svg { flex-shrink: 0; }
+  .contact-call-btn:hover,
+  .contact-call-btn:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(212,175,55,0.4);
+  }
+  .contact-call-btn:active { transform: translateY(0); }
 
   /* ── FOOTER ── */
   footer {
