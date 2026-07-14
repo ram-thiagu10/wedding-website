@@ -85,7 +85,7 @@ if (params.get("record") === "true") {
   window.addEventListener("load", () => {
     setTimeout(() => {
       onSealClick();
-    }, 1000); // Wait 1.5 seconds before opening
+    }, 2000); // Wait 1.5 seconds before opening
   });
 }
 
