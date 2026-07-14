@@ -23,7 +23,7 @@
     --card-glass-hover: rgba(255,255,255,0.09);
     --text-on-dark: rgba(255,255,255,0.92);
     --text-on-dark-soft: rgba(255,255,255,0.68);
-    --text-on-dark-muted: rgba(255,255,255,0.48);
+    --text-on-dark-muted: rgba(255,255,255,0.58);
     --divider-on-dark: rgba(212,175,55,0.22);
   }
 
@@ -142,10 +142,12 @@
   }
 
   .hero-eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    text-transform: none;
     color: var(--gold-light);
     margin-bottom: 24px;
     text-align: center;
@@ -435,20 +437,39 @@
     font-weight: 500;
     letter-spacing: 0.08em;
     padding: 10px 20px;
-    border-radius: 4px;
+    border-radius: 999px;
     text-decoration: none;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
     cursor: pointer;
     border: 1px solid var(--card-glass-border);
   }
   .map-btn:hover { background: rgba(212,175,55,0.2); }
 
   .map-btn.gold {
-    background: rgba(212,175,55,0.12);
-    color: var(--gold-light);
-    border: 1px solid var(--gold);
+    color: var(--plum-dark);
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    border: none;
+    box-shadow: 0 2px 10px rgba(212,175,55,0.25);
   }
-  .map-btn.gold:hover { background: var(--gold); color: var(--royal-bg-deep); }
+  .map-btn.gold:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(212,175,55,0.4);
+  }
+
+  .photo-message-input {
+    background: rgba(0,0,0,0.2);
+    color: var(--text-on-dark);
+    border: 1px solid var(--card-glass-border);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    resize: vertical;
+  }
+  .photo-message-input::placeholder { color: var(--text-on-dark-muted); }
+  .photo-message-input:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
 
   /* ── COUNTDOWN TIMER STYLES ── */
   .countdown-container {
@@ -633,7 +654,7 @@
   .footer-note {
     margin-top: 36px;
     font-size: 12px;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.45);
     letter-spacing: 0.05em;
   }
 
@@ -651,12 +672,20 @@
   }
 
   @media (max-width: 480px) {
-    nav { gap: 12px; display: none; } /* Hide floating bar on ultra-small mobile if needed, or keep compact */
-    body { padding-top: 0; }
+    nav {
+      gap: 14px;
+      padding: 12px 20px;
+      justify-content: flex-start;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    nav a { font-size: 9.5px; white-space: nowrap; flex-shrink: 0; }
     .hero { padding: 90px 16px 50px; min-height: 85vh; }
     .corner { width: 40px; height: 40px; }
     .hero-border { inset: 12px; }
-    .hero-eyebrow { font-size: 11px; margin-bottom: 16px; }
+    .hero-eyebrow { font-size: 14px; margin-bottom: 16px; }
     .hero-divider { width: 160px; margin: 20px auto; }
     .hero-date { font-size: 16px; }
     
@@ -911,17 +940,17 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--green);
-  color: #F5E6C8;
+  background: linear-gradient(135deg, var(--plum-deep), var(--royal-bg-mid));
+  color: var(--gold-light);
   border: 1px solid rgba(212,175,55,0.4);
   display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(74,21,75,0.45);
-  transition: transform 0.2s, background 0.2s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-#music-toggle:hover  { transform: scale(1.1); background: var(--green-light); }
+#music-toggle:hover  { transform: scale(1.1); box-shadow: 0 4px 20px rgba(212,175,55,0.4); }
 #music-toggle.visible { display: flex; }
 
 
@@ -940,35 +969,35 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: var(--green);
-    color: #F5E6C8;
+    background: linear-gradient(135deg, var(--plum-deep), var(--royal-bg-mid));
+    color: var(--gold-light);
     border: 1px solid rgba(212,175,55,0.4);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(74,21,75,0.45);
-    transition: transform 0.2s, background 0.2s;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  #translate-toggle:hover { transform: scale(1.1); background: var(--green-light); }
+  #translate-toggle:hover { transform: scale(1.1); box-shadow: 0 4px 20px rgba(212,175,55,0.4); }
 
   #translate-menu {
     display: none;
     flex-direction: column;
     gap: 8px;
-    background: rgba(255,255,255,0.97);
-    border: 1px solid rgba(74,21,75,0.12);
+    background: var(--gold-pale);
+    border: 1px solid rgba(212,175,55,0.4);
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 0 8px 28px rgba(74,21,75,0.18);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.3);
     backdrop-filter: blur(8px);
     animation: fadeUp 0.25s ease both;
   }
   #translate-menu.open { display: flex; }
 
   .lang-btn {
-    border: 1px solid rgba(74,21,75,0.12);
-    background: rgba(255,255,255,0.8);
+    border: 1px solid rgba(212,175,55,0.3);
+    background: rgba(255,255,255,0.6);
     color: var(--charcoal);
     border-radius: 999px;
     padding: 8px 14px;
@@ -980,8 +1009,8 @@
   }
   .lang-btn:hover,
   .lang-btn.active {
-    background: var(--green-light);
-    border-color: var(--green);
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    border-color: var(--gold);
     color: var(--plum-dark);
   }
 
@@ -1065,8 +1094,9 @@
     background: rgba(255,255,255,0.14);
   }
   .gallery-action-btn.gold {
-    background: linear-gradient(to right, var(--copper), var(--gold));
-    color: var(--royal-bg-deep);
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    color: var(--plum-dark);
+    box-shadow: 0 2px 10px rgba(212,175,55,0.25);
   }
   .gallery-action-btn:disabled {
     opacity: 0.6;
@@ -1088,11 +1118,12 @@
   }
   .upload-progress-card {
     width: min(420px, 100%);
-    background: rgba(255,255,255,0.97);
-    color: var(--royal-bg-deep);
+    background: var(--gold-pale);
+    color: var(--charcoal);
     border-radius: 16px;
     padding: 24px;
-    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.24);
+    border: 1px solid rgba(212,175,55,0.4);
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.3);
   }
   .upload-progress-bar {
     height: 10px;

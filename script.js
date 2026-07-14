@@ -423,10 +423,43 @@ function toggleMusic(){
     loadGlobalGallery(); // Refresh view
   }
 
+  // Pulls every guest's uploaded photo from the shared Apps Script/Sheet backend.
+  // Falls back to just this device's own uploads if the shared fetch fails or
+  // the backend doesn't support the "?action=get" read yet.
+  async function fetchSharedGallery() {
+    try {
+      const res = await fetch(APP_SCRIPT_WEBHOOK_URL + "?action=get");
+      if (!res.ok) return null;
+      const data = await res.json();
+      // Accept a few likely response shapes so this keeps working regardless
+      // of exactly how the Apps Script wraps its JSON reply.
+      const list = Array.isArray(data) ? data
+        : data.photos || data.records || data.rows || data.data || null;
+      if (!Array.isArray(list)) return null;
+      return list
+        .filter(item => item && item.url)
+        .map(item => ({ url: item.url, message: item.message || item.caption || "" }));
+    } catch (err) {
+      return null;
+    }
+  }
+
   async function loadGlobalGallery() {
     const grid = document.getElementById("live-gallery-grid");
     try {
-      const memories = JSON.parse(localStorage.getItem("my_uploaded_memories") || "[]");
+      const localMemories = JSON.parse(localStorage.getItem("my_uploaded_memories") || "[]");
+      const shared = await fetchSharedGallery();
+
+      // Prefer the shared list (everyone's photos); dedupe against local ones
+      // by URL so a guest's own just-uploaded photo doesn't show twice.
+      let memories;
+      if (shared && shared.length > 0) {
+        const sharedUrls = new Set(shared.map(m => m.url));
+        memories = [...shared, ...localMemories.filter(m => !sharedUrls.has(m.url))];
+      } else {
+        memories = localMemories;
+      }
+
       grid.innerHTML = "";
 
       if (memories.length > 0) {
@@ -631,15 +664,15 @@ function toggleMusic(){
       gallerySubLabel: "Click & Upload",
       galleryHelpText: "Help us save our memories! You can capture and upload up to <strong style=\"color:var(--gold-light)\">3 photos</strong> directly from your camera during the event days (Sept 13 & 15).",
       photosUploadedLabel: "Photos Uploaded:",
-      memoriesBannerTitle: "Your Uploaded Memories",
-      memoriesBannerSubtitle: "Thank you for sharing these precious moments with us.",
+      memoriesBannerTitle: "Memories Shared By Our Guests",
+      memoriesBannerSubtitle: "Thank you to everyone who shared these precious moments with us.",
       galleryButton: "📷 Take Photo",
       gallerySelectButton: "🖼️ Select From Gallery",
       galleryMessagePlaceholder: "Write a brief message with this photo... (Optional)",
       galleryUploadButton: "Upload Photo to Gallery",
       galleryUploadLockTitle: "Camera Uploads Open Only on Event Days",
       galleryUploadLockSubtitle: "Join us on September 13th and 15th, 2026 to upload your photos!",
-      galleryEmptyState: "No memories saved on this device yet. Be the first to share a moment!"
+      galleryEmptyState: "No memories shared yet. Be the first to share a moment!"
     },
 
     ta: {
@@ -728,17 +761,15 @@ function toggleMusic(){
       gallerySubLabel: "புகைப்படம் எடுத்து பதிவேற்றுங்கள்",
       galleryHelpText: "எங்கள் இனிய நினைவுகளைச் சேமிக்க உதவுங்கள்! நிகழ்ச்சி நாட்களில் (செப்டம்பர் 13 & 15) உங்கள் கேமராவில் இருந்து நேரடியாக <strong style=\"color:var(--gold-light)\">3 புகைப்படங்கள்</strong> வரை எடுத்து பதிவேற்றலாம்.",
       photosUploadedLabel: "பதிவேற்றப்பட்ட புகைப்படங்கள்:",
-      memoriesBannerTitle: "உங்கள் பதிவேற்றிய நினைவுகள்",
-      memoriesBannerSubtitle: "இந்த விலைமதிப்பற்ற தருணங்களைப் பகிர்ந்ததற்கு நன்றி.",
       galleryButton: "📷 புகைப்படம் எடு",
       gallerySelectButton: "🖼️ கேலரியிலிருந்து தேர்ந்தெடு",
       galleryMessagePlaceholder: "இந்த படத்துடன் சிறிய செய்தியை எழுதவும்... (விரும்பினால்)",
       galleryUploadButton: "புகைப்படத்தை பதிவேற்றுங்கள்",
       galleryUploadLockTitle: "நிகழ்ச்சி நாட்களில் மட்டுமே புகைப்பட பதிவேற்றம் திறந்திருக்கும்",
       galleryUploadLockSubtitle: "2026 செப்டம்பர் 13 மற்றும் 15 ஆம் தேதிகளில் உங்கள் புகைப்படங்களை பதிவேற்றுங்கள்!",
-      galleryEmptyState: "இந்த சாதனத்தில் இதுவரை எந்த நினைவுகளும் சேமிக்கப்படவில்லை. முதல் நினைவைப் பகிரும் நபராக நீங்கள் இருங்கள்!",
-      memoriesBannerTitle: "நீங்கள் பகிர்ந்த நினைவுகள்",
-      memoriesBannerSubtitle: "இந்த பொன்னான தருணங்களை எங்களுடன் பகிர்ந்ததற்கு மனமார்ந்த நன்றி.",
+      galleryEmptyState: "இதுவரை எந்த நினைவுகளும் பகிரப்படவில்லை. முதல் நினைவைப் பகிரும் நபராக நீங்கள் இருங்கள்!",
+      memoriesBannerTitle: "விருந்தினர்கள் பகிர்ந்த நினைவுகள்",
+      memoriesBannerSubtitle: "இந்த பொன்னான தருணங்களைப் பகிர்ந்த அனைவருக்கும் மனமார்ந்த நன்றி.",
     },
 
     ml: {
@@ -833,9 +864,9 @@ function toggleMusic(){
       galleryUploadButton: "ഫോട്ടോ അപ്‌ലോഡ് ചെയ്യൂ",
       galleryUploadLockTitle: "ഇവന്റ് ദിവസങ്ങളിൽ മാത്രമേ ക്യാമറ അപ്‌ലോഡുകൾ തുറക്കൂ",
       galleryUploadLockSubtitle: "2026 സെപ്റ്റംബർ 13, 15 തീയതികളിൽ നിങ്ങളുടെ ഫോട്ടോകൾ അപ്‌ലോഡ് ചെയ്യൂ!",
-      galleryEmptyState: "ഈ ഉപകരണത്തിൽ ഇതുവരെ ഓർമ്മകളൊന്നും സംരക്ഷിക്കപ്പെട്ടിട്ടില്ല. ആദ്യമായി ഒരു നിമിഷം പങ്കുവെക്കുന്നയാൾ നിങ്ങളാകൂ!",
-      memoriesBannerTitle: "നിങ്ങൾ പങ്കുവെച്ച ഓർമ്മകൾ",
-      memoriesBannerSubtitle: "ഈ മനോഹര നിമിഷങ്ങൾ ഞങ്ങളോടൊപ്പം പങ്കുവെച്ചതിന് നന്ദി.",
+      galleryEmptyState: "ഇതുവരെ ഓർമ്മകളൊന്നും പങ്കുവെച്ചിട്ടില്ല. ആദ്യമായി ഒരു നിമിഷം പങ്കുവെക്കുന്നയാൾ നിങ്ങളാകൂ!",
+      memoriesBannerTitle: "അതിഥികൾ പങ്കുവെച്ച ഓർമ്മകൾ",
+      memoriesBannerSubtitle: "ഈ മനോഹര നിമിഷങ്ങൾ പങ്കുവെച്ച എല്ലാവർക്കും നന്ദി.",
     }
   };
 
@@ -902,11 +933,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function checkEventDayRestriction() {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, '0');
-  const day = String(today.getDate()).padStart(2, '0');
-  const formattedToday = `${year}-${month}-${day}`;
+  // Compare against India Standard Time (event location), not the guest's
+  // own device timezone, so guests viewing from abroad aren't locked out
+  // (or let in) a day early/late.
+  const formattedToday = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
 
   const isEventDay = EVENT_DAYS.includes(formattedToday);
   
