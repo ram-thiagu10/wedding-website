@@ -79,7 +79,13 @@ function onSealClick(e) {
 document.getElementById('env-seal').addEventListener('click', onSealClick);
 // Also allow tapping anywhere on envelope as fallback
 document.getElementById('env-wrap').addEventListener('click', onSealClick);
-
+if (params.get("record") === "true") {
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      onSealClick();
+    }, 1000); // Wait 1 seconds before opening
+  });
+}
 /* ── MUSIC TOGGLE ── */
 let musicPlaying = true;
 function toggleMusic(){
