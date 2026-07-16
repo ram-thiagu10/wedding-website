@@ -167,31 +167,8 @@
   <a href="#events" data-i18n="navCelebrations">Celebrations</a>
   <a href="#venues" data-i18n="navVenues">Venues</a>
   <a href="#wishes" data-i18n="navWishes">Wishes</a>
-  <a href="#gallery" data-i18n="navGallery">Gallery</a>
   <a href="#contact" data-i18n="navContact">Contact</a>
 </nav>
-
-<!-- Floating translate toggle (bottom-left, mirrors music button) -->
-<div id="translate-wrap">
-  <button id="translate-toggle" onclick="toggleTranslateMenu()" title="Translate">
-  <svg width="22" height="22" viewBox="0 0 44 44" fill="currentColor">
-    <text x="2" y="16" font-family="Arial, sans-serif" font-weight="bold" font-size="16" fill="var(--gold-light)">a</text>
-    
-    <text x="24" y="18" font-family="sans-serif" font-weight="bold" font-size="14" fill="#ffffff">அ</text>
-    
-    <text x="12" y="38" font-family="sans-serif" font-weight="bold" font-size="14" fill="var(--gold)">അ</text>
-  </svg>
-</button>
-  <div id="translate-menu">
-    <button type="button" class="lang-btn active" data-lang="en" onclick="setLanguage('en')">ENGLISH</button>
-    <button type="button" class="lang-btn" data-lang="ta" onclick="setLanguage('ta')">தமிழ்</button>
-    <button type="button" class="lang-btn" data-lang="ml" onclick="setLanguage('ml')">മലയാളം</button>
-  </div>
-</div>
-
-
-
-
 
 <div class="hero">
   <div class="hero-border"></div>
@@ -389,9 +366,8 @@
     
     <div class="venues-grid">
 
-      <div style="background: var(--card-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); background-image: url('./assets/mangalya_audit.png'); background-size: 437px auto; background-position: right bottom; background-repeat: no-repeat; background-blend-mode: luminosity; background-attachment: scroll; border: 1px solid var(--card-glass-border); border-radius: 6px; padding: 28px; position: relative; overflow: hidden;">
+      <div style="background: var(--card-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-glass-border); border-radius: 6px; padding: 28px; position: relative; overflow: hidden;">
         <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(to right, var(--gold), var(--copper)); z-index:2;"></div>
-        <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(22,2,40,0.55); pointer-events:none; z-index:0;"></div>
         <div style="position:relative; z-index:1;">
           <p style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-light); font-weight:600; margin-bottom:10px;" data-i18n="venue1Tag">WEDDING</p>
         <p style="font-family:'Playfair Display',serif; font-size:22px; color:var(--text-on-dark); margin-bottom:6px;" data-i18n="venue1Name">Mangalya Auditorium</p>
@@ -417,9 +393,8 @@
         </div>
       </div>
 
-      <div style="background: var(--card-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); background-image: url('./assets/ramyas2.png'); background-size: 437px auto; background-position: right bottom; background-repeat: no-repeat; background-blend-mode: luminosity; background-attachment: scroll; border: 1px solid var(--card-glass-border); border-radius: 6px; padding: 28px; position: relative; overflow: hidden;">
+      <div style="background: var(--card-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-glass-border); border-radius: 6px; padding: 28px; position: relative; overflow: hidden;">
         <div style="position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(to right, var(--gold-light), var(--copper)); z-index:2;"></div>
-        <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(22,2,40,0.55); pointer-events:none; z-index:0;"></div>
         <div style="position:relative; z-index:1;">
           <p style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-light); font-weight:600; margin-bottom:10px;" data-i18n="venue2Tag">RECEPTION</p>
         <p style="font-family:'Playfair Display',serif; font-size:22px; color:var(--text-on-dark); margin-bottom:6px;" data-i18n="venue2Name">Ramyas Hotel</p>
@@ -484,88 +459,6 @@
   </section>
 </div>
 
-
-
-<section id="gallery" class="gallery-section">
-  <div class="section-eyebrow" data-i18n="galleryEyebrow">Shared Memories</div>
-  <h2 class="section-title" data-i18n="galleryTitle">Event <em>Gallery</em></h2>
-  
-  <div class="family-card" style="max-width: 600px; margin: 0 auto 48px auto;">
-    <div class="family-card-header">
-      <div class="family-icon">📸</div>
-      <div>
-        <div class="family-label" data-i18n="galleryLabel">Capture the Moments</div>
-        <div class="family-side-name" data-i18n="gallerySubLabel">Click & Upload</div>
-      </div>
-    </div>
-
-    <div id="upload-interface">
-      <p data-i18n="galleryHelpText" style="font-size: 14px; color: var(--text-on-dark-soft); margin-bottom: 16px;">
-        Help us save our memories! You can capture and upload up to <strong style="color:var(--gold-light)">3 photos</strong> directly from your camera during the event days (Sept 13 & 15).
-      </p>
-      
-      <div id="upload-status-badge" class="person-title-badge" style="margin-bottom: 16px;">
-        <span data-i18n="photosUploadedLabel">Photos Uploaded:</span> <span id="photo-count-tracker">0</span> / 3
-      </div>
-      <div id="upload-limit-note" style="display:none; margin-bottom: 16px; color: var(--gold-light); font-size: 13px;">
-        ✨ Thank you! You have used all 3 uploads for this device.
-      </div>
-
-      <form id="event-capture-form" onsubmit="handlePhotoUpload(event)">
-        <input type="file" id="camera-file-input" accept="image/*" capture="environment" style="display: none;" onchange="previewCapturedImages(this)" multiple />
-        <input type="file" id="gallery-file-input" accept="image/*" style="display: none;" onchange="previewCapturedImages(this)" multiple />
-
-        <div class="gallery-action-row">
-          <button type="button" class="gallery-action-btn gold" onclick="triggerPhotoPicker('camera')" data-i18n="galleryButton">
-            📷 Take Photo
-          </button>
-          <button type="button" class="gallery-action-btn" onclick="triggerPhotoPicker('gallery')" data-i18n="gallerySelectButton">
-            🖼️ Select From Gallery
-          </button>
-        </div>
-
-        <div id="camera-preview-container" style="display: none; text-align: center; margin-bottom: 16px;">
-          <div id="preview-thumbnails-grid" style="display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: nowrap; overflow-x: auto; margin-bottom: 12px; padding-bottom: 4px;"></div>
-        </div>
-
-        <div class="wish-form-grid" style="grid-template-columns: 1fr;">
-          <textarea id="photo-message" class="photo-message-input" style="width:100%; height:80px; text-align: left; padding: 10px;" data-i18n-placeholder="galleryMessagePlaceholder" placeholder="Write a brief message with this photo... (Optional)"></textarea>
-        </div>
-
-        <button type="submit" id="submit-photo-btn" class="map-btn gold" data-i18n="galleryUploadButton" style="width: 100%; justify-content: center; font-weight: 600;" disabled>
-          Upload Photo to Gallery
-        </button>
-      </form>
-    </div>
-
-    <div id="upload-lock-interface" style="display: none; text-align: center; padding: 20px 0;">
-      <div style="font-size: 40px; margin-bottom: 10px;">🔒</div>
-      <p style="color: var(--gold-light); font-weight: 500;" data-i18n="galleryUploadLockTitle">Camera Uploads Open Only on Event Days</p>
-      <p style="font-size: 13px; color: var(--text-on-dark-soft); margin-top: 4px;" data-i18n="galleryUploadLockSubtitle"> Join us on September 13th and 15th, 2026 to upload your photos! </p>
-    </div>
-  </div>
-
-  <div class="your-memories-banner">
-    <strong data-i18n="memoriesBannerTitle">Your Uploaded Memories</strong>
-    <p data-i18n="memoriesBannerSubtitle">Thank you for sharing these precious moments with us.</p>
-  </div>
-
-  <div class="venues-grid" id="live-gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
-    <div class="person-card" style="text-align: center; padding: 40px 20px; grid-column: 1 / -1;">
-      <p style="color: var(--text-on-dark-muted); font-style: italic;" data-i18n="galleryEmptyState">No memories shared yet. Be the first to share a moment!</p>
-    </div>
-  </div>
-</section>
-
-<div id="upload-progress-overlay" class="upload-progress-overlay" aria-live="polite">
-  <div class="upload-progress-card">
-    <div style="font-size: 32px; margin-bottom: 10px; text-align: center;">📸</div>
-    <h3 style="margin: 0 0 6px; text-align: center; font-size: 20px;">Uploading your memories</h3>
-    <p id="upload-progress-text" style="margin: 0 0 12px; text-align: center; color: var(--charcoal);">Please keep this page open while your photos are being saved.</p>
-    <div class="upload-progress-bar"><div id="upload-progress-fill"></div></div>
-    <div id="upload-progress-meta" class="upload-progress-meta">Preparing your photos…</div>
-  </div>
-</div>
 <div id="contact">
   <section>
     <p class="section-eyebrow" data-i18n="contactEyebrow">Reach Out</p>
