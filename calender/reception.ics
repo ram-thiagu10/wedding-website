@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//VR Wedding//EN
+BEGIN:VEVENT
+UID:reception-20260901@vijaywedssanthoshi
+DTSTAMP:20260721T000000Z
+DTSTART:20260901T180000
+DTEND:20260901T220000
+SUMMARY:Vijay ❤ Santhoshi Reception
+LOCATION:ES Mahal, Tiruchirappalli, Tamil Nadu
+DESCRIPTION:Join us for the Reception celebration.
+END:VEVENT
+END:VCALENDAR

@@ -3,21 +3,21 @@
     --gold: #D4AF37;       
     --gold-light: #E6CA65;
     --gold-pale: #FDF9EC;
-    --green: #4A154B;
-    --green-light: #611f69;
+    --green: #6B1010;
+    --green-light: #8C1919;
     --copper: #B38F4D;
     --parchment: #E8DFD0;
     --charcoal: #231F20;
     --charcoal-soft: #4A4644;
     --text-muted: #8C827A;
     --white: #FFFFFF;
-    --plum-dark: #1E0B29;
-    --plum-deep: #2D103D;
+    --plum-dark: #4A0E0E;
+    --plum-deep: #611414;
 
     /* ── ROYAL PURPLE THEME ── */
-    --royal-bg: #2D0845;
-    --royal-bg-deep: #160228;
-    --royal-bg-mid: #421659;
+    --royal-bg: #7A1414;
+    --royal-bg-deep: #3D0A0A;
+    --royal-bg-mid: #A31D1D;
     --card-glass: rgba(255,255,255,0.06);
     --card-glass-border: rgba(212,175,55,0.25);
     --card-glass-hover: rgba(255,255,255,0.09);
@@ -770,7 +770,7 @@
   position: fixed;
   inset: 0;
   z-index: 9998;
-  background: radial-gradient(ellipse at 50% 45%, #2D0845 0%, #160228 55%, #0A0110 100%);
+  background: radial-gradient(ellipse at 50% 45%, #7A1414 0%, #3D0A0A 55%, #0A0110 100%);
   display: flex;
   align-items: center;
   justify-content: center;

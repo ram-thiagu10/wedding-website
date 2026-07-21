@@ -218,7 +218,7 @@ function toggleMusic(){
     }
   }
 
-  const weddingDate = new Date('2026-09-13T11:20:00+05:30');
+  const weddingDate = new Date('2026-09-02T08:30:00+05:30');
 
   function updateCountdown() {
     const now = new Date();
@@ -243,7 +243,7 @@ function toggleMusic(){
   }
 
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzoo2_KLeDevK54-qVhzj8iDgxyyYSQ7HjJqeipqjmncxCk44SS9Np3I6_3X416sux7tg/exec';
-
+  const COUPLE_ID = 'vijay-santhoshini';
   async function submitWish() {
     const name    = document.getElementById('wish-name').value.trim();
     const relation= document.getElementById('wish-relation').value.trim();
@@ -259,7 +259,7 @@ function toggleMusic(){
     status.textContent = 'Sending…';
 
     try {
-      await fetch(APPS_SCRIPT_URL, {
+      await fetch(`${APPS_SCRIPT_URL}?couple=${COUPLE_ID}`, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
@@ -315,7 +315,7 @@ function toggleMusic(){
   async function loadWishes() {
     if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes('YOUR_APPS')) return;
     try {
-      const res = await fetch(APPS_SCRIPT_URL + '?action=get');
+      const res = await fetch(`${APPS_SCRIPT_URL}?action=get&couple=${COUPLE_ID}`);
       const data = await res.json();
       if (data && data.wishes && data.wishes.length > 0) {
         data.wishes.reverse().forEach(w => addWishCard(w));
