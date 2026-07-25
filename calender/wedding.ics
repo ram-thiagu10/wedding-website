@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//RP Wedding//EN
+BEGIN:VEVENT
+UID:wedding-20260913@ramwedspradee
+DTSTAMP:20260913T000000Z
+DTSTART:20260913T112000
+DTEND:20260913T115600
+SUMMARY:Ram ❤ Pradee Wedding
+LOCATION:Mangalya Auditorium, Chottanikara, Ernakulam, Kerala
+DESCRIPTION:Join us for the Wedding celebration.
+END:VEVENT
+END:VCALENDAR
