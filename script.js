@@ -692,7 +692,7 @@ function toggleMusic(){
       countdownSubtitle: "🌸 இணையேற்பு · 13 செப்டம்பர் 2026 · காலை 11:20",
       cdDays: "நாட்கள்", cdHours: "மணி", cdMin: "நிமிடம்", cdSec: "வினாடி",
       cdDone: "🎉 புதிய வாழ்க்கைப் பயணம் இனிதே தொடங்கியது! வாழ்த்துகள்!",
-      scratchHint: "வெளிப்படுத்த ஸ்க்ராட்ச் செய்யுங்கள் ✨",
+      scratchHint: "ஸ்க்ராட்ச் செய்யுங்கள் ✨",
       celebrationsEyebrow: "இரண்டு நாள் விழாக்கள்",
       sectionCelebrations: "எங்கள் <em>விழாக்கள்</em>",
       monthSep: "செப்டம்பர்",
