@@ -58,7 +58,7 @@ function onSealClick(e) {
   envelope.classList.add('opening');
   setTimeout(() => envelope.classList.remove('opening'), 700);
 
-  // After flap animation + card reveal, fade out overlay and start music
+  // After the seal breaks and the letter slides out, fade out overlay and start music
   setTimeout(() => {
     const overlay = document.getElementById('envelope-overlay');
     overlay.classList.add('hidden');
@@ -73,7 +73,7 @@ function onSealClick(e) {
 
     // Start the golden sparkle shower
     if (window.startSparkleShower) window.startSparkleShower();
-  }, 1000);
+  }, 1550);
 }
 
 document.getElementById('env-seal').addEventListener('click', onSealClick);
