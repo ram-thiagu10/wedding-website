@@ -384,6 +384,7 @@ section {
   color: var(--gold-light);
   margin-bottom: 12px;
   text-align: left;
+  margin-right: -0.25em; 
 }
 
 .section-title {
@@ -427,13 +428,14 @@ section {
 }
 
 /* label rail dot, sits beside the eyebrow on wide screens */
-@media (min-width: 861px) {
+/* @media (min-width: 861px) {
 
   #events .section-eyebrow,
   #venues .section-eyebrow,
   #wishes .section-eyebrow,
   #contact .section-eyebrow {
-    grid-column: 1 / 2;
+    grid-column: 2 / -1;
+    grid-row: 1;
     align-self: end;
     padding-bottom: 4px;
   }
@@ -443,7 +445,7 @@ section {
   #wishes .section-title,
   #contact .section-title {
     grid-column: 2 / -1;
-    grid-row: 1;
+    grid-row: 2;
   }
 
   #events .events-stack,
@@ -451,7 +453,16 @@ section {
   #wishes > section > div,
   #contact .family-grid {
     grid-column: 2 / -1;
-    grid-row: 2;
+    grid-row: 3;
+  }
+} */
+
+@media (min-width: 861px) {
+  #events .section-eyebrow, #venues .section-eyebrow, #wishes .section-eyebrow, #contact .section-eyebrow,
+  #events .section-title, #venues .section-title, #wishes .section-title, #contact .section-title,
+  #events .events-stack, #venues .venues-grid, #wishes > section > div, #contact .family-grid {
+    grid-column: 2 / -1;
+    grid-row: auto; /* Lets them stack naturally by their order in HTML */
   }
 }
 
