@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Callista';
-  src: url('assets/fonts/Callista-vmqlE.woff2') format('woff2'),
-    url('assets/fonts/Callista-vmqlE.woff') format('woff');
+  src: url('./assets/fonts/Callista-vmqlE.woff2') format('woff2'),
+    url('./assets/fonts/Callista-vmqlE.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
