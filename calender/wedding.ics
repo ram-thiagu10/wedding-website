@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//PI Wedding//EN
+BEGIN:VEVENT
+UID:wedding-20261025@prasanthwedsiswarya
+DTSTAMP:20261025T000000Z
+DTSTART:20261025T070000
+DTEND:20261025T090000
+SUMMARY:Prasanth ❤ Iswarya Wedding
+LOCATION:Sree Vivaahaa Mahal, Coimbatore, Tamil Nadu
+DESCRIPTION:Your presence will make it extra special. See you there!.
+END:VEVENT
+END:VCALENDAR
