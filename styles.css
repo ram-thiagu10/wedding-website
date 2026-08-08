@@ -166,8 +166,10 @@ nav a:hover::after {
   position: relative;
   overflow: hidden;
   padding: 140px clamp(24px, 10vw, 120px) 100px;
+  text-align: center;
+  gap: 32px; 
+  box-sizing: border-box;
 }
-
 .hero::before {
   content: '';
   position: absolute;
@@ -1145,9 +1147,9 @@ footer {
     gap: 24px;
   }
 
-  .hero {
+  /* .hero {
     align-items: center;
-  }
+  } */
 
   .hero-eyebrow,
   .hero-names,
@@ -1221,10 +1223,10 @@ footer {
     flex-shrink: 0;
   }
 
-  .hero {
+  /* .hero {
     padding: 90px 16px 50px;
     min-height: 85vh;
-  }
+  } */
 
   .corner {
     width: 40px;
