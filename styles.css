@@ -147,11 +147,6 @@ nav a:hover::after {
   right: 0;
 }
 
-/* ── HERO ──
-   Editorial letterhead: content is pinned to the left two-thirds of the
-   frame instead of dead-centre, with a slim off-centre frame and a
-   single anchoring corner mark — quieter and more asymmetric than a
-   fully symmetric centred card. */
 .hero {
   min-height: 100vh;
   background:
@@ -1147,10 +1142,6 @@ footer {
     gap: 24px;
   }
 
-  /* .hero {
-    align-items: center;
-  } */
-
   .hero-eyebrow,
   .hero-names,
   .hero-date {
@@ -1159,6 +1150,15 @@ footer {
 
   .hero-names {
     max-width: 100%;
+    font-size: clamp(42px, 13vw, 72px);
+    letter-spacing: 0.015em;
+    line-height: 1.3;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .hero-amp {
+    margin: 10px 0;
   }
 
   .hero-divider {
@@ -1223,11 +1223,6 @@ footer {
     flex-shrink: 0;
   }
 
-  /* .hero {
-    padding: 90px 16px 50px;
-    min-height: 85vh;
-  } */
-
   .corner {
     width: 40px;
     height: 40px;
@@ -1244,6 +1239,10 @@ footer {
     font-size: 13px;
     margin-bottom: 18px;
     max-width: 100%;
+  }
+
+  .hero-names {
+    font-size: clamp(36px, 14vw, 56px);
   }
 
   .hero-divider {
