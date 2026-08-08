@@ -7,6 +7,13 @@
   font-display: swap;
 }
 
+@media (min-width: 1024px) {
+  .hero-names {
+    text-align: left;
+    margin: 0; /* Reset margin if needed for your desktop layout */
+  }
+}
+
 :root {
   --ivory: #FFFDF8;
   --gold: #C9A227;
@@ -243,14 +250,19 @@ nav a:hover::after {
 }
 
 .hero-names {
+  padding: 0 20px; 
+  word-wrap: break-word; 
+  overflow-wrap: break-word;
   font-family: 'Callista', 'Alex Brush', cursive;
-  font-size: clamp(44px, 9vw, 108px);
+  font-size: clamp(32px, 9vw, 108px);
   font-weight: 400;
   color: var(--gold-light);
   text-align: left;
   line-height: 1.1;
   position: relative;
   max-width: 900px;
+  width: 100%;
+  margin: 0 auto; 
 }
 
 .hero-names em {
