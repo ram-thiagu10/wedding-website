@@ -1677,6 +1677,39 @@ footer {
   display: flex;
 }
 
+/* ── LANGUAGE TOGGLE ── */
+#lang-toggle {
+  position: fixed;
+  bottom: 22px;
+  right: 76px;
+  z-index: 10000;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--plum-deep), var(--royal-bg-mid));
+  color: var(--gold-light);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+#lang-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+}
+
+#lang-toggle.visible {
+  display: flex;
+}
+
 /* ── WISHES ── */
 #wishes-wall {
   margin-top: 40px;

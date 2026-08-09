@@ -1,3 +1,145 @@
+/* ── LANGUAGE TRANSLATION (English ⇄ Tamil) ── */
+const translations = {
+  ta: {
+    envTitleTop: '✨ &nbsp; ஒரு திருமண அழைப்பிதழ் &nbsp; ✨',
+    envBlessings: "🪔 &nbsp; எங்கள் குடும்பங்களின் அன்புடனும் ஆசியுடனும் &nbsp; 🪔",
+    heroWeds: '❤️',
+    heroDate: 'அக்டோபர் 2026 · கோயம்புத்தூர், தமிழ்நாடு',
+    envTapPrompt: 'உங்கள் அழைப்பிதழைத் திறக்க முத்திரையைத் தொடவும்',
+    navCelebrations: 'கொண்டாட்டங்கள்',
+    navVenues: 'இடங்கள்',
+    navWishes: 'வாழ்த்துக்கள்',
+    navContact: 'தொடர்பு',
+    heroEyebrow: '✨ உங்கள் வருகை இதை மேலும் சிறப்பாக்கும். அங்கே சந்திப்போம்! ✨',
+    countdownLabel: 'அந்த நேரத்திற்கான கவுண்ட்டவுன்',
+    countdownSubtitle: '🌸 திருமணம் · 25 அக்டோபர் 2026 · காலை 07:00 - 09:00',
+    cdDays: 'நாட்கள்',
+    cdHours: 'மணி',
+    cdMin: 'நிமிடம்',
+    cdSec: 'வினாடி',
+    cdDone: '🎉 அவர்கள் திருமணமானார்கள்! வாழ்த்துக்கள்!',
+    celebrationsEyebrow: 'இரண்டு நாட்கள் கொண்டாட்டம்',
+    sectionCelebrations: 'எங்கள் <em>கொண்டாட்டங்கள்</em>',
+    monthSep: 'அக்டோபர்',
+    dateTue: 'சனிக்கிழமை · 2026',
+    dateSun: 'ஞாயிற்றுக்கிழமை · 2026',
+    event3Name: '🎊 வரவேற்பு',
+    event3Time: 'மாலை 6:30 - இரவு 09:00',
+    eventVenueName: 'ஸ்ரீ விவாஹா மஹால், எல்&டி பைபாஸ் அருகில், கோயம்புத்தூர்',
+    saveCalendar: 'காலெண்டரில் சேமிக்க',
+    event2Name: '🌸 திருமணம்',
+    event2Time: 'காலை 07:00 - 09:00',
+    venuesEyebrow: 'வந்தடைவது எப்படி',
+    venuesTitle: '<em>இடங்கள்</em> ஒரு பார்வையில்',
+    venue1Tag: 'வரவேற்பு & திருமணம்',
+    venue1Name: 'ஸ்ரீ விவாஹா மஹால்',
+    venue1City: '81/D-1 ஒட்டார்பாளையம், ஒண்டிப்புதூர் அஞ்சல், இருகூர் பிரிவு டிரிச்சி ரோடு, எல்&டி பைபாஸ் அருகில், கோயம்புத்தூர், தமிழ்நாடு <br>அடையாளம்: சரஸ்வதி மருத்துவமனை அருகில், பைபாஸ் சந்திப்பு',
+    howToReach: 'எப்படி வந்தடைவது',
+    fromAirportLabel: '✈️ கோயம்புத்தூர் சர்வதேச விமான நிலையத்திலிருந்து (CJB):',
+    venue1Airport: '~8 கி.மீ தொலைவில். அவினாஷி ரோடு மற்றும் சிங்காநல்லூர் வழியாக டாக்ஸி அல்லது ஆட்டோவில் டிரிச்சி ரோடு இருகூர் பிரிவை அடையலாம் (15–20 நிமிடங்கள்).',
+    venue1TrainLabel: '🚂 கோயம்புத்தூர் ஜங்ஷனிலிருந்து (CBE):',
+    venue1Train: '~11 கி.மீ தொலைவில். டிரிச்சி ரோடு வழியாக ஒண்டிப்புதூர்/சிங்காநல்லூர் நோக்கி டாக்ஸி அல்லது ஆட்டோவில் செல்லலாம் (20–25 நிமிடங்கள்).',
+    fromBusLabel: '🚌 சிங்காநல்லூர் பேருந்து நிலையத்திலிருந்து:',
+    venue1Bus: '~3 கி.மீ தொலைவில். டிரிச்சி ரோடு வழியாக ஒண்டிப்புதூர்/இருகூர் செல்லும் எந்த டவுன் பேருந்திலும் ஏறி, எல்&டி பைபாஸ் அருகிலுள்ள இருகூர் பிரிவு நிறுத்தத்தில் இறங்கவும்.',
+    byRoadLabel: '🚗 சாலை வழி:',
+    venue1Road: 'ஒண்டிப்புதூர், இருகூர் பிரிவில் உள்ள எல்&டி பைபாஸ் சந்திப்புக்கு அருகில், டிரிச்சி ரோடில் நேரடியாக அமைந்துள்ளது. NH 544 / சேலம்-எர்ணாகுளம் நெடுஞ்சாலை வழியாக எளிதில் வந்தடையலாம்.',
+    openMaps: 'கூகிள் மேப்ஸில் திற',
+    wishesEyebrow: 'இதயத்திலிருந்து',
+    wishesTitle: 'உங்கள் <em>வாழ்த்துக்களை</em> அனுப்புங்கள்',
+    yourName: 'உங்கள் பெயர் *',
+    relationLabel: 'தம்பதியருடன் உறவு',
+    yourWish: 'உங்கள் வாழ்த்து *',
+    sendWishes: 'வாழ்த்து அனுப்பு',
+    wishesPlaceholderText: '💜 அன்புக்குரியவர்களின் வாழ்த்துக்கள் இங்கே தோன்றும்…',
+    contactEyebrow: 'தொடர்பு கொள்ள',
+    contactTitle: 'குடும்ப <em>தொடர்புகள்</em>',
+    groomFamilyLabel: 'மணமகன் குடும்பம்',
+    callBtn: 'அழை',
+    brideFamilyLabel: 'மணமகள் குடும்பம்',
+    footerTagline: 'அக்டோபர் 2026 · கோயம்புத்தூர், தமிழ்நாடு',
+    footerNote: 'சிரிப்போம், கொண்டாடுவோம், நினைவுகளை ஒன்றாக உருவாக்குவோம்!',
+    namePlaceholder: 'எ.கா. சுரேஷ் குமார்',
+    relationPlaceholder: 'எ.கா. மணமகனின் கல்லூரி நண்பர்',
+    wishPlaceholder: 'பிரசாந்த் R & ஈஸ்வர்யா ஜனனி A-க்கு உங்கள் மனமார்ந்த வாழ்த்துக்களை எழுதுங்கள்',
+    guestLabel: 'விருந்தினர்',
+    wishSentMsg: '💜 உங்கள் வாழ்த்து அனுப்பப்பட்டது! நன்றி.',
+    wishErrorMsg: '❌ ஏதோ தவறு நடந்தது. மீண்டும் முயற்சிக்கவும்.',
+    wishNameRequired: '⚠️ உங்கள் பெயரை உள்ளிடவும்.',
+    wishMessageRequired: '⚠️ ஒரு வாழ்த்தை எழுதவும்.',
+    sendingMsg: 'அனுப்புகிறது…',
+    scratchHint: 'வெளிப்படுத்த சுரண்டவும் ✨'
+  }
+};
+
+// Keys whose translated value contains markup (e.g. <em>) and must be
+// applied via innerHTML rather than textContent.
+const I18N_HTML_KEYS = new Set(['sectionCelebrations', 'venuesTitle', 'wishesTitle', 'contactTitle']);
+
+let currentLang = 'en';
+try { currentLang = localStorage.getItem('site_lang') || 'en'; } catch (e) {}
+
+// Cache the original English content per-element (not per-key) before any
+// translation is applied, since a couple of keys legitimately hold slightly
+// different text in different spots.
+const originalI18n = new WeakMap();
+
+function cacheOriginalContent() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    originalI18n.set(el, I18N_HTML_KEYS.has(key) ? el.innerHTML : el.textContent);
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    originalI18n.set(el, el.getAttribute('placeholder'));
+  });
+}
+
+// Small helper other parts of the script use to grab a translated string,
+// falling back to the given English default.
+function t(key, fallback) {
+  return (currentLang === 'ta' && translations.ta[key]) ? translations.ta[key] : fallback;
+}
+
+function applyLanguage(lang) {
+  currentLang = lang;
+  try { localStorage.setItem('site_lang', lang); } catch (e) {}
+  document.documentElement.lang = lang === 'ta' ? 'ta' : 'en';
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const original = originalI18n.get(el);
+    const useHtml = I18N_HTML_KEYS.has(key);
+    const value = (lang === 'ta' && translations.ta[key]) ? translations.ta[key] : original;
+    if (useHtml) el.innerHTML = value;
+    else el.textContent = value;
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    const original = originalI18n.get(el);
+    el.setAttribute('placeholder', (lang === 'ta' && translations.ta[key]) ? translations.ta[key] : original);
+  });
+
+  const btn = document.getElementById('lang-toggle');
+  if (btn) btn.textContent = lang === 'ta' ? 'A' : 'அ';
+
+  // Let the scratch card redraw its hint text in the new language
+  if (window.refreshScratchCardText) window.refreshScratchCardText();
+}
+
+function toggleLanguage() {
+  applyLanguage(currentLang === 'ta' ? 'en' : 'ta');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  cacheOriginalContent();
+  applyLanguage(currentLang);
+});
+// In case this script runs after DOMContentLoaded has already fired
+if (document.readyState === 'interactive' || document.readyState === 'complete') {
+  cacheOriginalContent();
+  applyLanguage(currentLang);
+}
+
 /* ── STARS ── */
 (function(){
   const c = document.getElementById('env-stars');
@@ -65,6 +207,9 @@ function onSealClick(e) {
 
     // Show music toggle button
     document.getElementById('music-toggle').classList.add('visible');
+
+    // Show language toggle button
+    document.getElementById('lang-toggle').classList.add('visible');
 
     // Start music
     const audio = document.getElementById('bg-music');
@@ -251,12 +396,12 @@ function toggleMusic(){
     const status  = document.getElementById('wish-status');
     const btn     = document.getElementById('wish-submit');
 
-    if (!name) { status.textContent = '⚠️ Please enter your name.'; return; }
-    if (!message) { status.textContent = '⚠️ Please write a wish.'; return; }
+    if (!name) { status.textContent = t('wishNameRequired', '⚠️ Please enter your name.'); return; }
+    if (!message) { status.textContent = t('wishMessageRequired', '⚠️ Please write a wish.'); return; }
 
     btn.disabled = true;
     btn.style.opacity = '0.6';
-    status.textContent = 'Sending…';
+    status.textContent = t('sendingMsg', 'Sending…');
 
     try {
       await fetch(`${APPS_SCRIPT_URL}?couple=${COUPLE_ID}`, {
@@ -271,10 +416,10 @@ function toggleMusic(){
       document.getElementById('wish-name').value = '';
       document.getElementById('wish-relation').value = '';
       document.getElementById('wish-message').value = '';
-      status.textContent = '💜 Your wish was sent! Thank you.';
+      status.textContent = t('wishSentMsg', '💜 Your wish was sent! Thank you.');
       status.style.color = 'var(--gold-light)';
     } catch (e) {
-      status.textContent = '❌ Something went wrong. Please try again.';
+      status.textContent = t('wishErrorMsg', '❌ Something went wrong. Please try again.');
     } finally {
       btn.disabled = false;
       btn.style.opacity = '1';
@@ -291,7 +436,7 @@ function toggleMusic(){
     card.className = 'wish-card';
     card.innerHTML = `
       <div class="wish-card-name">${escapeHtml(wish.name)}</div>
-      <div class="wish-card-relation">${wish.relation ? escapeHtml(wish.relation) : 'Guest'}</div>
+      <div class="wish-card-relation">${wish.relation ? escapeHtml(wish.relation) : t('guestLabel', 'Guest')}</div>
       <div class="wish-card-message">${escapeHtml(wish.message)}</div>
       <div class="wish-card-time">${wish.timestamp || ''}</div>
     `;
@@ -344,7 +489,7 @@ function toggleMusic(){
     let lastPos = null;
 
     function getHintText() {
-      return 'Scratch to reveal ✨';
+      return t('scratchHint', 'Scratch to reveal ✨');
     }
 
     function sizeCanvas() {
