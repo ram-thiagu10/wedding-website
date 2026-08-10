@@ -499,6 +499,19 @@ function toggleMusic(){
       return t('scratchHint', 'Scratch to reveal ✨');
     }
 
+    // Shrinks the hint text's font size until it fits within maxWidth,
+    // so longer/wider scripts (e.g. Tamil) don't overflow the box on
+    // narrow mobile widths where the canvas itself is smaller.
+    function fitHintFontSize(text, maxWidth, maxSize, minSize) {
+      let size = maxSize;
+      ctx.font = `600 ${size}px Inter, sans-serif`;
+      while (size > minSize && ctx.measureText(text).width > maxWidth) {
+        size -= 1;
+        ctx.font = `600 ${size}px Inter, sans-serif`;
+      }
+      return size;
+    }
+
     function sizeCanvas() {
       const rect = wrap.getBoundingClientRect();
       const dpr = window.devicePixelRatio || 1;
@@ -535,10 +548,12 @@ function toggleMusic(){
       }
 
       ctx.fillStyle = 'rgba(74,37,48,0.85)';
-      ctx.font = '600 15px Inter, sans-serif';
+      const hintText = getHintText();
+      const fontSize = fitHintFontSize(hintText, w * 0.86, 15, 10);
+      ctx.font = `600 ${fontSize}px Inter, sans-serif`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(getHintText(), w / 2, h / 2);
+      ctx.fillText(hintText, w / 2, h / 2);
     }
 
     function initCanvas() {
